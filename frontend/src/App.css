@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'Bitter-font';
+    font-style: normal;
+    font-weight: normal;
+    src: url('assets/fonts/Bitter/Bitter-VariableFont_wght.ttf')
+}
+
+@font-face {
+    font-family: 'Pattaya';
+    src: url('assets/fonts/Pattaya/Pattaya-Regular.ttf')
+}
+
