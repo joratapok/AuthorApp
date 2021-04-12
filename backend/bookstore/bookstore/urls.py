@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from rest_framework.routers import SimpleRouter
 
 from bookstore import settings
@@ -24,10 +24,14 @@ from store.views import BookViewSet, UserBookRelationView
 router = SimpleRouter()
 
 router.register(r'book', BookViewSet)
-router.register(r'book_relaton', UserBookRelationView)
+router.register(r'book_relation', UserBookRelationView) 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api-auth/', include('rest_framework.urls')),
+    path('auth/', include('djoser.urls')),
+    path('auth/', include('djoser.urls.jwt')),
+
 ]
 
 urlpatterns += router.urls

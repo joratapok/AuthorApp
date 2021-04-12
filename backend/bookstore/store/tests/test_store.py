@@ -39,7 +39,7 @@ class BooksRelationsAPITestCase(APITestCase):
         self.book_2 = Book.objects.create(name='test book2', price=30, author_name='Author2')
 
     def test_rate(self):
-        url = reverse('userbookrelation-detail', args=(self.book_1.id,))  # book-detail
+        url = reverse('userbookrelation-detail', args=(self.book_1.id,))  # book-detail  #  userbookrelation-detail
 
         data = {
             'rate': 1,
@@ -49,4 +49,4 @@ class BooksRelationsAPITestCase(APITestCase):
         response = self.client.patch(url, data=json_data, content_type='application/json')
         self.assertEqual(status.HTTP_200_OK, response.status_code)
         relation = UserBookRelation.objects.get(user=self.user, book=self.book_1)
-        self.assertEqual(3, relation.rate)
+        self.assertEqual(1, relation.rate)

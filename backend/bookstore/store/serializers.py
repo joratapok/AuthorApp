@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer
-from store.models import Book
+from store.models import Book, UserBookRelation
 
 
 class BookSerializer(ModelSerializer):
@@ -10,5 +10,5 @@ class BookSerializer(ModelSerializer):
 
 class UserBookRelationSerializer(ModelSerializer):
     class Meta:
-        model = Book
+        model = UserBookRelation
         fields = ('book', 'rate')

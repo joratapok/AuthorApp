@@ -8,6 +8,7 @@ from store.models import Book, UserBookRelation
 
 
 class BookViewSet(ReadOnlyModelViewSet):
+    permission_classes = [IsAuthenticated]
     queryset = Book.objects.all()
     serializer_class = BookSerializer
     filter_backends = [DjangoFilterBackend, SearchFilter]
