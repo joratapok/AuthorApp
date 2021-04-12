@@ -1,0 +1,33 @@
+https://djoser.readthedocs.io/en/latest/jwt_endpoints.html --- JWT endpoints
+
+
+post
+http://127.0.0.1:8000/auth/users
+username: jora
+password: 123
+email: jora@mail.ru
+
+
+post
+http://127.0.0.1:8000/auth/users/activation/
+http://127.0.0.1:8000/#/activate/  MTE  /  al0hy2-88f2e2077fd2d56dc9272f2a1f991bca
+uid: MTE
+token: al0hy2-88f2e2077fd2d56dc9272f2a1f991bca
+
+
+post
+http://127.0.0.1:8000/auth/jwt/create/
+username: jora
+password: 123
+
+получаем JWT токен сохраняем в Localstorage
+
+
+get
+http://127.0.0.1:8000/book/ запрос к API
+Authorization: JWT ....(полученый токен)
+
+
+patch
+127.0.0.1:8000/book_relation/1/  (id книги)
+rate: 1

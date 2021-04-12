@@ -1,9 +1,10 @@
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter
+from rest_framework.generics import CreateAPIView
 from rest_framework.mixins import UpdateModelMixin
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ReadOnlyModelViewSet, GenericViewSet
-from store.serializers import BookSerializer, UserBookRelationSerializer
+from store.serializers import BookSerializer, UserBookRelationSerializer, CommentsSerializer
 from store.models import Book, UserBookRelation
 
 
@@ -23,6 +24,10 @@ class UserBookRelationView(UpdateModelMixin, GenericViewSet):
     lookup_field = 'book'
 
     def get_object(self):
-        obj, _ =UserBookRelation.objects.get_or_create(user = self.request.user,
+        obj, _ =UserBookRelation.objects.get_or_create(user=self.request.user,
                                                        book_id=self.kwargs['book'])
         return obj
+
+class ReviewCreateView(CreateAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = CommentsSerializer

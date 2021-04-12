@@ -22,7 +22,11 @@ class Book(models.Model):
     readers = models.ManyToManyField(User, through='UserBookRelation')
 
     def __str__(self):
-        return f'ID: {self.id} Name: {self.name}'
+        return f'ID: {self.id} -- Книга: {self.name}'
+
+    class Meta:
+        verbose_name = 'Книга'
+        verbose_name_plural = 'Книги'
 
 
 class UserBookRelation(models.Model):
@@ -39,4 +43,21 @@ class UserBookRelation(models.Model):
     rate = models.PositiveSmallIntegerField(choices=RATE_CHOICES, null=True)
 
     def __str__(self):
-        return f'Book: {self.book.name} rate: {self.rate}'
+        return f'Книга: {self.book.name} -- рейтинг: {self.rate}'
+
+    class Meta:
+        verbose_name = 'Рейтинг'
+        verbose_name_plural = 'Рейтинги'
+
+
+class Comments(models.Model):
+    text = models.TextField('Комментарий', max_length=2048)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'Книга: {self.book.name} -- юзер: {self.owner.name}'
+
+    class Meta:
+        verbose_name = 'Комментарий'
+        verbose_name_plural = 'Комментарии'
