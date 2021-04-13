@@ -1,0 +1,74 @@
+.loginWrap {
+	display: flex;
+	width: 60%;
+	flex-direction: column;
+	margin: 10px 0 10px 20px;
+	background-color: white;
+	padding: 15px 15px 20px 15px;
+	box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
+}
+
+.title {
+	font-size: 34px;
+	text-align: center;
+}
+
+.newPostWrap form {
+	display: flex;
+	width: 100%
+}
+
+.inputWrapper {
+	display: flex;
+	width: 100%;
+	margin: 15px 0 10px 0;
+}
+
+.errorWrapper{
+	display: flex;
+	justify-content: center;
+}
+
+.errorField {
+	color: #aa0044;
+	width: 60%;
+	border-radius: 5px;
+	margin: 15px 0 0 0;
+	padding: 1px 0;
+	font-size: 16px;
+}
+
+.buttonWrapper {
+	display: flex;
+	justify-content: center;
+}
+
+.captchaWrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.reload {
+	width: 25px;
+	height: 25px;
+}
+
+.reload:hover {
+	transform: scale(1.4);
+	transition: 0.5s;
+
+}
+
+.captcha {
+	width: 150px;
+	height: 75px;
+}
+
+.captchaImage {
+	width: 100%;
+}
+
+.captchaInputWrapper {
+	width: 150px;
+	height: 50px;
+}

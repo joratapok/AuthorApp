@@ -1,20 +1,23 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework import serializers
 from store.models import Book, UserBookRelation, Comments
 
 
-class BookSerializer(ModelSerializer):
+class BookSerializer(serializers.ModelSerializer):
+    rated_books = serializers.DecimalField(max_digits=3, decimal_places=2, read_only=True)
+
     class Meta:
         model = Book
-        fields = ('id', 'name', 'poster') #'__all__'
+        fields = ('id', 'name', 'poster', 'rated_books') #'__all__'
 
 
-class UserBookRelationSerializer(ModelSerializer):
+
+class UserBookRelationSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserBookRelation
         fields = ('book', 'rate')
 
 
-class CommentsSerializer(ModelSerializer):
+class CommentsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comments
         fields = ('text', 'owner')

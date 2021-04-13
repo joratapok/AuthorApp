@@ -6,11 +6,13 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ReadOnlyModelViewSet, GenericViewSet
 from store.serializers import BookSerializer, UserBookRelationSerializer, CommentsSerializer
 from store.models import Book, UserBookRelation
+from django.db.models import Avg
 
 
 class BookViewSet(ReadOnlyModelViewSet):
     permission_classes = [IsAuthenticated]
     queryset = Book.objects.all()
+    #.annotate(rated_books=Avg('userbookrelation__rate'))
     serializer_class = BookSerializer
     filter_backends = [DjangoFilterBackend, SearchFilter]
     filter_fields = ['name', 'price']
