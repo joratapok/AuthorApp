@@ -53,10 +53,10 @@ class UserBookRelation(models.Model):
 class Comments(models.Model):
     text = models.TextField('Комментарий', max_length=2048)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='comments')
 
     def __str__(self):
-        return f'Книга: {self.book.name} -- юзер: {self.owner.name}'
+        return f'Книга: {self.book.name} -- юзер: {self.owner.username}'
 
     class Meta:
         verbose_name = 'Комментарий'

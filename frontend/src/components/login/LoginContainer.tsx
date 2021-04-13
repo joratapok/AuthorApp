@@ -4,7 +4,7 @@ import {loginThunk,} from "../../redux/authReducer";
 import {AppStateType} from "../../redux/store";
 import Login from "./Login"
 
-type LoginFormDataType = {
+export type LoginFormDataType = {
     username: string
     password: string
 }
@@ -32,8 +32,8 @@ const LoginContainer: React.FC<PropsType> = ({loginThunk,}) => {
 
 }
 
-const mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
+const mapStateToProps = (state: AppStateType): MapsStatePorpsType => ({
 })
 
-export default connect<MapStateToPropsType, MapDispatchToPropsType, OwnPropsType, AppStateType>
+export default connect<MapsStatePorpsType, MapDispatchPropsType, MapOwnPropsType, AppStateType>
 (mapStateToProps, {loginThunk})(LoginContainer)

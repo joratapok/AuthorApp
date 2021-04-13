@@ -20,4 +20,4 @@ class UserBookRelationSerializer(serializers.ModelSerializer):
 class CommentsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comments
-        fields = ('text', 'owner')
+        fields = ('text', 'owner', 'book')

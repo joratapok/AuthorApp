@@ -1,6 +1,8 @@
 from unittest import TestCase
+
+from django.contrib.auth.models import User
 from django.db.models import Avg
-from store.models import Book
+from store.models import Book, UserBookRelation
 from store.serializers import BookSerializer
 
 

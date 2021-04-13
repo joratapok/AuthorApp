@@ -20,12 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a2a56fec-9f1f-4185-b64d-e82deaa6fc17" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../JWT TOken.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bookstore/store/migrations/0007_auto_20210413_2219.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bookstore/bookstore/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookstore/bookstore/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bookstore/bookstore/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookstore/bookstore/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookstore/sqlite3.db" beforeDir="false" afterPath="$PROJECT_DIR$/bookstore/sqlite3.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookstore/store/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookstore/store/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bookstore/store/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookstore/store/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bookstore/store/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookstore/store/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookstore/store/tests/test_serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookstore/store/tests/test_serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bookstore/store/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookstore/store/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,7 +58,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../.." />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/venv" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager" selected="Python tests.Unittests for test_store.BooksAPITestCase">
@@ -145,7 +147,9 @@
       <workItem from="1618108882579" duration="3602000" />
       <workItem from="1618135438884" duration="11526000" />
       <workItem from="1618228190950" duration="1613000" />
-      <workItem from="1618229915019" duration="10712000" />
+      <workItem from="1618229915019" duration="10944000" />
+      <workItem from="1618318686604" duration="93000" />
+      <workItem from="1618318797162" duration="11068000" />
     </task>
     <servers />
   </component>
@@ -168,10 +172,10 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2142" y="483" key="FileChooserDialogImpl" timestamp="1618230611505">
+    <state x="2142" y="483" key="FileChooserDialogImpl" timestamp="1618319047768">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state x="2142" y="483" key="FileChooserDialogImpl/0.0.3440.1400@0.0.3440.1400" timestamp="1618230611505" />
+    <state x="2142" y="483" key="FileChooserDialogImpl/0.0.3440.1400@0.0.3440.1400" timestamp="1618319047768" />
     <state width="1508" height="580" key="GridCell.Tab.0.bottom" timestamp="1618075726816">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
@@ -188,10 +192,10 @@
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
     <state width="1508" height="580" key="GridCell.Tab.0.right/0.0.3440.1400@0.0.3440.1400" timestamp="1618075726816" />
-    <state x="1864" y="373" key="SettingsEditor" timestamp="1618034148605">
+    <state x="1864" y="373" key="SettingsEditor" timestamp="1618319053767">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state x="1864" y="373" key="SettingsEditor/0.0.3440.1400@0.0.3440.1400" timestamp="1618034148605" />
+    <state x="1864" y="373" key="SettingsEditor/0.0.3440.1400@0.0.3440.1400" timestamp="1618319053767" />
     <state x="2351" y="514" key="git4idea.merge.GitPullDialog" timestamp="1618229034296">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>

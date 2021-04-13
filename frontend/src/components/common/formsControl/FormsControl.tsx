@@ -1,7 +1,7 @@
 import React from 'react'
 import classes from './FormsControl.module.css'
-import {FieldValidatorType} from "../../utils/validators/validator";
 import {WrappedFieldProps} from "redux-form";
+import {FieldValidatorType} from "../../../utils/validators/validator";
 
 type FormControlPropsType = {
     placeholder?: string

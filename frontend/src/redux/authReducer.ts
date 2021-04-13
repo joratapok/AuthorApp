@@ -1,5 +1,5 @@
 import {AppStateType, InferActionsTypes} from "./store";
-import {authApi, LoginFormDataType} from "../api/api";
+import {authApi, getAuthMeType, LoginFormDataType} from "../api/api";
 import {ThunkAction} from "redux-thunk";
 
 
@@ -22,7 +22,7 @@ let initial = {
     refreshToken: null as null | string,
 }
 
-const authReducer = (state: initialType = initial, action: bookReducerActionsTypes): initialType => {
+const authReducer = (state: initialType = initial, action: AuthReducerActionsTypes): initialType => {
     switch (action.type) {
         case SET_USER:
             return {
@@ -60,8 +60,8 @@ export const loginThunk = (data: LoginFormDataType): ThunkType => {
         try {
             let response = await authApi.postCreateJWT(data)
             dispatch(actionsAuthReducer.setaccessToken(response.data.access))
-            response = await authApi.getAuthMe(response.data.access)
-            dispatch(actionsAuthReducer.setAuthUser(response))
+            let newresponse = await authApi.getAuthMe(response.data.access)
+            dispatch(actionsAuthReducer.setAuthUser(newresponse))
 
         } catch (e) {
             console.error(e)
