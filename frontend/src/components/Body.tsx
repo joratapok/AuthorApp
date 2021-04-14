@@ -3,6 +3,8 @@ import classes from './body.module.css'
 import BgBody from './bgBody/BgBody'
 import BooksContainer from "./Books/BooksContainer"
 import LoginContainer from "./login/LoginContainer"
+import {Route,} from "react-router-dom";
+import NavMenuContainer from "./NavMenu/NavMenuContainer"
 
 
 const Body: React.FC = () => {
@@ -10,8 +12,9 @@ const Body: React.FC = () => {
         <div className={classes.wrapper}>
             <BgBody/>
             <div className={classes.content}>
+                <NavMenuContainer/>
                 <div className={classes.fish}>
-                <LoginContainer/>
+                    <Route path='/login' render={() => <LoginContainer/>}/>
                 </div>
                 <BooksContainer/>
             </div>

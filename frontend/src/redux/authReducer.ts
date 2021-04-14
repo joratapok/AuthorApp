@@ -3,26 +3,25 @@ import {authApi, getAuthMeType, LoginFormDataType} from "../api/api";
 import {ThunkAction} from "redux-thunk";
 
 
-export type initialType = typeof initial
+export type AuthinitialType = typeof initial
 export type AuthReducerActionsTypes = InferActionsTypes<typeof actionsAuthReducer>
 type ThunkType = ThunkAction<Promise<void>, AppStateType, any, AuthReducerActionsTypes>
 
 const SET_USER = '/SET_USER'
 const LOG_OUT_USER = '/LOG_OUT_USER'
 const SET_ACCESS_TOKEN = '/SET_ACCESS_TOKEN'
-
+const SET_REFRESH_TOKEN = '/SET_REFRESH_TOKEN'
 
 let initial = {
     id: null as null | number,
     email: null as null | string,
     username: null as null | string,
     isAuth: false,
-    captcha: null as null | string,
     accessToken: null as null | string,
     refreshToken: null as null | string,
 }
 
-const authReducer = (state: initialType = initial, action: AuthReducerActionsTypes): initialType => {
+const authReducer = (state: AuthinitialType = initial, action: AuthReducerActionsTypes): AuthinitialType => {
     switch (action.type) {
         case SET_USER:
             return {
@@ -39,6 +38,11 @@ const authReducer = (state: initialType = initial, action: AuthReducerActionsTyp
                   ...state,
                   accessToken: action.token
             }
+        case SET_REFRESH_TOKEN:
+            return {
+                ...state,
+                refreshToken: action.token
+            }
         default:
             return state
     }
@@ -46,21 +50,28 @@ const authReducer = (state: initialType = initial, action: AuthReducerActionsTyp
 
 export const actionsAuthReducer = {
     setAuthUser: (userData: getAuthMeType) => ({type: SET_USER, payload: {
-        id: userData.data.id,
-        email: userData.data.attributes.email,
-        username: userData.data.attributes.username,
+        id: userData.id,
+        email: userData.email,
+        username: userData.username,
     }} as const),
     logout: () => ({type: LOG_OUT_USER} as const),
-    setaccessToken: (token: string) => ({type: SET_ACCESS_TOKEN, token} as const)
+    setAccessToken: (token: string) => ({type: SET_ACCESS_TOKEN, token} as const),
+    setRefreshToken: (token: string) => ({type: SET_REFRESH_TOKEN, token} as const)
 }
 
+const saveToLocalStorage = (key: string, value: string) => {
+    localStorage.setItem(key, value)
+}
 
 export const loginThunk = (data: LoginFormDataType): ThunkType => {
     return async (dispatch) => {
         try {
             let response = await authApi.postCreateJWT(data)
-            dispatch(actionsAuthReducer.setaccessToken(response.data.access))
-            let newresponse = await authApi.getAuthMe(response.data.access)
+            dispatch(actionsAuthReducer.setAccessToken(response.access))
+            dispatch(actionsAuthReducer.setRefreshToken(response.refresh))
+            saveToLocalStorage('access', response.access)
+            saveToLocalStorage('refresh', response.refresh)
+            let newresponse = await authApi.getAuthMe(response.access)
             dispatch(actionsAuthReducer.setAuthUser(newresponse))
 
         } catch (e) {
@@ -69,6 +80,10 @@ export const loginThunk = (data: LoginFormDataType): ThunkType => {
     }
 }
 
-
+export const logoutThunk = (): ThunkType => {
+    return async (dispatch) => {
+        dispatch(actionsAuthReducer.logout())
+    }
+}
 
 export default authReducer
