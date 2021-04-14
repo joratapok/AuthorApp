@@ -5,8 +5,9 @@ import {ThunkAction} from "redux-thunk";
 export type bookType = {
     id: number
     name: string
-    authorName: string
     poster: string
+    rated_books: string
+
 }
 export type initialType = typeof initial
 export type bookReducerActionsTypes = InferActionsTypes<typeof actionsBooksReducer>
@@ -18,10 +19,10 @@ export const SET_NEW_BOOKS = "SET_NEW_BOOKS"
 let initial = {
     books: [
         {
-            id: 1,
+            id: 0,
             name: 'initialBook',
-            authorName: 'initialAuthor',
-            poster: ''
+            poster: '',
+            rated_books: '0',
         }
     ] as Array<bookType>
 }
@@ -46,11 +47,10 @@ export const getAllBooks = (): ThunkType => {
     return async (dispatch) => {
         try {
             const response = await bookApi.getAllBooks()
-            dispatch(actionsBooksReducer.setNewBooks(response))
+            dispatch(actionsBooksReducer.setNewBooks(response.results))
         } catch (e) {
             console.error(e)
         }
-
 
     }
 }

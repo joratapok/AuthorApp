@@ -11,4 +11,7 @@ const rootReducer = combineReducers( {
 
 const store = createStore(rootReducer, applyMiddleware(thunkMiddleware))
 
+// @ts-ignore
+window.__store__ = store
+
 export default store

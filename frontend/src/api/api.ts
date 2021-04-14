@@ -1,7 +1,9 @@
 import axios from "axios";
 import {bookType} from "../redux/bookReducer";
 
-type GetResponseType = Array<bookType>
+type GetAllBooksType = {
+  results: Array<bookType>
+}
 
 export type getAuthMeType = {
     data: {
@@ -36,7 +38,7 @@ export const instance = axios.create({
 
 export const bookApi = {
     getAllBooks() {
-        return instance.get<GetResponseType>('book/').then(res => res.data)
+        return instance.get<GetAllBooksType>('book/').then(res => res.data)
     }
 }
 

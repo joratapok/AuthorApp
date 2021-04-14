@@ -30,6 +30,17 @@ export const Input: React.FC<FormControlPropsType & WrappedFieldProps> = (props)
     )
 }
 
+
+export const QQQQQQQQQQQQInput: React.FC<FormControlPropsType & WrappedFieldProps> = (props) => {
+    const hasError = props.meta.touched && props.meta.error
+    return(
+        <div className={classes.textAreaWrap}>
+            <input className={classes.input +' '+(hasError ? classes.error :'')} {...props}{...props.input} />
+            {hasError && <span className={classes.errorMessage}>{props.meta.error} </span>}
+        </div>
+    )
+}
+
 export const Checkbox: React.FC<FormControlPropsType & WrappedFieldProps> = (props) => {
     const hasError = props.meta.touched && props.meta.error
     return(

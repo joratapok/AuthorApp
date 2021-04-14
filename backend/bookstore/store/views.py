@@ -12,7 +12,7 @@ from django.db.models import Avg
 
 
 class BookViewSet(ReadOnlyModelViewSet):
-    permission_classes = [IsAuthenticated]
+    
     queryset = Book.objects.all().annotate(rated_books=Avg('userbookrelation__rate'))
     serializer_class = BookSerializer
     filter_backends = [DjangoFilterBackend, SearchFilter]
@@ -40,7 +40,9 @@ class CommentsCreateView(UpdateModelMixin, GenericViewSet):
     lookup_field = 'book'
 
     def get_object(self):
-        obj, _ =Comments.objects.create(owner=self.request.user, book_id=self.kwargs['book'])
+        text = self.request.POST.get('text')
+        obj, _ =Comments.objects.get_or_create(owner=self.request.user, 
+            book_id=self.kwargs['book'], text=text)
         return obj
 
 
@@ -48,5 +50,4 @@ class CommentsInBookView(generics.ListAPIView):
     serializer_class = CommentsSerializer
 
     def get_queryset(self):
-        book = self.kwargs['book']
-        return Comments.objects.filter(book__id=book)
+        return Comments.objects.filter(book__id=self.kwargs['book'])

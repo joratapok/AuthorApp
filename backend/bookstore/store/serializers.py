@@ -4,10 +4,22 @@ from store.models import Book, UserBookRelation, Comments
 
 class BookSerializer(serializers.ModelSerializer):
     rated_books = serializers.DecimalField(max_digits=3, decimal_places=2, read_only=True)
+    current_rate = serializers.SerializerMethodField()
 
     class Meta:
         model = Book
-        fields = ('id', 'name', 'poster', 'rated_books') #'__all__'
+        fields = ('id', 'name', 'poster', 'rated_books', 'current_rate') #'__all__'
+
+    def get_current_rate(self, instance):
+        user = None
+        request = self.context.get("request")
+        if request and hasattr(request, "user"):
+            user = request.user
+            LOOK = UserBookRelation.objects.filter(book=instance, user=user.id).values_list('rate', flat=True)
+            print(f'HERE ---- ____ ---- {LOOK}')
+            return LOOK
+        else:
+            return None
 
 
 
@@ -18,6 +30,9 @@ class UserBookRelationSerializer(serializers.ModelSerializer):
 
 
 class CommentsSerializer(serializers.ModelSerializer):
+    
+    owner = serializers.ReadOnlyField(source='owner.username')
+
     class Meta:
         model = Comments
         fields = ('text', 'owner', 'book')

@@ -43,7 +43,7 @@ class UserBookRelation(models.Model):
     rate = models.PositiveSmallIntegerField(choices=RATE_CHOICES, null=True)
 
     def __str__(self):
-        return f'Книга: {self.book.name} -- рейтинг: {self.rate}'
+        return f'Книга: {self.book.name} -- Пользователь: {self.user.username} -- рейтинг: {self.rate}'
 
     class Meta:
         verbose_name = 'Рейтинг'

@@ -52,5 +52,3 @@ const Book: React.FC<BookType> = ({book}) => {
 }
 
 export default Book;
-
-

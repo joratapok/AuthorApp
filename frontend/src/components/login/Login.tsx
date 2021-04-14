@@ -1,7 +1,7 @@
 import React from 'react'
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {required} from "../../utils/validators/validator";
-import {Input} from "../common/formsControl/FormsControl";
+import {Input, Textarea} from "../common/formsControl/FormsControl";
 import classes from "./Login.module.css"
 import Button from "./button/Button";
 import {LoginFormDataType} from "./LoginContainer";
@@ -17,7 +17,7 @@ const LoginForm: React.FC<InjectedFormProps<LoginFormDataType, LoginFormOwnProps
                 <div className={classes.inputWrapper}>
                     <Field placeholder={'login'} type={'text'}
                            name={'username'} validate={[required,]}
-                           component={Input}/>
+                           component={Textarea}/>
                 </div>
 
                 <div className={classes.inputWrapper}>
@@ -48,11 +48,17 @@ type PropsType = {
 const Login: React.FC<PropsType> =
     ({onSubmit,}) => {
 
+      type InitialValiesType = {
+          username?: string
+          password?: string
+      }
+      let initialValues:InitialValiesType = {username: 'admin', password: 'admin'}
+
         return (
             <div className={classes.loginWrap}>
                 <div className={classes.title}>Login Page</div>
 
-                <LoginReduxForm onSubmit={onSubmit}/>
+                <LoginReduxForm onSubmit={onSubmit} initialValues={initialValues}/>
             </div>
         )
     }
