@@ -16,11 +16,21 @@ token: al0hy2-88f2e2077fd2d56dc9272f2a1f991bca
 
 
 post  -- выписываем токен
-http://127.0.0.1:8000/auth/jwt/create/
+http://127.0.0.1:8000/api/token/
+
 username: jora
 password: 123
 
-получаем JWT токен сохраняем в Localstorage
+получаем JWT токены сохраняем в Localstorage
+
+
+post  -- обновляем токен
+http://127.0.0.1:8000/api/token/refresh/
+
+refresh: ...refresh token
+
+получаем JWT токены сохраняем в Localstorage
+
 
 
 get -- добавляем токен в запросы
@@ -39,4 +49,4 @@ get -- получаем комменты
 
 patch -- добавление коммента 
 http://127.0.0.1:8000/add_comments/1/ (id книги)
-
+text: hello

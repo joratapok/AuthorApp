@@ -13,6 +13,11 @@ type CreateJWTResponseType = {
     refresh: string
     access: string
 }
+
+type RefreshJWTResponseType = {
+    access: string
+}
+
 export type LoginFormDataType = {
     username: string
     password: string
@@ -25,7 +30,7 @@ export const instance = axios.create({
 
 export const bookApi = {
     getAllBooks() {
-        return instance.get<GetAllBooksType>('book/').then(res => res.data)
+        return instance.get<GetAllBooksType>('book/').then(res => res)
     }
 }
 
@@ -44,7 +49,11 @@ export const authApi = {
             password: data.password,
         }).then(res => res.data)
     },
-
+    postRefreshJWT(data: string) {
+        return instance.post<RefreshJWTResponseType>('auth/jwt/refresh/', {
+            refresh: data,
+        }).then(res => res.data)
+    },
     getAuthMe(JWTToken: string) {
         return instance.get<getAuthMeType>('auth/users/me/', {
             headers: {

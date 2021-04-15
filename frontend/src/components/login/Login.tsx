@@ -10,76 +10,53 @@ import { Form, Field } from 'react-final-form'
 const LoginForm: React.FC<PropsType> = ({onSubmit,}) => (
     <Form
         onSubmit={onSubmit}
-        render={({ handleSubmit, form, submitting, pristine, values }) => (
+        render={({ handleSubmit, submitError, form, submitting, pristine, values }) => (
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>Логин</label>
-                    <Field
-                        name={'username'}
+                    <Field name={'username'}
                         component="input"
-                        type="text"
-                        placeholder="Логин"
-                    />
+                        validate={required}>
+                        {({ input, meta }) => (
+                          <div>
+                            <input {...input} type="text" placeholder="Логин" />
+                            {meta.error && meta.touched && <span>{meta.error}</span>}
+                          </div>
+                        )}
+                    </Field>
+
                 </div>
                 <div>
                     <label>Пароль</label>
-                    <Field
-                        name="password"
+                    <Field name={'password'}
                         component="input"
-                        type="password"
-                        placeholder="Пароль"
-                    />
+                        validate={required}>
+                        {({ input, meta }) => (
+                          <div>
+                            <input {...input} type="password" placeholder="Пароль" />
+                            {meta.error && meta.touched && <span>{meta.error}</span>}
+                          </div>
+                        )}
+                    </Field>
+
                 </div>
 
                 <div className="buttons">
                     <button type="submit" disabled={submitting || pristine}>
                         Отправить
                     </button>
+                    {submitError && <div className="error">{submitError}</div>}
                 </div>
             </form>
         )}
     />
 )
 
-// const OldLoginForm: React.FC<InjectedFormProps<LoginFormDataType, LoginFormOwnProps> & LoginFormOwnProps> =
-//     ({handleSubmit, error,}) => {
-//
-//         return (
-//             <form onSubmit={handleSubmit}>
-//
-//                 <div className={classes.inputWrapper}>
-//                     <Field placeholder={'login'} type={'text'}
-//                            name={'username'} validate={[required,]}
-//                            component={Textarea}/>
-//                 </div>
-//
-//                 <div className={classes.inputWrapper}>
-//                     <Field type={'password'} name={'password'} placeholder={'password'}
-//                            validate={[required,]} component={Input}/>
-//                 </div>
-//
-//                 {(error &&
-//                     <div className={classes.errorWrapper}>
-//                         <div className={classes.errorField}>
-//                             {error}
-//                         </div>
-//                     </div>)}
-//
-//                 <div className={classes.buttonWrapper}>
-//                     <Button/>
-//                 </div>
-//             </form>
-//         )
-//     }
-
-//const LoginReduxForm = reduxForm<LoginFormDataType, LoginFormOwnProps>({form: 'login'})(LoginForm)
-
 type PropsType = {
-    onSubmit: (data: LoginFormDataType) => void
+    onSubmit: (data: LoginFormDataType) => any
 }
 
-const Login: React.FC<PropsType> =
-    ({onSubmit,}) => {
+const Login: React.FC<PropsType> = ({onSubmit,}) => {
 
         return (
             <div className={classes.loginWrap}>

@@ -4,6 +4,7 @@ import {loginThunk,} from "../../redux/authReducer";
 import {AppStateType} from "../../redux/store";
 import Login from "./Login"
 import {Redirect} from "react-router-dom/";
+import { FORM_ERROR } from 'final-form'
 
 export type LoginFormDataType = {
     username: string
@@ -24,8 +25,16 @@ type PropsType = MapsStatePorpsType & MapDispatchPropsType & MapOwnPropsType
 
 const LoginContainer: React.FC<PropsType> = ({loginThunk, isAuth}) => {
 
-    const onSubmit = (data: LoginFormDataType) => {
-        loginThunk(data)
+    const onSubmit = async (data: LoginFormDataType) => {
+        try {
+          await loginThunk(data)
+        } catch (e) {
+            if (e.response.status == 401) {
+                return { [FORM_ERROR]: 'Неверный логин или пароль' }
+            } else {
+                return { [FORM_ERROR]: e.message }
+            }
+        }
     }
 
     if (isAuth) {

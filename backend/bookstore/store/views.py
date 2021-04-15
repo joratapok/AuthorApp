@@ -6,19 +6,27 @@ from rest_framework.mixins import UpdateModelMixin, CreateModelMixin
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ReadOnlyModelViewSet, GenericViewSet, ViewSet
-from store.serializers import BookSerializer, UserBookRelationSerializer, CommentsSerializer
+from store.serializers import BookSerializer, UserBookRelationSerializer, CommentsSerializer, AllBooksSerializer
 from store.models import Book, UserBookRelation, Comments
 from django.db.models import Avg
+
 
 
 class BookViewSet(ReadOnlyModelViewSet):
     
     queryset = Book.objects.all().annotate(rated_books=Avg('userbookrelation__rate'))
-    serializer_class = BookSerializer
+    #serializer_class = BookSerializer
     filter_backends = [DjangoFilterBackend, SearchFilter]
     filter_fields = ['name', 'price']
     search_fields = ['name', 'author_name']
     ordering_fields = ['name']
+
+    def get_serializer_class(self):
+        if self.action == 'list':
+            return AllBooksSerializer
+        if self.action == 'retrieve':
+            return BookSerializer
+        return BookSerializer
 
 
 class UserBookRelationView(UpdateModelMixin, GenericViewSet):
@@ -40,7 +48,7 @@ class CommentsCreateView(UpdateModelMixin, GenericViewSet):
     lookup_field = 'book'
 
     def get_object(self):
-        text = self.request.POST.get('text')
+        text = self.request.data['text']
         obj, _ =Comments.objects.get_or_create(owner=self.request.user, 
             book_id=self.kwargs['book'], text=text)
         return obj

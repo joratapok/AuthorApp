@@ -47,7 +47,7 @@ export const getAllBooks = (): ThunkType => {
     return async (dispatch) => {
         try {
             const response = await bookApi.getAllBooks()
-            dispatch(actionsBooksReducer.setNewBooks(response.results))
+            dispatch(actionsBooksReducer.setNewBooks(response.data.results))
         } catch (e) {
             console.error(e)
         }

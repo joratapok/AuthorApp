@@ -65,7 +65,6 @@ const saveToLocalStorage = (key: string, value: string) => {
 
 export const loginThunk = (data: LoginFormDataType): ThunkType => {
     return async (dispatch) => {
-        try {
             let response = await authApi.postCreateJWT(data)
             dispatch(actionsAuthReducer.setAccessToken(response.access))
             dispatch(actionsAuthReducer.setRefreshToken(response.refresh))
@@ -73,10 +72,14 @@ export const loginThunk = (data: LoginFormDataType): ThunkType => {
             saveToLocalStorage('refresh', response.refresh)
             let newresponse = await authApi.getAuthMe(response.access)
             dispatch(actionsAuthReducer.setAuthUser(newresponse))
+    }
+}
 
-        } catch (e) {
-            console.error(e)
-        }
+export const authMeThunk = (refreshToken: string): ThunkType => {
+    return async (dispatch) => {
+        let response = await authApi.postRefreshJWT(refreshToken)
+        const userData = await authApi.getAuthMe(response.access)
+        dispatch(loginThunk(userData))
     }
 }
 
