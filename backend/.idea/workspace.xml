@@ -20,21 +20,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a2a56fec-9f1f-4185-b64d-e82deaa6fc17" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../frontend/src/components/NavMenu/NavMenu.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/src/components/NavMenu/NavMenu.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/src/components/NavMenu/NavMenuContainer.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/src/AppContainer.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/src/components/preloader/Preloader.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/src/components/preloader/Preloader.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bookstore/bookstore/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookstore/bookstore/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookstore/store/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookstore/store/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/api/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/api/api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/Body.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/Body.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/login/Login.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/login/LoginContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/login/LoginContainer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/redux/authReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/redux/authReducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/redux/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/redux/store.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/redux/initAppReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/redux/initAppReducer.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,6 +152,7 @@
       <workItem from="1618318686604" duration="93000" />
       <workItem from="1618318797162" duration="11068000" />
       <workItem from="1618401248218" duration="1432000" />
+      <workItem from="1618488857644" duration="3506000" />
     </task>
     <servers />
   </component>

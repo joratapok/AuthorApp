@@ -1,7 +1,7 @@
-import {authThunk} from "./authReducer"
 import {ThunkAction} from "redux-thunk";
-import {AppStateType, InferActionsTypes} from "./redux-store";
 import {Dispatch} from "redux";
+import {AppStateType, InferActionsTypes} from "./store";
+import {authMeThunk} from "./authReducer";
 
 const INIT_APP = 'AUTHORAPP/INIT_APP'
 const SHOW_ERROR_MESSAGE = 'AUTHORAPP/SHOW_ERROR_MESSAGE'
@@ -46,17 +46,20 @@ export const actions = {
     hideErrorMessage: () => ({type: HIDE_ERROR_MESSAGE} as const),
 }
 
-/*export const initAppThunk = (): ThunkType => {
+export const initAppThunk = (): ThunkType => {
     return async (dispatch) => {
         try {
-            await dispatch(authThunk())
+            const refreshToken = localStorage.getItem('refresh')
+            if (refreshToken) {
+                await dispatch(authMeThunk(refreshToken))
+            }
         } catch (e) {
             console.log(e)
         } finally {
             dispatch(actions.initApp())
         }
     }
-}*/
+}
 
 export const showErrorMessageThunk = (message: string) => {
     return (dispatch: Dispatch<AppReducerActionsTypes>) => {

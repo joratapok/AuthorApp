@@ -9,12 +9,8 @@ export type getAuthMeType = {
         email: string
         username: string
 }
-type CreateJWTResponseType = {
+export type JWTResponseType = {
     refresh: string
-    access: string
-}
-
-type RefreshJWTResponseType = {
     access: string
 }
 
@@ -44,13 +40,13 @@ export const rateApi = {
 
 export const authApi = {
     postCreateJWT(data: LoginFormDataType) {
-        return instance.post<CreateJWTResponseType>('auth/jwt/create/', {
+        return instance.post<JWTResponseType>('api/token/', {
             username: data.username,
             password: data.password,
         }).then(res => res.data)
     },
     postRefreshJWT(data: string) {
-        return instance.post<RefreshJWTResponseType>('auth/jwt/refresh/', {
+        return instance.post<JWTResponseType>('api/token/refresh/', {
             refresh: data,
         }).then(res => res.data)
     },

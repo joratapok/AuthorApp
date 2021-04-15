@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import AppContainer from "./AppContainer";
 
 export const renderAllDOM = () => {
   ReactDOM.render(
-      <App />, document.getElementById('root')
+      <AppContainer />, document.getElementById('root')
   );
 }
 

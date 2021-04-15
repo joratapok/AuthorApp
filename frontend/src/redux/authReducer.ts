@@ -1,6 +1,7 @@
 import {AppStateType, InferActionsTypes} from "./store";
 import {authApi, getAuthMeType, LoginFormDataType} from "../api/api";
 import {ThunkAction} from "redux-thunk";
+import {Dispatch} from "redux";
 
 
 export type AuthinitialType = typeof initial
@@ -35,8 +36,8 @@ const authReducer = (state: AuthinitialType = initial, action: AuthReducerAction
             }
         case SET_ACCESS_TOKEN:
             return {
-                  ...state,
-                  accessToken: action.token
+                ...state,
+                accessToken: action.token
             }
         case SET_REFRESH_TOKEN:
             return {
@@ -49,14 +50,23 @@ const authReducer = (state: AuthinitialType = initial, action: AuthReducerAction
 }
 
 export const actionsAuthReducer = {
-    setAuthUser: (userData: getAuthMeType) => ({type: SET_USER, payload: {
-        id: userData.id,
-        email: userData.email,
-        username: userData.username,
-    }} as const),
+    setAuthUser: (userData: getAuthMeType) => ({
+        type: SET_USER, payload: {
+            id: userData.id,
+            email: userData.email,
+            username: userData.username,
+        }
+    } as const),
     logout: () => ({type: LOG_OUT_USER} as const),
     setAccessToken: (token: string) => ({type: SET_ACCESS_TOKEN, token} as const),
     setRefreshToken: (token: string) => ({type: SET_REFRESH_TOKEN, token} as const)
+}
+
+const saveTokens = (dispatch: Dispatch<AuthReducerActionsTypes>, access: string, refresh: string) => {
+    dispatch(actionsAuthReducer.setAccessToken(access))
+    dispatch(actionsAuthReducer.setRefreshToken(refresh))
+    saveToLocalStorage('access', access)
+    saveToLocalStorage('refresh', refresh)
 }
 
 const saveToLocalStorage = (key: string, value: string) => {
@@ -65,27 +75,27 @@ const saveToLocalStorage = (key: string, value: string) => {
 
 export const loginThunk = (data: LoginFormDataType): ThunkType => {
     return async (dispatch) => {
-            let response = await authApi.postCreateJWT(data)
-            dispatch(actionsAuthReducer.setAccessToken(response.access))
-            dispatch(actionsAuthReducer.setRefreshToken(response.refresh))
-            saveToLocalStorage('access', response.access)
-            saveToLocalStorage('refresh', response.refresh)
-            let newresponse = await authApi.getAuthMe(response.access)
-            dispatch(actionsAuthReducer.setAuthUser(newresponse))
+        let response = await authApi.postCreateJWT(data)
+        saveTokens(dispatch, response.access, response.refresh)
+        let userData = await authApi.getAuthMe(response.access)
+        dispatch(actionsAuthReducer.setAuthUser(userData))
     }
 }
 
 export const authMeThunk = (refreshToken: string): ThunkType => {
     return async (dispatch) => {
         let response = await authApi.postRefreshJWT(refreshToken)
+        saveTokens(dispatch, response.access, response.refresh)
         const userData = await authApi.getAuthMe(response.access)
-        dispatch(loginThunk(userData))
+        dispatch(actionsAuthReducer.setAuthUser(userData))
     }
 }
 
 export const logoutThunk = (): ThunkType => {
     return async (dispatch) => {
         dispatch(actionsAuthReducer.logout())
+        saveToLocalStorage('access', '')
+        saveToLocalStorage('refresh', '')
     }
 }
 
