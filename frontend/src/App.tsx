@@ -28,11 +28,11 @@ const App: React.FC<PropsType> = ({initApp, initAppThunk}) => {
 
     return (
                 <Body/>
-    );
+    )
 }
 
 let mapStateToProps = (state: AppStateType) => ({
-    initApp: state.auth.isAuth
+    initApp: state.init.initApp
 })
 
 export default connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, AppStateType>

@@ -13,10 +13,14 @@ class AllBooksSerializer(serializers.ModelSerializer):
 class BookSerializer(serializers.ModelSerializer):
     rated_books = serializers.DecimalField(max_digits=3, decimal_places=2, read_only=True)
     current_rate = serializers.SerializerMethodField()
+    count_rate = serializers.SerializerMethodField()
 
     class Meta:
         model = Book
-        fields = ('id', 'name', 'poster', 'rated_books', 'current_rate')  # '__all__'
+        fields = ('id', 'name', 'poster', 'rated_books', 'current_rate', 'count_rate')  # '__all__'
+
+    def get_count_rate(self, instance):
+    	return UserBookRelation.objects.filter(book=instance).count()
 
     def get_current_rate(self, instance):
         user = None

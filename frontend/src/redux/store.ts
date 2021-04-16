@@ -1,7 +1,8 @@
-import {applyMiddleware, combineReducers, createStore} from "redux";
-import bookReducer from "./bookReducer";
+import {applyMiddleware, combineReducers, createStore} from "redux"
+import bookReducer from "./bookReducer"
 import thunkMiddleware from "redux-thunk"
-import authReducer from "./authReducer";
+import authReducer from "./authReducer"
+import initAppReducer from "./initAppReducer";
 
 type RootReducerType = typeof rootReducer
 export type AppStateType = ReturnType<RootReducerType>
@@ -10,6 +11,7 @@ export type InferActionsTypes<T> = T extends {[key: string]: (...args: any[]) =>
 const rootReducer = combineReducers( {
     books: bookReducer,
     auth: authReducer,
+    init: initAppReducer,
 })
 
 const store = createStore(rootReducer, applyMiddleware(thunkMiddleware))

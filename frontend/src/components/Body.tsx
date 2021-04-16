@@ -5,6 +5,7 @@ import BooksContainer from "./Books/BooksContainer"
 import LoginContainer from "./login/LoginContainer"
 import {Route,} from "react-router-dom";
 import NavMenuContainer from "./NavMenu/NavMenuContainer"
+import OneBookContainer from "./OneBook/OneBookContainer"
 
 
 const Body: React.FC = () => {
@@ -16,7 +17,9 @@ const Body: React.FC = () => {
                 <div className={classes.fish}>
                     <Route path='/login' render={() => <LoginContainer/>}/>
                 </div>
-                <BooksContainer/>
+                <Route path='/:bookId' render={() => <OneBookContainer/>}/>
+                <Route exact path='/' render={() => <BooksContainer/>}/>
+
             </div>
         </div>
     );

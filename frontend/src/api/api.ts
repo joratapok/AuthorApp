@@ -1,5 +1,5 @@
 import axios from "axios";
-import {bookType} from "../redux/bookReducer";
+import {bookType, OneBookType} from "../redux/bookReducer";
 
 type GetAllBooksType = {
     results: Array<bookType>
@@ -21,12 +21,16 @@ export type LoginFormDataType = {
 
 export const instance = axios.create({
     baseURL: 'http://127.0.0.1:8000/',
+    withCredentials: true,
 
 })
 
 export const bookApi = {
     getAllBooks() {
         return instance.get<GetAllBooksType>('book/').then(res => res)
+    },
+    getBookById(id: number) {
+        return instance.get<OneBookType>(`book/${id}`).then(res => res)
     }
 }
 

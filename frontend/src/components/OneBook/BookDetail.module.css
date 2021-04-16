@@ -1,0 +1,27 @@
+.book Wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    max-width: 964px;
+}
+
+.bookDetailWrapper {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.posterWrapper {
+    width: 50%;
+    display: flex;
+}
+
+.descriptionWrapper {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.bookNameWrapper {
+    font-size: 25px;
+}
