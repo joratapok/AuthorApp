@@ -1,5 +1,6 @@
 import axios from "axios";
 import {bookType, OneBookType} from "../redux/bookReducer";
+import {CommentType} from "../redux/commentReducer";
 
 type GetAllBooksType = {
     results: Array<bookType>
@@ -18,6 +19,12 @@ export type LoginFormDataType = {
     username: string
     password: string
 }
+export type CommentsDataType = {
+    count: number
+    next: null | string
+    previous: null | string
+    results: Array<CommentType>
+}
 
 export const instance = axios.create({
     baseURL: 'http://127.0.0.1:8000/',
@@ -30,13 +37,13 @@ export const bookApi = {
         return instance.get<GetAllBooksType>('book/').then(res => res)
     },
     getBookById(id: number) {
-        return instance.get<OneBookType>(`book/${id}`).then(res => res)
+        return instance.get<OneBookType>(`book/${id}/`).then(res => res)
     }
 }
 
 export const rateApi = {
-    patchRate(data: number) {
-        return instance.patch('book_relation/1', {
+    patchRate(id: number, data: number) {
+        return instance.patch(`book_relation/${id}/`, {
             'rate': data,
         })
     }
@@ -60,5 +67,16 @@ export const authApi = {
                 'Authorization': `JWT ${JWTToken}`
             }
         }).then(res => res.data)
+    }
+}
+
+export const commentApi = {
+    getComments(id: number) {
+        return instance.get<CommentsDataType>(`comments/${id}/`).then(res => res)
+    },
+    patchComment(id: number, textMessage: string) {
+        return instance.patch(`comments/${id}/`, {
+            'text': textMessage,
+        })
     }
 }

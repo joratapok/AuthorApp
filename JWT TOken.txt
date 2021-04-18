@@ -33,6 +33,8 @@ refresh: ...refresh token
 
 
 
+
+
 get -- добавляем токен в запросы
 http://127.0.0.1:8000/book/ запрос к API
 Authorization: JWT ....(полученый токен)

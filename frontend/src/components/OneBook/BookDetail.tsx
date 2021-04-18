@@ -1,18 +1,23 @@
 import React, {useState} from 'react'
 import classes from './BookDetail.module.css'
 import {OneBookType,} from "../../redux/bookReducer"
+import {commentsInitialType} from "../../redux/commentReducer";
+import {addCommentDataType} from "./Comments/CommentForm";
+import Comments from "./Comments/Comments";
 
 type BookDetailType = {
     book: OneBookType
+    comments: commentsInitialType
+    onSubmit: (text: addCommentDataType) => void
 }
 
-export const BookDetail: React.FC<BookDetailType> = ({book}) => {
+export const BookDetail: React.FC<BookDetailType> = ({book, comments, onSubmit}) => {
 
     return (
         <div className={classes.bookWrapper}>
             <div className={classes.bookDetailWrapper}>
                 <div className={classes.posterWrapper}>
-                    <img src={book.poster}/>
+                    <img src={book.poster} alt={"Обложка"}/>
                 </div>
                 <div className={classes.descriptionWrapper}>
                     <button>Читать</button>
@@ -26,7 +31,7 @@ export const BookDetail: React.FC<BookDetailType> = ({book}) => {
                 </div>
             </div>
             <div>
-              COmments will be there
+                <Comments onSubmit={onSubmit} comments={comments}/>
             </div>
         </div>
     )

@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import classes from './Book.module.css'
 import {bookType} from "../../../redux/bookReducer";
+import {NavLink} from "react-router-dom";
 
 
 type BookType = {
@@ -35,8 +36,10 @@ const Book: React.FC<BookType> = ({book}) => {
                  onMouseEnter={setHoverOn}
                  onMouseLeave={setHoverOff}>
                 <div className={imageWrapper}>
+                    <NavLink activeClassName={classes.active} to={'/' + book.id}>
+                        <div className={classCover}/>
+                    </NavLink>
 
-                    <div className={classCover}/>
                     <img className={classes.cover} src={book.poster} alt={'Обложка'}/>
                 </div>
             </div>

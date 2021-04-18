@@ -4,10 +4,10 @@ from store.models import Book, UserBookRelation, Comments
 
 class AllBooksSerializer(serializers.ModelSerializer):
     rated_books = serializers.DecimalField(max_digits=3, decimal_places=2, read_only=True)
-    
+
     class Meta:
         model = Book
-        fields = ('id', 'name', 'poster', 'rated_books',) 
+        fields = ('id', 'name', 'poster', 'rated_books',)
 
 
 class BookSerializer(serializers.ModelSerializer):
@@ -20,7 +20,7 @@ class BookSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'poster', 'rated_books', 'current_rate', 'count_rate')  # '__all__'
 
     def get_count_rate(self, instance):
-    	return UserBookRelation.objects.filter(book=instance).count()
+        return UserBookRelation.objects.filter(book=instance).count()
 
     def get_current_rate(self, instance):
         user = None
@@ -44,4 +44,4 @@ class CommentsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Comments
-        fields = ('text', 'owner', 'book')
+        fields = ('id','text', 'owner', 'book')

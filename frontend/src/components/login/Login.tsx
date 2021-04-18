@@ -1,9 +1,6 @@
 import React from 'react'
-//import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {required} from "../../utils/validators/validator";
-import {Input, Textarea} from "../common/formsControl/FormsControl";
 import classes from "./Login.module.css"
-import Button from "./button/Button";
 import {LoginFormDataType} from "./LoginContainer";
 import { Form, Field } from 'react-final-form'
 

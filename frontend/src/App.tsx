@@ -1,9 +1,8 @@
 import React, {useEffect} from 'react'
 import './App.css';
 import Body from './components/Body'
-import {connect, Provider} from "react-redux";
-import store, {AppStateType} from "./redux/store";
-import {BrowserRouter} from "react-router-dom";
+import {connect, } from "react-redux";
+import {AppStateType} from "./redux/store";
 import {initAppThunk} from "./redux/initAppReducer";
 import Preloader from "./components/preloader/Preloader";
 

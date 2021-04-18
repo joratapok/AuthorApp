@@ -17,7 +17,6 @@ import datetime
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -28,7 +27,6 @@ SECRET_KEY = 'django-insecure-2bchr7%ggc17*td72&z3ov)7kttj#l*hf_0=)j^siwd$$4p8x2
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -54,13 +52,12 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    
+
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    
 ]
 
 ROOT_URLCONF = 'bookstore.urls'
@@ -83,38 +80,37 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'bookstore.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-#DATABASES = {
-# 'default': {
-#     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#     'NAME': 'BookStoreDB',
-#     'USER': 'Marina',
-#     'PASSWORD': '1369963',
-#     'HOST': 'localhost',
-#     'PORT': '',
-# }
-#}
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'sqlite3.db',                      # Or path to database file if using sqlite3.
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'BookStoreDB',
+        'USER': 'Marina',
+        'PASSWORD': '1369963',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+#         'NAME': 'sqlite3.db',                      # Or path to database file if using sqlite3.
+#         'USER': '',                      # Not used with sqlite3.
+#         'PASSWORD': '',                  # Not used with sqlite3.
+#         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
+#         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+#     }
+# }
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        #'rest_framework.authentication.BasicAuthentication',
-        #'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
 
@@ -127,21 +123,21 @@ REST_FRAMEWORK = {
     # ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 30,
-    #'DEFAULT_PARSER_CLASSES': (
+    # 'DEFAULT_PARSER_CLASSES': (
     #    'rest_framework_json_api.parsers.JSONParser',
     #    'rest_framework.parsers.FormParser',
     #    'rest_framework.parsers.MultiPartParser'
-    #),
-    #'DEFAULT_RENDERER_CLASSES': (
+    # ),
+    # 'DEFAULT_RENDERER_CLASSES': (
     #    'rest_framework_json_api.renderers.JSONRenderer',
     #    'rest_framework_json_api.renderers.BrowsableAPIRenderer',
-    #),
+    # ),
     # 'DEFAULT_PARSER_CLASSES': (
     #     'rest_framework.parsers.JSONParser',
     # ),
 }
 
-#SMTP
+# SMTP
 EMAIL_HOST_USER = 'joratapok1@gmail.com'
 EMAIL_HOST_PASSWORD = 'Molotoboy1'
 EMAIL_USE_TLS = True
@@ -176,7 +172,7 @@ SIMPLE_JWT = {
     'ISSUER': None,
 
     'AUTH_HEADER_TYPES': ('JWT',),
-    
+
     'USER_ID_FIELD': 'id',
     'USER_ID_CLAIM': 'user_id',
 
@@ -208,7 +204,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -221,7 +216,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
@@ -240,6 +234,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_ALLOW_ALL = True
-#CORS_ORIGIN_WHITELIST = [
-#    'http://localhost:3000',
-#]
+CORS_ORIGIN_WHITELIST = [
+   'http://localhost:3000',
+]
