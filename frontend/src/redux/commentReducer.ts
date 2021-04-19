@@ -53,11 +53,11 @@ export const getCommentsToBookThunk = (id: number): ThunkType => {
     }
 }
 
-export const addNewCommentThunk = (id: number, data: string): ThunkType => {
+export const addNewCommentThunk = (id: number, data: string, JWTToken: string): ThunkType => {
     return async (dispatch) => {
         try {
-            await commentApi.patchComment(id, data)
-            getCommentsToBookThunk(id)
+            await commentApi.patchComment(id, data, JWTToken)
+            dispatch(getCommentsToBookThunk(id))
         } catch (e) {
             console.error(e)
         }

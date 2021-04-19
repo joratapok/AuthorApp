@@ -4,23 +4,23 @@ import CommentForm, {addCommentDataType} from "./CommentForm";
 
 type CommentsType = {
     comments: commentsInitialType
-    onSubmit: (text: addCommentDataType) => void
+    addComment: (data: addCommentDataType) => void
 }
 
-export const Comments: React.FC<CommentsType> = (comments, onSubmit) => {
+export const Comments: React.FC<CommentsType> = ({comments, addComment}) => {
 
-    if (comments.comments.results.length === 0) {
+    if (comments.results.length === 0) {
         return <div>Комментариев пока нет, но вы можете оставить один... или два</div>
     }
 
     return (
         <div>
             <div>
-                <CommentForm onSubmit={onSubmit} />
+                <CommentForm comments={comments} addComment={addComment} />
             </div>
             <div>
                 Комментарии:
-                {comments.comments.results.map((el) => <div key={el.id}>{el.text}</div>)}
+                {comments.results.map((el) => <div key={el.id}>{el.text}</div>)}
             </div>
         </div>
     )

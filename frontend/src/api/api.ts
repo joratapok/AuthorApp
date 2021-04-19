@@ -74,9 +74,12 @@ export const commentApi = {
     getComments(id: number) {
         return instance.get<CommentsDataType>(`comments/${id}/`).then(res => res)
     },
-    patchComment(id: number, textMessage: string) {
-        return instance.patch(`comments/${id}/`, {
+    patchComment(id: number, textMessage: string, JWTToken: any) {
+        return instance.patch(`add_comments/${id}/`, {
             'text': textMessage,
-        })
+        }, {
+          headers: {'Authorization': `JWT ${JWTToken}`}
+        },
+        )
     }
 }

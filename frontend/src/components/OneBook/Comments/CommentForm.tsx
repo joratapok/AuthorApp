@@ -1,21 +1,28 @@
-import React from "react";
-import {Field, Form} from "react-final-form";
-import {required} from "../../../utils/validators/validator";
+import React from "react"
+import {Field, Form} from "react-final-form"
+import {required} from "../../../utils/validators/validator"
+import {commentsInitialType} from "../../../redux/commentReducer"
 
 type PropsType = {
-    onSubmit: (data: addCommentDataType) => any
+    comments: any
+    addComment: (data: addCommentDataType) => any
+
 }
 export type addCommentDataType = {
     text: string
 }
 
-const CommentForm: React.FC<PropsType> = ({onSubmit,}) => {
+const CommentForm: React.FC<PropsType> = ({comments, addComment}) => {
 
     return(
         <Form
-            onSubmit={onSubmit}
+            onSubmit={addComment}
             render={({handleSubmit, submitError, form, submitting, pristine, values}) => (
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={async (event) => {
+                    const error = await handleSubmit(event);
+                    if (error) { return error; }
+                    form.reset();
+                  }}>
                     <div>
                         <label>Комментарий</label>
                         <Field name={'text'}

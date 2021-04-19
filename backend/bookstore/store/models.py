@@ -20,6 +20,7 @@ class Book(models.Model):
     poster = models.ImageField('Обложка', upload_to='book/')
     genre = models.ManyToManyField(Genre, verbose_name='жанры')
     readers = models.ManyToManyField(User, through='UserBookRelation')
+    book_file = models.FileField(upload_to='book_file', blank=True)
 
     def __str__(self):
         return f'ID: {self.id} -- Книга: {self.name}'

@@ -7,7 +7,7 @@ class AllBooksSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Book
-        fields = ('id', 'name', 'poster', 'rated_books',)
+        fields = ('id', 'name', 'poster', 'rated_books', 'book_file')
 
 
 class BookSerializer(serializers.ModelSerializer):
@@ -17,7 +17,7 @@ class BookSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Book
-        fields = ('id', 'name', 'poster', 'rated_books', 'current_rate', 'count_rate')  # '__all__'
+        fields = ('id', 'name', 'poster', 'rated_books', 'current_rate', 'count_rate', 'book_file')  
 
     def get_count_rate(self, instance):
         return UserBookRelation.objects.filter(book=instance).count()

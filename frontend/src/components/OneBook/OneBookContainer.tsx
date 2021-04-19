@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react'
 import {connect} from "react-redux"
 import {AppStateType} from "../../redux/store"
+import {AuthinitialType} from "../../redux/authReducer"
 import {OneBookType, getBookByIdThunk} from "../../redux/bookReducer"
 import {compose} from "redux"
 import {withRouter, RouteComponentProps} from "react-router-dom"
@@ -11,11 +12,12 @@ import {addCommentDataType} from "./Comments/CommentForm"
 type MapStateToPropsType = {
     book: OneBookType
     comments: commentsInitialType
+    auth: AuthinitialType
 }
 type MapDispatchToPropsType = {
     getBookByIdThunk: (id: number) => void
     getCommentsToBookThunk: (id: number) => void
-    addNewCommentThunk: (id: number, text: string) => void
+    addNewCommentThunk: (id: number, text: string, JWTToken: string | null) => void
 }
 type OwnPropsType = {}
 type PathParamsType = {
@@ -26,12 +28,12 @@ type OneBookPropsType = MapDispatchToPropsType & MapStateToPropsType & OwnPropsT
 
 
 const OneBookContainer: React.FC<OneBookPropsType> =
-    ({book,comments, getBookByIdThunk,
+    ({book, comments, auth, getBookByIdThunk,
          addNewCommentThunk, getCommentsToBookThunk, ...props}) => {
 
-    const onSubmit = (formData: addCommentDataType) => {
+    const addComment = (formData: addCommentDataType) => {
         let bookId = props.match.params.bookId
-        addNewCommentThunk(Number(bookId), formData.text)
+        addNewCommentThunk(Number(bookId), formData.text, auth.accessToken)
     }
 
     useEffect(() => {
@@ -44,7 +46,7 @@ const OneBookContainer: React.FC<OneBookPropsType> =
 
     return (
         <div>
-            <BookDetail comments={comments} book={book} onSubmit={onSubmit}/>
+            <BookDetail comments={comments} book={book} addComment={addComment}/>
         </div>
     )
 }
@@ -52,6 +54,8 @@ const OneBookContainer: React.FC<OneBookPropsType> =
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
     book: state.books.book,
     comments: state.comments,
+    auth: state.auth
+
 })
 
 export default compose<React.ComponentType>(
