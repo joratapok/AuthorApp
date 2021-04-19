@@ -1,4 +1,4 @@
-.book Wrapper {
+.bookWrapper {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -17,45 +17,25 @@
 }
 
 .descriptionWrapper {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
 }
 
 .bookNameWrapper {
     font-size: 25px;
 }
 
-.modal {
-  height: 100vh;
-  width: 100vw;
-  background-color: rgba(0, 0, 0, 0.4);
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  opacity: 0;
-  z-index: -10;
-  transition: 0.5s;
+.buttonModalOff {
+    position: fixed;
+    z-index: -10;
+    top: 50px;
+    right: 50px;
+    opacity: 0;
+    transition: 0.5s;
 }
 
-.activeModal {
-  opacity: 1;
-  z-index: 11;
-
-}
-
-.ContentModal {
-  padding: 20px;
-  background-color: white;
-  width: 50%;
-  font-size: 25px;
-  z-index: 12;
-  transform: scale(0.5);
-  transition: 0.4s;
-}
-
-.activeContentModal {
-  transform: scale(1);
+.activeButtonModalOff {
+    z-index: 15;
+    opacity: 1;
 }
