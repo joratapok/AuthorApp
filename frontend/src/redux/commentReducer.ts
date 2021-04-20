@@ -1,5 +1,5 @@
 import {AppStateType, InferActionsTypes} from "./store";
-import {bookApi, commentApi, CommentsDataType} from "../api/api";
+import {commentApi, CommentsDataType} from "../api/api";
 import {ThunkAction} from "redux-thunk";
 
 export type CommentType = {
@@ -53,7 +53,7 @@ export const getCommentsToBookThunk = (id: number): ThunkType => {
     }
 }
 
-export const fetchNewPageComments = (url: string): ThunkType => {
+export const fetchNewPageComments = (url: string | null): ThunkType => {
     return async (dispatch) => {
         try {
             const response = await commentApi.getNewCommentsPage(url)
@@ -68,7 +68,7 @@ export const addNewCommentThunk = (id: number, data: string, JWTToken: string): 
     return async (dispatch) => {
         try {
             await commentApi.patchComment(id, data, JWTToken)
-            dispatch(getCommentsToBookThunk(id))
+            await dispatch(getCommentsToBookThunk(id))
         } catch (e) {
             console.error(e)
         }

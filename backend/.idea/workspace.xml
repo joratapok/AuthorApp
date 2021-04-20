@@ -20,13 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a2a56fec-9f1f-4185-b64d-e82deaa6fc17" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../frontend/src/components/OneBook/Modal/Modal.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/src/components/OneBook/Modal/Modal.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bookstore/bookstore/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookstore/bookstore/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/OneBook/BookDetail.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/OneBook/BookDetail.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/OneBook/BookDetail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/OneBook/BookDetail.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/OneBook/Comments/CommentForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/OneBook/Comments/CommentForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookstore/bookstore/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookstore/bookstore/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookstore/store/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookstore/store/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookstore/store/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookstore/store/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,7 +149,8 @@
       <workItem from="1618401248218" duration="1432000" />
       <workItem from="1618488857644" duration="3506000" />
       <workItem from="1618740687355" duration="4037000" />
-      <workItem from="1618832657082" duration="962000" />
+      <workItem from="1618832657082" duration="1559000" />
+      <workItem from="1618920261807" duration="10914000" />
     </task>
     <servers />
   </component>

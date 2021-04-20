@@ -20,13 +20,11 @@ export const Modal: React.FC<BookDetailType> = ({setOn}) => {
 
     const moveOn = (e: any) => {
         e.preventDefault()
-        console.log('MOVEON')
         window.addEventListener('mousemove', setFromEvent)
     }
 
     const moveOff = (e: any) => {
         e.preventDefault()
-        console.log('MOVEOFF')
         window.removeEventListener('mousemove', setFromEvent)
     }
 
@@ -35,7 +33,7 @@ export const Modal: React.FC<BookDetailType> = ({setOn}) => {
     let contentWrapper = classes.contentWrapper + ' ' + ( modal ? classes.activeContentWrapper : '')
 
     return (
-      <div>
+        <div>
             <div className={modalClass} onPointerDown={moveOn} onPointerUp={moveOff}>
             </div>
 
@@ -50,7 +48,7 @@ export const Modal: React.FC<BookDetailType> = ({setOn}) => {
                 </div>
             </div>
 
-      </div>
+        </div>
 
     )
 }

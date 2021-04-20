@@ -17,11 +17,14 @@ type BookDetailType = {
     setCurrentRatingThunk: (bookId: number, data: number, JWTToken: any) => void
 }
 
-export const BookDetail: React.FC<BookDetailType> = ({book, comments, auth, addComment,
-  fetchNewPageComments, setCurrentRatingThunk}) => {
+export const BookDetail: React.FC<BookDetailType> = ({
+                                                         book, comments,
+                                                         auth, addComment,
+                                                         fetchNewPageComments, setCurrentRatingThunk
+                                                     }) => {
 
     const [modal, setModal] = useState(false)
-    let buttonModalOffClass = classes.buttonModalOff + ' ' + ( modal ? classes.activeButtonModalOff : '')
+    let buttonModalOffClass = classes.buttonModalOff + ' ' + (modal ? classes.activeButtonModalOff : '')
 
     const onStarClick = (nextValue: number, prevValue: number, name: string) => {
         setCurrentRatingThunk(book.id, nextValue, auth.accessToken)
@@ -37,12 +40,12 @@ export const BookDetail: React.FC<BookDetailType> = ({book, comments, auth, addC
                     <button onClick={() => setModal(true)}>Читать</button>
                     <a href={book.book_file} download>Скачать</a>
                     <div className={classes.ratingWrapper}>
-                          <StarRatingComponent
-                          name="rate1"
-                          starCount={5}
-                          value={book.current_rate}
-                          onStarClick={onStarClick} />
-                          Средний рейтинг: {book.rated_books} Всего оценило {book.count_rate}
+                        <StarRatingComponent
+                            name="rate1"
+                            starCount={5}
+                            value={book.current_rate}
+                            onStarClick={onStarClick}/>
+                        Средний рейтинг: {book.rated_books} Всего оценило {book.count_rate}
                     </div>
                     <div className={classes.bookNameWrapper}>
                         {book.name}
@@ -51,12 +54,13 @@ export const BookDetail: React.FC<BookDetailType> = ({book, comments, auth, addC
             </div>
             <div>
                 <Comments addComment={addComment}
-                 comments={comments}
-                 fetchNewPageComments={fetchNewPageComments}/>
+                          comments={comments}
+                          fetchNewPageComments={fetchNewPageComments}/>
             </div>
             <Modal setOn={modal}/>
             <button className={buttonModalOffClass}
-                    onClick={() => setModal(false)}>Не Читать</button>
+                    onClick={() => setModal(false)}>Не Читать
+            </button>
         </div>
     )
 }

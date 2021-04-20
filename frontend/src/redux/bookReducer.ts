@@ -68,16 +68,16 @@ const bookReducer = (state = initial, action: bookReducerActionsTypes): initialT
                 ...state,
                 book: {...state.book, current_rate: action.rating}
             }
-          case SET_AVG_RATING:
-              return {
-                  ...state,
-                  book: {...state.book, rated_books: action.avgRating}
-              }
-          case SET_COUNT_RATE:
-              return {
-                  ...state,
-                  book: {...state.book, count_rate: action.count_rate}
-              }
+        case SET_AVG_RATING:
+            return {
+                ...state,
+                book: {...state.book, rated_books: action.avgRating}
+            }
+        case SET_COUNT_RATE:
+            return {
+                ...state,
+                book: {...state.book, count_rate: action.count_rate}
+            }
 
         default:
             return state

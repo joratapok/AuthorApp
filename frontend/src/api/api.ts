@@ -86,7 +86,7 @@ export const commentApi = {
     getComments(id: number) {
         return instance.get<CommentsDataType>(`comments/${id}/`).then(res => res)
     },
-    getNewCommentsPage(url: string) {
+    getNewCommentsPage(url: any) {
         return axios.get<CommentsDataType>(url).then(res => res)
     },
     patchComment(id: number, textMessage: string, JWTToken: any) {

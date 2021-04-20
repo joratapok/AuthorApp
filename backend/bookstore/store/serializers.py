@@ -17,7 +17,7 @@ class BookSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Book
-        fields = ('id', 'name', 'poster', 'rated_books', 'current_rate', 'count_rate', 'book_file')  
+        fields = ('id', 'name', 'poster', 'rated_books', 'current_rate', 'count_rate', 'book_file')
 
     def get_count_rate(self, instance):
         return UserBookRelation.objects.filter(book=instance).count()
@@ -29,13 +29,14 @@ class BookSerializer(serializers.ModelSerializer):
             user = request.user
             current_rate = UserBookRelation.objects.filter(book=instance, user=user.id).values_list('rate', flat=True)
             if len(current_rate) > 0:
-            	return current_rate[0]
+                return current_rate[0]
         else:
             return 0
 
 
 class UserBookRelationSerializer(serializers.ModelSerializer):
     avg_rate = serializers.SerializerMethodField()
+
     class Meta:
         model = UserBookRelation
         fields = ('book', 'rate', 'avg_rate')
@@ -51,4 +52,4 @@ class CommentsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Comments
-        fields = ('id','text', 'owner', 'book')
+        fields = ('id', 'text', 'owner', 'book')
