@@ -53,6 +53,17 @@ export const getCommentsToBookThunk = (id: number): ThunkType => {
     }
 }
 
+export const fetchNewPageComments = (url: string): ThunkType => {
+    return async (dispatch) => {
+        try {
+            const response = await commentApi.getNewCommentsPage(url)
+            dispatch(actionsBooksReducer.getComments(response.data))
+        } catch (e) {
+            console.error(e)
+        }
+    }
+}
+
 export const addNewCommentThunk = (id: number, data: string, JWTToken: string): ThunkType => {
     return async (dispatch) => {
         try {

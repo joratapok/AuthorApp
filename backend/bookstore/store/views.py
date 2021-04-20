@@ -15,7 +15,6 @@ from django.db.models import Avg
 class BookViewSet(ReadOnlyModelViewSet):
     
     queryset = Book.objects.all().annotate(rated_books=Avg('userbookrelation__rate'))
-    #serializer_class = BookSerializer
     filter_backends = [DjangoFilterBackend, SearchFilter]
     filter_fields = ['name', 'price']
     search_fields = ['name', 'author_name']
@@ -56,6 +55,7 @@ class CommentsCreateView(UpdateModelMixin, GenericViewSet):
 
 class CommentsInBookView(generics.ListAPIView):
     serializer_class = CommentsSerializer
+
 
     def get_queryset(self):
         return Comments.objects.filter(book__id=self.kwargs['book'])

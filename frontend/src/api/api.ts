@@ -25,6 +25,14 @@ export type CommentsDataType = {
     previous: null | string
     results: Array<CommentType>
 }
+export type CurrentRateType = {
+    book: number
+    rate: number
+    avg_rate: {
+      avg_rate: number
+      count_rate: number
+    }
+}
 
 export const instance = axios.create({
     baseURL: 'http://127.0.0.1:8000/',
@@ -36,16 +44,20 @@ export const bookApi = {
     getAllBooks() {
         return instance.get<GetAllBooksType>('book/').then(res => res)
     },
-    getBookById(id: number) {
-        return instance.get<OneBookType>(`book/${id}/`).then(res => res)
+    getBookById(id: number, JWTToken: string | null) {
+        return instance.get<OneBookType>(`book/${id}/`, {
+              headers: { 'Authorization': `JWT ${JWTToken}` }
+        }).then(res => res)
     }
 }
 
 export const rateApi = {
-    patchRate(id: number, data: number) {
-        return instance.patch(`book_relation/${id}/`, {
+    patchRate(bookId: number, data: number, JWTToken: any) {
+        return instance.patch<CurrentRateType>(`book_relation/${bookId}/`, {
             'rate': data,
-        })
+        }, {
+            headers: {'Authorization': `JWT ${JWTToken}`}
+        }).then(res => res.data)
     }
 }
 
@@ -74,12 +86,14 @@ export const commentApi = {
     getComments(id: number) {
         return instance.get<CommentsDataType>(`comments/${id}/`).then(res => res)
     },
+    getNewCommentsPage(url: string) {
+        return axios.get<CommentsDataType>(url).then(res => res)
+    },
     patchComment(id: number, textMessage: string, JWTToken: any) {
         return instance.patch(`add_comments/${id}/`, {
             'text': textMessage,
         }, {
           headers: {'Authorization': `JWT ${JWTToken}`}
-        },
-        )
+        })
     }
 }

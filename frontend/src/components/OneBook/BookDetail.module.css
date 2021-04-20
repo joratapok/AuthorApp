@@ -22,6 +22,12 @@
     flex-direction: column;
 }
 
+.ratingWrapper {
+  position: relative;
+  height: 50px;
+  width: 150px;
+}
+
 .bookNameWrapper {
     font-size: 25px;
 }

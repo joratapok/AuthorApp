@@ -5,12 +5,22 @@ import CommentForm, {addCommentDataType} from "./CommentForm";
 type CommentsType = {
     comments: commentsInitialType
     addComment: (data: addCommentDataType) => void
+    fetchNewPageComments: (url: string) => void
 }
 
-export const Comments: React.FC<CommentsType> = ({comments, addComment}) => {
+export const Comments: React.FC<CommentsType> = ({comments, addComment, fetchNewPageComments}) => {
+
+    const fetchNewPage = (url: string) => {
+        fetchNewPageComments(url)
+    }
 
     if (comments.results.length === 0) {
-        return <div>Комментариев пока нет, но вы можете оставить один... или два</div>
+        return <div>
+            Комментариев пока нет, но вы можете оставить один... или два
+            <div>
+                <CommentForm comments={comments} addComment={addComment} />
+            </div>
+        </div>
     }
 
     return (
@@ -22,6 +32,12 @@ export const Comments: React.FC<CommentsType> = ({comments, addComment}) => {
                 Комментарии:
                 {comments.results.map((el) => <div key={el.id}>{el.text}</div>)}
             </div>
+            {comments.previous &&
+              // @ts-ignore
+              <button onClick={() => fetchNewPage(comments.previous)}>left</button>}
+            {comments.next &&
+              // @ts-ignore
+               <button onClick={() => fetchNewPage(comments.next)}>right</button>}
         </div>
     )
 }

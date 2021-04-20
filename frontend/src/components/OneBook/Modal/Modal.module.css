@@ -1,7 +1,7 @@
 .modal {
     height: 100vh;
     width: 100vw;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.7);
     position: fixed;
     top: 0;
     left: 0;
@@ -10,7 +10,7 @@
     opacity: 0;
     z-index: -10;
     transition: 0.5s;
-    backdrop-filter: blur(5px);
+
 }
 
 .activeModal {
@@ -18,20 +18,38 @@
     z-index: 11;
 }
 
-.ContentModal {
+.contentWrapper {
+    z-index: -10;
+    height: auto;
+    width: 100vw;
+    overflow-y: scroll;
+    justify-content: center;
+    align-items: flex-start;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: none;
+}
+
+.activeContentWrapper {
+    z-index: 12;
+    display: flex;
+}
+
+.contentModal {
+    z-index: -10;
     height: 100%;
     padding: 20px;
     background-color: white;
     width: 50%;
     font-size: 25px;
-    z-index: 12;
-    transform: scale(0.5);
+    transform: scale(0);
     transition: 0.4s;
-    overflow-y: scroll;
+
 }
-
-
 
 .activeContentModal {
     transform: scale(1);
+    z-index: 12;
+
 }
