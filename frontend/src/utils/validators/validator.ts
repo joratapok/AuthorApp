@@ -2,7 +2,7 @@ export type FieldValidatorType = (value: string)  => string | undefined
 
 export const required: FieldValidatorType = (value) => {
     if (value) return undefined
-    return `field is required`
+    return `Обязательное поле`
 }
 
 export const maxLengthCreator = (length: number): FieldValidatorType => {

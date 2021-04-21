@@ -13,7 +13,7 @@ type BookDetailType = {
     comments: commentsInitialType
     auth: AuthinitialType
     addComment: (data: addCommentDataType) => void
-    fetchNewPageComments: (url: string) => void
+    fetchNewPageComments: (url: string | null) => void
     setCurrentRatingThunk: (bookId: number, data: number, JWTToken: any) => void
 }
 

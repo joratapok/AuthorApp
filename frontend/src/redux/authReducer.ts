@@ -1,5 +1,5 @@
 import {AppStateType, InferActionsTypes} from "./store";
-import {authApi, getAuthMeType, LoginFormDataType} from "../api/api";
+import {authApi, getAuthMeType, LoginFormDataType, SignUpFormDataType} from "../api/api";
 import {ThunkAction} from "redux-thunk";
 import {Dispatch} from "redux";
 
@@ -96,6 +96,13 @@ export const logoutThunk = (): ThunkType => {
         dispatch(actionsAuthReducer.logout())
         saveToLocalStorage('access', '')
         saveToLocalStorage('refresh', '')
+    }
+}
+
+export const signUpThunk = (data: SignUpFormDataType): ThunkType => {
+    return async (dispatch) => {
+        let response = await authApi.postRegistrNewUser(data)
+
     }
 }
 

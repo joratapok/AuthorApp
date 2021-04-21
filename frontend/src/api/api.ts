@@ -19,6 +19,12 @@ export type LoginFormDataType = {
     username: string
     password: string
 }
+export type SignUpFormDataType = {
+    username: string
+    email: string
+    password: string
+    re_password: string
+}
 export type CommentsDataType = {
     count: number
     next: null | string
@@ -33,6 +39,12 @@ export type CurrentRateType = {
       count_rate: number
     }
 }
+export type RegisterResponseType = {
+    email: string
+    username: string
+    id: number
+}
+
 
 export const instance = axios.create({
     baseURL: 'http://127.0.0.1:8000/',
@@ -79,7 +91,15 @@ export const authApi = {
                 'Authorization': `JWT ${JWTToken}`
             }
         }).then(res => res.data)
-    }
+    },
+    postRegistrNewUser(data: SignUpFormDataType) {
+        return instance.post<RegisterResponseType>('auth/users/', {
+            username: data.username,
+            email: data.email,
+            password: data.password,
+            re_password: data.re_password,
+        }).then(res => res.data)
+    },
 }
 
 export const commentApi = {
