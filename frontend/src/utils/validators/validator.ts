@@ -13,8 +13,8 @@ export const maxLengthCreator = (length: number): FieldValidatorType => {
     }
 }
 
-export const minLength: FieldValidatorType = (value) => {
-    if (value.length < 1) return `whrite something  ༼ つ ◕_◕ ༽つ`
+export const loginRequired: FieldValidatorType = (value) => {
+    if (!value) return `тут нужен логин  ༼ つ ◕_◕ ༽つ`
     return undefined
 }
 

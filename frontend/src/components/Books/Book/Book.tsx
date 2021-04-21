@@ -36,7 +36,7 @@ const Book: React.FC<BookType> = ({book}) => {
                  onMouseEnter={setHoverOn}
                  onMouseLeave={setHoverOff}>
                 <div className={imageWrapper}>
-                    <NavLink activeClassName={classes.active} to={'/' + book.id}>
+                    <NavLink activeClassName={classes.active} to={'/book' + book.id}>
                         <div className={classCover}/>
                     </NavLink>
 

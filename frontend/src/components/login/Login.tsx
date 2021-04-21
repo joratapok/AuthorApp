@@ -1,8 +1,15 @@
 import React from 'react'
-import {required} from "../../utils/validators/validator";
+import {required, loginRequired} from "../../utils/validators/validator";
 import classes from "./Login.module.css"
 import {LoginFormDataType} from "./LoginContainer";
 import { Form, Field } from 'react-final-form'
+import {
+  TextField,
+} from 'mui-rff';
+import {
+  Grid,
+  Button,
+} from '@material-ui/core';
 
 const LoginForm: React.FC<PropsType> = ({onSubmit,}) => (
     <Form
@@ -10,40 +17,50 @@ const LoginForm: React.FC<PropsType> = ({onSubmit,}) => (
         render={({ handleSubmit, submitError, form, submitting, pristine, values }) => (
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label>Логин</label>
                     <Field name={'username'}
                         component="input"
-                        validate={required}>
-                        {({ input, meta }) => (
+                        validate={loginRequired}>
+                        {({ input,  meta: { touched, error } }) => (
                           <div>
-                            <input {...input} type="text" placeholder="Логин" />
-                            {meta.error && meta.touched && <span>{meta.error}</span>}
+                            <TextField {...input} type="text"
+                            label="Логин"
+                            margin="normal"
+
+                            required={true}/>
                           </div>
                         )}
                     </Field>
 
                 </div>
                 <div>
-                    <label>Пароль</label>
                     <Field name={'password'}
                         component="input"
-                        validate={required}>
+                        >
                         {({ input, meta }) => (
-                          <div>
-                            <input {...input} type="password" placeholder="Пароль" />
-                            {meta.error && meta.touched && <span>{meta.error}</span>}
-                          </div>
+
+                          <TextField {...input} type="password"
+                          label="Пароль"
+                          margin="normal"
+
+                          required={true}/>
+
                         )}
                     </Field>
 
                 </div>
 
-                <div className="buttons">
-                    <button type="submit" disabled={submitting || pristine}>
-                        Отправить
-                    </button>
-                    {submitError && <div className="error">{submitError}</div>}
-                </div>
+                {submitError && <div className="error">{submitError}</div>}
+
+                <Grid item style={{ marginTop: 16 }}>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    type="submit"
+                    disabled={submitting}
+                  >
+                    Отправить
+                  </Button>
+                </Grid>
             </form>
         )}
     />
@@ -57,7 +74,7 @@ const Login: React.FC<PropsType> = ({onSubmit,}) => {
 
         return (
             <div className={classes.loginWrap}>
-                <div className={classes.title}>Login Page</div>
+                <div className={classes.title}>Авторизация</div>
 
                 <LoginForm onSubmit={onSubmit}/>
             </div>

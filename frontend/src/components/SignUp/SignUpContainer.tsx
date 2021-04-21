@@ -1,17 +1,11 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {signUpThunk,} from "../../redux/authReducer";
+import {signUpThunk, } from "../../redux/authReducer";
+import {SignUpFormDataType, } from "../../api/api";
 import {AppStateType} from "../../redux/store";
 import SignUp from "./SignUp"
 import {Redirect} from "react-router-dom/";
 import { FORM_ERROR } from 'final-form'
-
-export type SignUpFormDataType = {
-    username: string
-    email: string
-    password: string
-    re_password: string
-}
 
 type MapsStatePorpsType = {
     isAuth: boolean
@@ -25,12 +19,15 @@ type MapOwnPropsType = {}
 
 type PropsType = MapsStatePorpsType & MapDispatchPropsType & MapOwnPropsType
 
-const SignUpContainer: React.FC<PropsType> = ({loginThunk, isAuth}) => {
+const SignUpContainer: React.FC<PropsType> = ({signUpThunk, isAuth}) => {
 
     const onSubmit = async (data: SignUpFormDataType) => {
         try {
           await signUpThunk(data)
         } catch (e) {
+          if (e.response.data.password) {
+            return { ['password']: e.response.data.password }
+          }
             return { [FORM_ERROR]: e.message }
         }
     }
@@ -40,7 +37,7 @@ const SignUpContainer: React.FC<PropsType> = ({loginThunk, isAuth}) => {
     }
 
     return (
-        <SighUp onSubmit={onSubmit}/>
+        <SignUp onSubmit={onSubmit}/>
     )
 }
 

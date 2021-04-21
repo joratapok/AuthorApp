@@ -1,40 +1,42 @@
 import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
+import classes from "./SignUp.module.css"
 import { Form } from 'react-final-form';
+import {SignUpFormDataType, } from "../../api/api";
 import {
   TextField,
 } from 'mui-rff';
 import {
   Typography,
   Paper,
-  Link,
   Grid,
   Button,
   CssBaseline,
-  MenuItem,
-  InputAdornment,
 } from '@material-ui/core';
 
-const validate = values => {
-  const errors = {};
-  if (!values.username) {
-    errors.username = 'Обязательное поле';
-  }
-  if (!values.email) {
-    errors.email = 'Обязательное поле';
-  }
-  if (!values.password) {
-    errors.password = 'Обязательное поле';
-  }
-  if (!values.re_password) {
-    errors.email = 'Обязательное поле';
-  }
-  return errors;
-};
 
+type PropsType = {
+    onSubmit: (data: SignUpFormDataType) => void
+}
 
+const SignUp: React.FC<PropsType> = ({onSubmit}) => {
 
-function SignUp({onSubmit}) {
+  const validate = (values: SignUpFormDataType) => {
+    const errors: any = {};
+    if (!values.username) {
+      errors.username = 'Обязательное поле';
+    }
+    if (!values.email) {
+      errors.email = 'Обязательное поле';
+    }
+    if (!values.password) {
+      errors.password = 'Обязательное поле';
+    }
+    if (!values.re_password) {
+      errors.email = 'Обязательное поле';
+    }
+    return errors;
+  };
 
   const formFields = [
     {
@@ -43,8 +45,9 @@ function SignUp({onSubmit}) {
         <TextField
           label="Имя или никнейм"
           name="username"
-          margin=""
+          margin="none"
           required={true}
+
         />
       ),
     },
@@ -52,11 +55,11 @@ function SignUp({onSubmit}) {
       size: 12,
       field: (
         <TextField
-          type="email"
           label="Email"
           name="email"
           margin="none"
           required={true}
+          type="email"
         />
       ),
     },
@@ -88,25 +91,31 @@ function SignUp({onSubmit}) {
   ];
 
   return (
-    <div style={{ padding: 16, margin: 'auto', maxWidth: 600 }}>
-      <CssBaseline />
+    <div className={classes.signWrap}>
 
-      <Typography variant="h5" align="center" component="h2" gutterBottom>
-        Регистрация
-      </Typography>
+
+
 
       <Form
         onSubmit={onSubmit}
         validate={validate}
-        render={({ handleSubmit, form, submitting, pristine, values }) => (
+        render={({ handleSubmit, submitError,form, submitting, pristine, values }) => (
           <form onSubmit={handleSubmit} noValidate>
-            <Paper style={{ padding: 16 }}>
+
+
+            <Typography variant="h5" align="center" component="h2" gutterBottom>
+              Регистрация
+            </Typography>
+
               <Grid container alignItems="flex-start" spacing={2}>
                 {formFields.map((item, idx) => (
+                  // @ts-ignore
                   <Grid item xs={item.size} key={idx}>
                     {item.field}
                   </Grid>
                 ))}
+
+                {submitError && <div className="error">{submitError}</div>}
 
                 <Grid item style={{ marginTop: 16 }}>
                   <Button
@@ -119,7 +128,7 @@ function SignUp({onSubmit}) {
                   </Button>
                 </Grid>
               </Grid>
-            </Paper>
+
 
           </form>
         )}

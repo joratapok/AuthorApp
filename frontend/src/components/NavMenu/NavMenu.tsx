@@ -29,7 +29,7 @@ const NavMenu: React.FC<NavMenuPropsType> =
             <div>
                     {auth.isAuth
                         ? <User login={auth.username} logout={logout}/>
-                        : <NavLink to='/login'>Login</NavLink>}
+                        : <><NavLink to='/login'>Login</NavLink><NavLink to='/signUp'>SingUp</NavLink></>}
             </div>
         )
     }
