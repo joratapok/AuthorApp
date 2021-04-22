@@ -1,7 +1,10 @@
 import React from "react"
 import {Field, Form} from "react-final-form"
 import {required} from "../../../utils/validators/validator"
-import {commentsInitialType} from "../../../redux/commentReducer"
+import {TextField} from "@material-ui/core";
+import Button from "@material-ui/core/Button";
+import Icon from "@material-ui/core/Icon";
+import {makeStyles} from "@material-ui/core/styles";
 
 type PropsType = {
     comments: any
@@ -12,7 +15,15 @@ export type addCommentDataType = {
     text: string
 }
 
+const useStyles = makeStyles((theme) => ({
+    textInput: {
+        width: '75%',
+
+    },
+}));
+
 const CommentForm: React.FC<PropsType> = ({addComment}) => {
+    const cl = useStyles();
 
     return (
         <Form
@@ -25,27 +36,33 @@ const CommentForm: React.FC<PropsType> = ({addComment}) => {
                     }
                     form.reset();
                 }}>
-                    <div>
-                        <label>Комментарий</label>
-                        <Field name={'text'}
-                               component="input"
-                               validate={required}>
-                            {({input, meta}) => (
-                                <div>
-                                    <input {...input} type="text" placeholder="Написать комментарий"/>
-                                    {meta.error && meta.touched && <span>{meta.error}</span>}
-                                </div>
-                            )}
-                        </Field>
+                    <Field name={'text'}
+                           component="input"
+                           validate={required}>
+                        {({input, meta}) => (
+                            <TextField
+                                {...input}
+                                id="outlined-multiline-static"
+                                label="Комментарий"
+                                multiline
+                                rows={4}
+                                variant="outlined"
+                                className={cl.textInput}
+                            />
+                        )}
+                    </Field>
 
-                    </div>
+                    <Button
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                        disabled={submitting || pristine}
+                        endIcon={<Icon>send</Icon>}
+                    >
+                        Send
+                    </Button>
 
-                    <div className="buttons">
-                        <button type="submit" disabled={submitting || pristine}>
-                            Отправить
-                        </button>
-                        {submitError && <div className="error">{submitError}</div>}
-                    </div>
+                    {submitError && <div className="error">{submitError}</div>}
                 </form>
             )}
         />

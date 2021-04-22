@@ -5,8 +5,9 @@ import {commentsInitialType} from "../../redux/commentReducer"
 import {addCommentDataType} from "./Comments/CommentForm"
 import Comments from "./Comments/Comments"
 import Modal from "./Modal/Modal"
-import StarRatingComponent from 'react-star-rating-component'
 import {AuthinitialType} from "../../redux/authReducer"
+import {Rating} from "@material-ui/lab";
+import Container from "@material-ui/core/Container";
 
 type BookDetailType = {
     book: OneBookType
@@ -14,7 +15,7 @@ type BookDetailType = {
     auth: AuthinitialType
     addComment: (data: addCommentDataType) => void
     fetchNewPageComments: (url: string | null) => void
-    setCurrentRatingThunk: (bookId: number, data: number, JWTToken: any) => void
+    setCurrentRatingThunk: (bookId: number, data: number | null, JWTToken: any) => void
 }
 
 export const BookDetail: React.FC<BookDetailType> = ({
@@ -26,8 +27,8 @@ export const BookDetail: React.FC<BookDetailType> = ({
     const [modal, setModal] = useState(false)
     let buttonModalOffClass = classes.buttonModalOff + ' ' + (modal ? classes.activeButtonModalOff : '')
 
-    const onStarClick = (nextValue: number, prevValue: number, name: string) => {
-        setCurrentRatingThunk(book.id, nextValue, auth.accessToken)
+    const onStarClick = (newValue: number | null) => {
+        setCurrentRatingThunk(book.id, newValue, auth.accessToken)
     }
 
     return (
@@ -40,13 +41,17 @@ export const BookDetail: React.FC<BookDetailType> = ({
                     <button onClick={() => setModal(true)}>Читать</button>
                     <a href={book.book_file} download>Скачать</a>
                     <div className={classes.ratingWrapper}>
-                        <StarRatingComponent
-                            name="rate1"
-                            starCount={5}
+                        <Rating
+                            name="simple-controlled"
                             value={book.current_rate}
-                            onStarClick={onStarClick}/>
+                            onChange={(event, newValue) => {
+                                onStarClick(newValue);
+                            }}
+                        />
                         Средний рейтинг: {book.rated_books} Всего оценило {book.count_rate}
                     </div>
+
+
                     <div className={classes.bookNameWrapper}>
                         {book.name}
                     </div>

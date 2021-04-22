@@ -115,7 +115,7 @@ export const getBookByIdThunk = (id: number, JWTToken: string | null): ThunkType
     }
 }
 
-export const setCurrentRatingThunk = (bookId: number, data: number, JWTToken: any): ThunkType => {
+export const setCurrentRatingThunk = (bookId: number, data: number | null, JWTToken: any): ThunkType => {
     return async (dispatch) => {
         try {
             const response = await rateApi.patchRate(bookId, data, JWTToken)

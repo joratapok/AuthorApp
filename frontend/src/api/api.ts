@@ -64,7 +64,7 @@ export const bookApi = {
 }
 
 export const rateApi = {
-    patchRate(bookId: number, data: number, JWTToken: any) {
+    patchRate(bookId: number, data: number | null, JWTToken: any) {
         return instance.patch<CurrentRateType>(`book_relation/${bookId}/`, {
             'rate': data,
         }, {

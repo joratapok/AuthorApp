@@ -9,6 +9,8 @@ import BookDetail from "./BookDetail"
 import {addNewCommentThunk, commentsInitialType, getCommentsToBookThunk,
    fetchNewPageComments, } from "../../redux/commentReducer";
 import {addCommentDataType} from "./Comments/CommentForm"
+import classes from "./BookDetail.module.css";
+import Container from "@material-ui/core/Container";
 
 type MapStateToPropsType = {
     book: OneBookType
@@ -20,7 +22,7 @@ type MapDispatchToPropsType = {
     getCommentsToBookThunk: (id: number) => void
     addNewCommentThunk: (id: number, text: string, JWTToken: string | null) => void
     fetchNewPageComments: (url: string | null) => void
-    setCurrentRatingThunk: (bookId: number, data: number, JWTToken: any) => void
+    setCurrentRatingThunk: (bookId: number, data: number | null, JWTToken: any) => void
 }
 type OwnPropsType = {}
 type PathParamsType = {
@@ -48,14 +50,14 @@ const OneBookContainer: React.FC<OneBookPropsType> =
     }, [])
 
     return (
-        <div>
+        <Container maxWidth="md">
             <BookDetail comments={comments}
             book={book}
             auth={auth}
             addComment={addComment}
             fetchNewPageComments={fetchNewPageComments}
             setCurrentRatingThunk={setCurrentRatingThunk}/>
-        </div>
+        </Container>
     )
 }
 

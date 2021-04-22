@@ -68,4 +68,4 @@ class UserActivationView(APIView):
         post_url = web_url + "/auth/users/activation/"
         post_data = {'uid': uid, 'token': token}
         requests.post(post_url, data = post_data)
-        return redirect('http://localhost:3000/')
+        return redirect('http://localhost:3000/login')

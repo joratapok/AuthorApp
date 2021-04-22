@@ -1,6 +1,17 @@
 import React from 'react'
 import {commentsInitialType} from "../../../redux/commentReducer";
 import CommentForm, {addCommentDataType} from "./CommentForm";
+import defaulAvatar from "../../../assets/image/defaultAvatar.png"
+import {makeStyles} from "@material-ui/core/styles";
+import {
+    ListItem,
+    Divider,
+    ListItemText,
+    ListItemAvatar,
+    Avatar,
+    Typography
+} from "@material-ui/core";
+import Container from "@material-ui/core/Container";
 
 type CommentsType = {
     comments: commentsInitialType
@@ -8,7 +19,26 @@ type CommentsType = {
     fetchNewPageComments: (url: string | null) => void
 }
 
+const useStyles = makeStyles(theme => ({
+    root: {
+        width: "100%",
+        backgroundColor: theme.palette.background.paper
+    },
+    fonts: {
+        fontWeight: "bold"
+    },
+    inline: {
+        display: "inline"
+    },
+    commentForm: {
+        display: 'flex',
+        flexDirection: 'column',
+
+    },
+}));
+
 export const Comments: React.FC<CommentsType> = ({comments, addComment, fetchNewPageComments}) => {
+    const classes = useStyles();
 
     const fetchNewPage = (url: string | null) => {
         fetchNewPageComments(url)
@@ -18,24 +48,52 @@ export const Comments: React.FC<CommentsType> = ({comments, addComment, fetchNew
         return <div>
             Комментариев пока нет, но вы можете оставить один... или два
             <div>
-                <CommentForm comments={comments} addComment={addComment} />
+                <CommentForm comments={comments} addComment={addComment}/>
             </div>
         </div>
     }
 
     return (
         <div>
-            <div>
-                <CommentForm comments={comments} addComment={addComment} />
-            </div>
-            <div>
+            <Container maxWidth="md" className={classes.commentForm}>
+                <CommentForm comments={comments} addComment={addComment}/>
+            </Container>
+            <Container maxWidth="md">
                 Комментарии:
-                {comments.results.map((el) => <div key={el.id}>{el.text}</div>)}
-            </div>
+                {comments.results.map((el) => {
+                    return <React.Fragment key={el.id}>
+                        <ListItem key={el.id} alignItems="flex-start">
+                            <ListItemAvatar>
+                                <Avatar alt="avatar" src={defaulAvatar}/>
+                            </ListItemAvatar>
+                            <ListItemText
+                                primary={
+                                    <Typography className={classes.fonts}>
+                                        {el.owner}
+                                    </Typography>
+                                }
+                                secondary={
+                                    <>
+                                        <Typography
+                                            component="span"
+                                            variant="body2"
+                                            className={classes.inline}
+                                            color="textPrimary"
+                                        >
+                                            {el.text}
+                                        </Typography>
+                                    </>
+                                }
+                            />
+                        </ListItem>
+                        <Divider/>
+                    </React.Fragment>
+                })}
+            </Container>
             {(comments.previous != null) &&
-              <button onClick={() => fetchNewPage(comments.previous)}>left</button>}
+            <button onClick={() => fetchNewPage(comments.previous)}>left</button>}
             {comments.next &&
-               <button onClick={() => fetchNewPage(comments.next)}>right</button>}
+            <button onClick={() => fetchNewPage(comments.next)}>right</button>}
         </div>
     )
 }

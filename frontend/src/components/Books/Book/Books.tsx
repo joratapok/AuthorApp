@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
-import classes from './Books.module.css'
-import {bookType} from "../../redux/bookReducer";
-import Book from "./Book/Book";
+import classes from '../Books.module.css'
+import {bookType} from "../../../redux/bookReducer";
+import Book from "./Book";
 
 type BooksType = {
     books: Array<bookType>

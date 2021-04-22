@@ -1,11 +1,11 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {signUpThunk, } from "../../redux/authReducer";
-import {SignUpFormDataType, } from "../../api/api";
+import {signUpThunk,} from "../../redux/authReducer";
+import {SignUpFormDataType,} from "../../api/api";
 import {AppStateType} from "../../redux/store";
 import SignUp from "./SignUp"
 import {Redirect} from "react-router-dom/";
-import { FORM_ERROR } from 'final-form'
+import {FORM_ERROR} from 'final-form'
 
 type MapsStatePorpsType = {
     isAuth: boolean
@@ -23,12 +23,25 @@ const SignUpContainer: React.FC<PropsType> = ({signUpThunk, isAuth}) => {
 
     const onSubmit = async (data: SignUpFormDataType) => {
         try {
-          await signUpThunk(data)
+            await signUpThunk(data)
         } catch (e) {
-          if (e.response.data.password) {
-            return { ['password']: e.response.data.password }
-          }
-            return { [FORM_ERROR]: e.message }
+            if (e.response.data.password) {
+                return {['password']: e.response.data.password}
+            }
+            if (e.response.data.email) {
+                return {['email']: e.response.data.email}
+            }
+            if (e.response.data) {
+                let errorField = {[FORM_ERROR]: ''}
+                for (let i in e.response.data) {
+                    errorField[FORM_ERROR] = e.response.data[i]
+                    break
+                }
+                // e.response.data.forEach((el: any) => errorField[FORM_ERROR] = e.response.data[el])
+
+                return errorField
+            }
+            return {[FORM_ERROR]: e.message}
         }
     }
 

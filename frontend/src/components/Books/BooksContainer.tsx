@@ -1,8 +1,9 @@
 import React, {useEffect} from 'react'
-import Books from "./Books";
+import Books from "./Book/Books";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/store";
 import {bookType, getAllBooks} from "../../redux/bookReducer";
+import BooksList from "./BooksList";
 
 type MapStateToPropsType = {
     books: Array<bookType>
@@ -22,7 +23,7 @@ const BooksContainer: React.FC<MapDispatchToPropsType & MapStateToPropsType> =
 
     return (
         <>
-            <Books books={books}/>
+            <BooksList books={books}/>
         </>
     )
 }

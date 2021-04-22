@@ -20,13 +20,14 @@ const NavMenu: React.FC<NavMenuPropsType> =
             return (
                 <div>
                     <div>Hello, {login}</div>
+                    
                     <button onClick={logout}>Logout</button>
                 </div>
             )
         }
 
         return (
-            <div>
+            <div className={classes.nawWrapper}>
                     {auth.isAuth
                         ? <User login={auth.username} logout={logout}/>
                         : <><NavLink to='/login'>Login</NavLink><NavLink to='/signUp'>SingUp</NavLink></>}
