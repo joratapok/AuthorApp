@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from store.models import Book, UserBookRelation, Comments
+from bookstore import settings
+from store.models import Book, UserBookRelation, Comments, Profile
 
 
 class AllBooksSerializer(serializers.ModelSerializer):
@@ -50,7 +51,24 @@ class UserBookRelationSerializer(serializers.ModelSerializer):
 
 class CommentsSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
+    avatar = serializers.SerializerMethodField()    
 
     class Meta:
         model = Comments
-        fields = ('id', 'text', 'owner', 'book')
+        fields = ('id', 'text', 'owner', 'book', 'avatar')
+
+    def get_avatar(self, instance):
+        request = self.context.get("request")
+        host = request.META["HTTP_HOST"]
+        list_avatar = Profile.objects.filter(master=instance.owner.id).values_list('photo', flat=True)
+        if len(list_avatar) > 0:
+                return request.scheme + "://" + host + '%s%s' % (settings.MEDIA_URL, list_avatar[0])
+        return ''
+
+        
+
+class ProfileSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Profile
+        fields = '__all__'

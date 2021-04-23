@@ -5,10 +5,11 @@ from rest_framework import generics
 from rest_framework.filters import SearchFilter
 from rest_framework.mixins import UpdateModelMixin
 from rest_framework.permissions import IsAuthenticated, AllowAny
+from .permissions import IsOwnerProfileOrReadOnly
 from rest_framework.views import APIView
 from rest_framework.viewsets import ReadOnlyModelViewSet, GenericViewSet
-from store.serializers import BookSerializer, UserBookRelationSerializer, CommentsSerializer, AllBooksSerializer
-from store.models import Book, UserBookRelation, Comments
+from store.serializers import BookSerializer, UserBookRelationSerializer, CommentsSerializer, AllBooksSerializer, ProfileSerializer
+from store.models import Book, UserBookRelation, Comments, Profile
 from django.db.models import Avg
 
 
@@ -69,3 +70,10 @@ class UserActivationView(APIView):
         post_data = {'uid': uid, 'token': token}
         requests.post(post_url, data = post_data)
         return redirect('http://localhost:3000/login')
+
+
+class ProfileDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset=Profile.objects.all()
+    serializer_class=ProfileSerializer
+    permission_classes=[IsOwnerProfileOrReadOnly]
+    lookup_field = 'master'

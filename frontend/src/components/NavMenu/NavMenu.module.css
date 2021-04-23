@@ -4,3 +4,8 @@
     width: 100%;
     margin: 20px 40px 0 0;
 }
+.avaWrapper {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+}

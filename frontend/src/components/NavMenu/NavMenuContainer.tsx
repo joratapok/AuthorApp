@@ -3,7 +3,7 @@ import NavMenu from "./NavMenu";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import {AppStateType} from "../../redux/store";
-import {AuthinitialType, logoutThunk} from "../../redux/authReducer";
+import {AuthinitialType, logoutThunk, changeAvatarThunk} from "../../redux/authReducer";
 
 export type MapStatePropsType = {
     auth: AuthinitialType
@@ -11,6 +11,7 @@ export type MapStatePropsType = {
 
 export type MapDispatchPropsType = {
     logoutThunk: () => void
+    changeAvatarThunk: (JWTToken: string, userId: number, photo: any) => void
 }
 
 const NavMenuContainer: React.FC<MapStatePropsType & MapDispatchPropsType> =
@@ -21,7 +22,7 @@ const NavMenuContainer: React.FC<MapStatePropsType & MapDispatchPropsType> =
         }
 
         return (
-            <NavMenu auth={auth} logout={logout}/>
+            <NavMenu auth={auth} logout={logout} changeAvatarThunk={changeAvatarThunk} />
         )
     }
 
@@ -31,6 +32,6 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => ({
 
 const Nav = compose<React.ComponentType>(
     connect<MapStatePropsType, MapDispatchPropsType, null, AppStateType>
-    (mapStateToProps, {logoutThunk}))(NavMenuContainer)
+    (mapStateToProps, {logoutThunk, changeAvatarThunk}))(NavMenuContainer)
 
 export default Nav

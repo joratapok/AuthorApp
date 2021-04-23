@@ -12,14 +12,16 @@ const SET_USER = '/SET_USER'
 const LOG_OUT_USER = '/LOG_OUT_USER'
 const SET_ACCESS_TOKEN = '/SET_ACCESS_TOKEN'
 const SET_REFRESH_TOKEN = '/SET_REFRESH_TOKEN'
+const SET_USER_AVATAR = '/SET_USER_AVATAR'
 
 let initial = {
-    id: null as null | number,
-    email: null as null | string,
-    username: null as null | string,
+    id: 0,
+    email: '',
+    username: '',
+    avatar: '',
     isAuth: false,
-    accessToken: null as null | string,
-    refreshToken: null as null | string,
+    accessToken: '',
+    refreshToken: '',
 }
 
 const authReducer = (state: AuthinitialType = initial, action: AuthReducerActionsTypes): AuthinitialType => {
@@ -33,6 +35,11 @@ const authReducer = (state: AuthinitialType = initial, action: AuthReducerAction
         case LOG_OUT_USER:
             return {
                 ...initial,
+            }
+        case SET_USER_AVATAR:
+            return {
+                ...state,
+                avatar: action.photo
             }
         case SET_ACCESS_TOKEN:
             return {
@@ -59,7 +66,8 @@ export const actionsAuthReducer = {
     } as const),
     logout: () => ({type: LOG_OUT_USER} as const),
     setAccessToken: (token: string) => ({type: SET_ACCESS_TOKEN, token} as const),
-    setRefreshToken: (token: string) => ({type: SET_REFRESH_TOKEN, token} as const)
+    setRefreshToken: (token: string) => ({type: SET_REFRESH_TOKEN, token} as const),
+    setUserAvatar: (photo: string) => ({type: SET_USER_AVATAR, photo} as const)
 }
 
 const saveTokens = (dispatch: Dispatch<AuthReducerActionsTypes>, access: string, refresh: string) => {
@@ -79,6 +87,8 @@ export const loginThunk = (data: LoginFormDataType): ThunkType => {
         saveTokens(dispatch, response.access, response.refresh)
         let userData = await authApi.getAuthMe(response.access)
         dispatch(actionsAuthReducer.setAuthUser(userData))
+        let getAvatar = await authApi.getAvatar(response.access, userData.id)
+        dispatch(actionsAuthReducer.setUserAvatar(getAvatar.photo))
     }
 }
 
@@ -103,6 +113,17 @@ export const signUpThunk = (data: SignUpFormDataType): ThunkType => {
     return async (dispatch) => {
         let response = await authApi.postRegistrNewUser(data)
 
+    }
+}
+
+export const changeAvatarThunk = (JWTToken: string, userId: number, photo: any): ThunkType => {
+    return async (dispatch) => {
+        try {
+            let getAvatar = await authApi.patchAvatar(JWTToken, userId, photo)
+            dispatch(actionsAuthReducer.setUserAvatar(getAvatar.photo))
+        } catch (e) {
+            console.error(e)
+        }
     }
 }
 

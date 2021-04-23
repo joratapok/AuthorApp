@@ -23,8 +23,6 @@ const BooksList: React.FC<BooksType> = ({books}) => {
     return (
         <React.Fragment>
 
-            <main>
-
                 <Container className={classes.cardGrid} maxWidth="md">
                     <Grid container spacing={4}>
                         {books.map((book) => (
@@ -33,7 +31,7 @@ const BooksList: React.FC<BooksType> = ({books}) => {
                         ))}
                     </Grid>
                 </Container>
-            </main>
+
         </React.Fragment>
     );
 }

@@ -10,6 +10,10 @@ export type getAuthMeType = {
         email: string
         username: string
 }
+export type GetAvatarDataType = {
+    photo: string
+    master: number
+}
 export type JWTResponseType = {
     refresh: string
     access: string
@@ -92,6 +96,16 @@ export const authApi = {
             }
         }).then(res => res.data)
     },
+    getAvatar(JWTToken: string, userId: number) {
+        return instance.get<GetAvatarDataType>(`profile/${userId}`).then(res => res.data)
+    },
+    patchAvatar(JWTToken: string, userId: number, photo: any) {
+        const formData = new FormData
+        formData.append('photo', photo)
+        return instance.patch<GetAvatarDataType>(`profile/${userId}`, formData, {
+            headers: {'Authorization': `JWT ${JWTToken}`}
+        }).then(res => res.data)
+    },
     postRegistrNewUser(data: SignUpFormDataType) {
         return instance.post<RegisterResponseType>('auth/users/', {
             username: data.username,
@@ -100,6 +114,7 @@ export const authApi = {
             re_password: data.re_password,
         }).then(res => res.data)
     },
+
 }
 
 export const commentApi = {
