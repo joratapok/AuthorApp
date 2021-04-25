@@ -2,24 +2,6 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-
-}
-
-.bookDetailWrapper {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.posterWrapper {
-    width: 50%;
-    display: flex;
-}
-
-.descriptionWrapper {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
 }
 
 .ratingWrapper {

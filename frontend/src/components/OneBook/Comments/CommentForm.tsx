@@ -1,7 +1,7 @@
 import React from "react"
 import {Field, Form} from "react-final-form"
 import {required} from "../../../utils/validators/validator"
-import {TextField} from "@material-ui/core";
+import {Box, TextField} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
 import {makeStyles} from "@material-ui/core/styles";
@@ -9,7 +9,7 @@ import {makeStyles} from "@material-ui/core/styles";
 type PropsType = {
     comments: any
     addComment: (data: addCommentDataType) => any
-
+    isAuth: boolean
 }
 export type addCommentDataType = {
     text: string
@@ -17,18 +17,19 @@ export type addCommentDataType = {
 
 const useStyles = makeStyles((theme) => ({
     textInput: {
-        width: '75%',
-
+        width: '100%',
+        margin: '10px 0'
     },
 }));
 
-const CommentForm: React.FC<PropsType> = ({addComment}) => {
+const CommentForm: React.FC<PropsType> = ({isAuth, addComment}) => {
     const cl = useStyles();
 
     return (
         <Form
             onSubmit={addComment}
-            render={({handleSubmit, submitError, form, submitting, pristine, values}) => (
+            render={({handleSubmit, submitError, form,
+                         submitting, pristine, values}) => (
                 <form onSubmit={async (event) => {
                     const error = await handleSubmit(event);
                     if (error) {
@@ -36,6 +37,7 @@ const CommentForm: React.FC<PropsType> = ({addComment}) => {
                     }
                     form.reset();
                 }}>
+                    <Box display="flex" flexDirection="column" alignItems="flex-end">
                     <Field name={'text'}
                            component="input"
                            validate={required}>
@@ -43,7 +45,7 @@ const CommentForm: React.FC<PropsType> = ({addComment}) => {
                             <TextField
                                 {...input}
                                 id="outlined-multiline-static"
-                                label="Комментарий"
+                                label={isAuth ? "Комментарий" : "Что бы оставить комментарий необходимо авторизоваться"}
                                 multiline
                                 rows={4}
                                 variant="outlined"
@@ -52,7 +54,7 @@ const CommentForm: React.FC<PropsType> = ({addComment}) => {
                         )}
                     </Field>
 
-                    <Button
+                    { isAuth && <Button
                         type="submit"
                         variant="contained"
                         color="primary"
@@ -60,9 +62,10 @@ const CommentForm: React.FC<PropsType> = ({addComment}) => {
                         endIcon={<Icon>send</Icon>}
                     >
                         Send
-                    </Button>
+                    </Button>}
 
                     {submitError && <div className="error">{submitError}</div>}
+                    </Box>
                 </form>
             )}
         />

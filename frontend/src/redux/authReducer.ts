@@ -98,6 +98,8 @@ export const authMeThunk = (refreshToken: string): ThunkType => {
         saveTokens(dispatch, response.access, response.refresh)
         const userData = await authApi.getAuthMe(response.access)
         dispatch(actionsAuthReducer.setAuthUser(userData))
+        let getAvatar = await authApi.getAvatar(response.access, userData.id)
+        dispatch(actionsAuthReducer.setUserAvatar(getAvatar.photo))
     }
 }
 

@@ -1,11 +1,11 @@
 .nawWrapper {
     display: flex;
     justify-content: flex-end;
-    width: 100%;
-    margin: 20px 40px 0 0;
+    width: 97%;
+    margin: 20px 0 0 0;
+    padding: 0 70px 0 0;
+    box-sizing: border-box;
 }
-.avaWrapper {
-    width: 100px;
-    height: 100px;
-    overflow: hidden;
+.userInfoWrapper {
+    display: flex;
 }

@@ -7,6 +7,7 @@ export type CommentType = {
     text: string
     owner: string
     book: number
+    avatar: string
 }
 
 export type commentsInitialType = typeof initial
@@ -17,9 +18,9 @@ type ThunkType = ThunkAction<Promise<void>, AppStateType, any, bookReducerAction
 export const GET_BOOK_COMMENTS = "GET_BOOK_COMMENTS"
 
 let initial = {
-    count: 0 as number,
-    next: null as null | string,
-    previous: null as null | string,
+    count: 0,
+    next: '',
+    previous: '',
     results: [] as Array<CommentType>,
 }
 

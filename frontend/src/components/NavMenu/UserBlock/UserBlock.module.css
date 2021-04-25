@@ -1,0 +1,9 @@
+.avatarPassive {
+    transform: scale(1);
+    transition: 0.5s;
+    transition-timing-function: cubic-bezier(.24,1.07,.72,1.5);
+}
+
+.avatarActive {
+    transform: scale(1.1);
+}

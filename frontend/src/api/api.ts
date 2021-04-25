@@ -31,8 +31,8 @@ export type SignUpFormDataType = {
 }
 export type CommentsDataType = {
     count: number
-    next: null | string
-    previous: null | string
+    next: string
+    previous: string
     results: Array<CommentType>
 }
 export type CurrentRateType = {
@@ -60,15 +60,16 @@ export const bookApi = {
     getAllBooks() {
         return instance.get<GetAllBooksType>('book/').then(res => res)
     },
-    getBookById(id: number, JWTToken: string | null) {
+    getBookById(id: number, JWTToken: string) {
+        const token = JWTToken ? `JWT ${JWTToken}` : ''
         return instance.get<OneBookType>(`book/${id}/`, {
-              headers: { 'Authorization': `JWT ${JWTToken}` }
+            headers: { 'Authorization': token }
         }).then(res => res)
     }
 }
 
 export const rateApi = {
-    patchRate(bookId: number, data: number | null, JWTToken: any) {
+    patchRate(bookId: number, data: number | null, JWTToken: string) {
         return instance.patch<CurrentRateType>(`book_relation/${bookId}/`, {
             'rate': data,
         }, {
@@ -124,7 +125,7 @@ export const commentApi = {
     getNewCommentsPage(url: any) {
         return axios.get<CommentsDataType>(url).then(res => res)
     },
-    patchComment(id: number, textMessage: string, JWTToken: any) {
+    patchComment(id: number, textMessage: string, JWTToken: string) {
         return instance.patch(`add_comments/${id}/`, {
             'text': textMessage,
         }, {

@@ -20,36 +20,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a2a56fec-9f1f-4185-b64d-e82deaa6fc17" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/bookstore/media/book/test_cover.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bookstore/media/book/test_cover_5BKQH2d.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bookstore/media/book/test_cover_H36pcen.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bookstore/media/book/test_cover_TDKSvML.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bookstore/media/book_file/test_cover.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/src/assets/image/text_cover.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/src/components/Books/BooksList.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/src/components/Books/EveryBook/Book.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/src/components/Books/EveryBook/Book.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/src/components/Books/EveryBook/smallCat.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bookstore/media/profile/defaulUser.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bookstore/media/profile/defaulUser_q8OeY75.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bookstore/media/profile/defaultAvatar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bookstore/media/profile/smallCat_GBCuF77.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bookstore/media/profile/smallCat_YXvNL44.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/public/body.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/src/assets/image/defaultAvatarCat.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/src/components/NavMenu/UserBlock/ChangeLogin/ChangeLogin.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/src/components/NavMenu/UserBlock/Logout/Logout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/src/components/NavMenu/UserBlock/UserBlock.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/src/components/NavMenu/UserBlock/UserBlock.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bookstore/bookstore/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookstore/bookstore/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookstore/store/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookstore/store/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bookstore/store/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookstore/store/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/api/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/api/api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/Books/Book/Book.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/Books/Book/Book.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/Books/Books.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/Books/Book/Books.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/Books/BooksContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/Books/BooksContainer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/Body.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/Body.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/Books/EveryBook/smallCat.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/bookstore/media/profile/smallCat.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/components/NavMenu/NavMenu.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/NavMenu/NavMenu.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/components/NavMenu/NavMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/NavMenu/NavMenu.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/NavMenu/NavMenuContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/NavMenu/NavMenuContainer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/OneBook/BookDetail.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/OneBook/BookDetail.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/components/OneBook/BookDetail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/OneBook/BookDetail.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/OneBook/Comments/CommentForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/OneBook/Comments/CommentForm.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/components/OneBook/Comments/Comments.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/OneBook/Comments/Comments.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/OneBook/OneBookContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/OneBook/OneBookContainer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/SignUp/SignUp.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/SignUp/SignUp.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/SignUp/SignUpContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/SignUp/SignUpContainer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/login/Login.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/login/button/Button.module.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/login/button/Button.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/bgBody/BgBody.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/bgBody/BgBody.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/body.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/body.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/redux/authReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/redux/authReducer.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/redux/bookReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/redux/bookReducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/redux/commentReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/redux/commentReducer.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,8 +81,13 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/venv" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/bookstore/bookstore" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Projects\react\BookStore\BookStore\backend\bookstore\bookstore" />
+    </key>
   </component>
   <component name="RunManager" selected="Python tests.Unittests for test_store.BooksAPITestCase">
     <configuration name="Unittests for test_store.BooksAPITestCase" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
@@ -177,7 +184,10 @@
       <workItem from="1618832657082" duration="1559000" />
       <workItem from="1618920261807" duration="11426000" />
       <workItem from="1619002399028" duration="658000" />
-      <workItem from="1619058619880" duration="3562000" />
+      <workItem from="1619058619880" duration="4160000" />
+      <workItem from="1619183557818" duration="5069000" />
+      <workItem from="1619245644719" duration="1536000" />
+      <workItem from="1619334274778" duration="2125000" />
     </task>
     <servers />
   </component>

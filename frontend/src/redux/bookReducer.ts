@@ -103,7 +103,7 @@ export const getAllBooks = (): ThunkType => {
     }
 }
 
-export const getBookByIdThunk = (id: number, JWTToken: string | null): ThunkType => {
+export const getBookByIdThunk = (id: number, JWTToken: string): ThunkType => {
     return async (dispatch) => {
         try {
             let response = await bookApi.getBookById(id, JWTToken)

@@ -7,7 +7,7 @@ import Comments from "./Comments/Comments"
 import Modal from "./Modal/Modal"
 import {AuthinitialType} from "../../redux/authReducer"
 import {Rating} from "@material-ui/lab";
-import Container from "@material-ui/core/Container";
+import {Box, createStyles, Grid, makeStyles, Paper, Theme, Typography} from "@material-ui/core";
 
 type BookDetailType = {
     book: OneBookType
@@ -18,12 +18,30 @@ type BookDetailType = {
     setCurrentRatingThunk: (bookId: number, data: number | null, JWTToken: any) => void
 }
 
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        paper: {
+            display: 'flex',
+            flexDirection: 'column',
+            padding: theme.spacing(3),
+            textAlign: 'center',
+            height: '100%',
+            color: theme.palette.text.secondary,
+        },
+        typography: {
+            fontWeight: 700,
+            color: 'white'
+
+        }
+    }),
+);
+
 export const BookDetail: React.FC<BookDetailType> = ({
                                                          book, comments,
                                                          auth, addComment,
                                                          fetchNewPageComments, setCurrentRatingThunk
                                                      }) => {
-
+    const cl = useStyles();
     const [modal, setModal] = useState(false)
     let buttonModalOffClass = classes.buttonModalOff + ' ' + (modal ? classes.activeButtonModalOff : '')
 
@@ -33,14 +51,21 @@ export const BookDetail: React.FC<BookDetailType> = ({
 
     return (
         <div className={classes.bookWrapper}>
-            <div className={classes.bookDetailWrapper}>
-                <div className={classes.posterWrapper}>
+
+            <Grid container spacing={3}>
+                <Grid item xs={12} sm={6}>
                     <img src={book.poster} alt={"Обложка"}/>
-                </div>
-                <div className={classes.descriptionWrapper}>
-                    <button onClick={() => setModal(true)}>Читать</button>
-                    <a href={book.book_file} download>Скачать</a>
-                    <div className={classes.ratingWrapper}>
+                </Grid>
+
+                <Grid item xs={12} sm={6}>
+                    <Paper className={cl.paper}>
+                        <button onClick={() => setModal(true)}>Читать</button>
+                        <a href={book.book_file} download>Скачать</a>
+                        <Box borderRadius='50%' bgcolor='#BAD227' alignSelf='flex-start' p={1}>
+                            <Typography className={cl.typography}>{book.rated_books}</Typography>
+                        </Box>
+                        Всего оценок: {book.count_rate}
+
                         <Rating
                             name="simple-controlled"
                             value={book.current_rate}
@@ -48,19 +73,20 @@ export const BookDetail: React.FC<BookDetailType> = ({
                                 onStarClick(newValue);
                             }}
                         />
-                        Средний рейтинг: {book.rated_books} Всего оценило {book.count_rate}
-                    </div>
 
+                        <Typography variant="h4" component="h2">
+                            {book.name}
+                        </Typography>
 
-                    <div className={classes.bookNameWrapper}>
-                        {book.name}
-                    </div>
-                </div>
-            </div>
+                    </Paper>
+                </Grid>
+            </Grid>
+
             <div>
                 <Comments addComment={addComment}
                           comments={comments}
-                          fetchNewPageComments={fetchNewPageComments}/>
+                          fetchNewPageComments={fetchNewPageComments}
+                          isAuth={auth.isAuth}/>
             </div>
             <Modal setOn={modal}/>
             <button className={buttonModalOffClass}

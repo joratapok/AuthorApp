@@ -7,11 +7,13 @@ import {Route,} from "react-router-dom";
 import NavMenuContainer from "./NavMenu/NavMenuContainer"
 import OneBookContainer from "./OneBook/OneBookContainer"
 import SignUpContainer from "./SignUp/SignUpContainer"
+import {CssBaseline} from "@material-ui/core";
 
 
 const Body: React.FC = () => {
     return (
         <div className={classes.wrapper}>
+            <CssBaseline/>
             <BgBody/>
             <div className={classes.content}>
                 <NavMenuContainer/>

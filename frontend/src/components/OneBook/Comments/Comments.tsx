@@ -1,7 +1,7 @@
 import React from 'react'
 import {commentsInitialType} from "../../../redux/commentReducer";
 import CommentForm, {addCommentDataType} from "./CommentForm";
-import defaulAvatar from "../../../assets/image/defaultAvatar.png"
+import defaulAvatarCat from "../../../assets/image/defaultAvatarCat.png"
 import {makeStyles} from "@material-ui/core/styles";
 import {
     ListItem,
@@ -14,6 +14,7 @@ import {
 import Container from "@material-ui/core/Container";
 
 type CommentsType = {
+    isAuth: boolean
     comments: commentsInitialType
     addComment: (data: addCommentDataType) => void
     fetchNewPageComments: (url: string | null) => void
@@ -33,39 +34,32 @@ const useStyles = makeStyles(theme => ({
     commentForm: {
         display: 'flex',
         flexDirection: 'column',
-
     },
 }));
 
-export const Comments: React.FC<CommentsType> = ({comments, addComment, fetchNewPageComments}) => {
+export const Comments: React.FC<CommentsType> = ({isAuth, comments, addComment, fetchNewPageComments}) => {
     const classes = useStyles();
 
     const fetchNewPage = (url: string | null) => {
         fetchNewPageComments(url)
     }
 
-    if (comments.results.length === 0) {
-        return <div>
-            Комментариев пока нет, но вы можете оставить один... или два
-            <div>
-                <CommentForm comments={comments} addComment={addComment}/>
-            </div>
-        </div>
-    }
-
     return (
         <div>
+            {!comments.results.length && <Typography>Комментариев пока нет, но вы можете оставить один... или два</Typography>}
             <Container maxWidth="md" className={classes.commentForm}>
-                <CommentForm comments={comments} addComment={addComment}/>
+                <CommentForm isAuth={isAuth} comments={comments} addComment={addComment}/>
             </Container>
             <Container maxWidth="md">
-                Комментарии:
                 {comments.results.map((el) => {
                     return <React.Fragment key={el.id}>
                         <ListItem key={el.id} alignItems="flex-start">
-                            <ListItemAvatar>
-                                <Avatar alt="avatar" src={defaulAvatar}/>
-                            </ListItemAvatar>
+                            <>
+                                {el.avatar &&
+                                <ListItemAvatar><Avatar alt="avatar" src={el.avatar}/></ListItemAvatar>}
+                                {!el.avatar &&
+                                <ListItemAvatar><Avatar alt="avatar" src={defaulAvatarCat}/></ListItemAvatar>}
+                            </>
                             <ListItemText
                                 primary={
                                     <Typography className={classes.fonts}>

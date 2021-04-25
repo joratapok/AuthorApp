@@ -14,6 +14,7 @@ from django.db.models import Avg
 
 
 class BookViewSet(ReadOnlyModelViewSet):
+    permission_classes = [AllowAny]
     queryset = Book.objects.all().annotate(rated_books=Avg('userbookrelation__rate'))
     filter_backends = [DjangoFilterBackend, SearchFilter]
     filter_fields = ['name', 'price']
@@ -73,7 +74,11 @@ class UserActivationView(APIView):
 
 
 class ProfileDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset=Profile.objects.all()
-    serializer_class=ProfileSerializer
-    permission_classes=[IsOwnerProfileOrReadOnly]
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+    permission_classes = [IsOwnerProfileOrReadOnly]
     lookup_field = 'master'
+
+    def get_object(self):
+        obj, _ = Profile.objects.get_or_create(master_id=self.kwargs['master'])
+        return obj
