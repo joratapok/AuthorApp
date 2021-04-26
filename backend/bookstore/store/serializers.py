@@ -2,14 +2,9 @@ from rest_framework import serializers
 from bookstore import settings
 from store.models import Book, UserBookRelation, Comments, Profile, Chapters, Genre
 
-class GenreSerializer(serializers.ModelSerializer):
-	model = Genre
-	fields = '__all__'
-
-
 class AllBooksSerializer(serializers.ModelSerializer):
     rated_books = serializers.DecimalField(max_digits=3, decimal_places=2, read_only=True)
-    genre = serializers.CharField()
+    genre = serializers.SlugRelatedField(slug_field='name', read_only=True, many=True)
 
     class Meta:
         model = Book

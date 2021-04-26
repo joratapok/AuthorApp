@@ -21,7 +21,7 @@ type MapDispatchToPropsType = {
     getBookByIdThunk: (id: number, JWTToken: string | null) => void
     getCommentsToBookThunk: (id: number) => void
     addNewCommentThunk: (id: number, text: string, JWTToken: string | null) => void
-    fetchNewPageComments: (url: string | null) => void
+    fetchNewPageComments: (id: number, page: number) => void
     setCurrentRatingThunk: (bookId: number, data: number | null, JWTToken: any) => void
 }
 type OwnPropsType = {}

@@ -54,10 +54,10 @@ export const getCommentsToBookThunk = (id: number): ThunkType => {
     }
 }
 
-export const fetchNewPageComments = (url: string | null): ThunkType => {
+export const fetchNewPageComments = (id: number, numPage: number): ThunkType => {
     return async (dispatch) => {
         try {
-            const response = await commentApi.getNewCommentsPage(url)
+            const response = await commentApi.getNewCommentsPage(id, numPage)
             dispatch(actionsBooksReducer.getComments(response.data))
         } catch (e) {
             console.error(e)

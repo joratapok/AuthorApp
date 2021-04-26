@@ -19,9 +19,8 @@ class BookViewSet(ReadOnlyModelViewSet):
     permission_classes = [AllowAny]
     queryset = Book.objects.all().annotate(rated_books=Avg('userbookrelation__rate'))
     filter_backends = [DjangoFilterBackend, SearchFilter]
-    filter_fields = ['name', 'price']
-    search_fields = ['name', 'author_name']
-    ordering_fields = ['name']
+    filter_fields = ['name', 'genre']
+    search_fields = ['name']
 
     def get_serializer_class(self):
         if self.action == 'list':
@@ -74,7 +73,7 @@ class CommentsInBookView(generics.ListAPIView):
     serializer_class = CommentsSerializer
 
     def get_queryset(self):
-        return Comments.objects.filter(book__id=self.kwargs['book'])
+        return Comments.objects.filter(book__id=self.kwargs['book']).order_by('-id')
 
 
 class UserActivationView(APIView):

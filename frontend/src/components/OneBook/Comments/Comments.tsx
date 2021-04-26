@@ -1,7 +1,7 @@
 import React from 'react'
 import {commentsInitialType} from "../../../redux/commentReducer";
 import CommentForm, {addCommentDataType} from "./CommentForm";
-import defaulAvatarCat from "../../../assets/image/defaultAvatarCat.png"
+import defaultAvatarCat from "../../../assets/image/defaultAvatarCat.png"
 import {makeStyles} from "@material-ui/core/styles";
 import {
     ListItem,
@@ -9,15 +9,17 @@ import {
     ListItemText,
     ListItemAvatar,
     Avatar,
-    Typography
+    Typography, Box
 } from "@material-ui/core";
 import Container from "@material-ui/core/Container";
+import {Pagination} from "@material-ui/lab";
 
 type CommentsType = {
     isAuth: boolean
+    bookId: number
     comments: commentsInitialType
     addComment: (data: addCommentDataType) => void
-    fetchNewPageComments: (url: string | null) => void
+    fetchNewPageComments: (id: number, page: number) => void
 }
 
 const useStyles = makeStyles(theme => ({
@@ -37,11 +39,12 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export const Comments: React.FC<CommentsType> = ({isAuth, comments, addComment, fetchNewPageComments}) => {
+export const Comments: React.FC<CommentsType> = ({isAuth, comments, bookId,
+                                                     addComment, fetchNewPageComments}) => {
     const classes = useStyles();
 
-    const fetchNewPage = (url: string | null) => {
-        fetchNewPageComments(url)
+    const paginationHandler = (event: object, page: number) => {
+        fetchNewPageComments(bookId, page)
     }
 
     return (
@@ -58,7 +61,7 @@ export const Comments: React.FC<CommentsType> = ({isAuth, comments, addComment, 
                                 {el.avatar &&
                                 <ListItemAvatar><Avatar alt="avatar" src={el.avatar}/></ListItemAvatar>}
                                 {!el.avatar &&
-                                <ListItemAvatar><Avatar alt="avatar" src={defaulAvatarCat}/></ListItemAvatar>}
+                                <ListItemAvatar><Avatar alt="avatar" src={defaultAvatarCat}/></ListItemAvatar>}
                             </>
                             <ListItemText
                                 primary={
@@ -84,10 +87,10 @@ export const Comments: React.FC<CommentsType> = ({isAuth, comments, addComment, 
                     </React.Fragment>
                 })}
             </Container>
-            {(comments.previous != null) &&
-            <button onClick={() => fetchNewPage(comments.previous)}>left</button>}
-            {comments.next &&
-            <button onClick={() => fetchNewPage(comments.next)}>right</button>}
+            {}
+            <Box display='flex' justifyContent='center' my={1}>
+                <Pagination count={Math.ceil(comments.count/10)} color="primary" onChange={paginationHandler}/>
+            </Box>
         </div>
     )
 }

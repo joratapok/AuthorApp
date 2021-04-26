@@ -20,38 +20,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a2a56fec-9f1f-4185-b64d-e82deaa6fc17" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/bookstore/media/profile/defaulUser.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bookstore/media/profile/defaulUser_q8OeY75.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bookstore/media/profile/defaultAvatar.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bookstore/media/profile/smallCat_GBCuF77.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bookstore/media/profile/smallCat_YXvNL44.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/public/body.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/src/assets/image/defaultAvatarCat.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/src/components/NavMenu/UserBlock/ChangeLogin/ChangeLogin.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/src/components/NavMenu/UserBlock/Logout/Logout.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/src/components/NavMenu/UserBlock/UserBlock.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/src/components/NavMenu/UserBlock/UserBlock.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bookstore/media/book_mini/test_cover.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bookstore/media/book_mini/test_cover_EuxABhR.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bookstore/media/book_mini/test_cover_O5EFpQS.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bookstore/media/book_mini/test_cover_ngC5O2p.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bookstore/bookstore/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookstore/bookstore/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookstore/store/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookstore/store/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bookstore/store/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookstore/store/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/api/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/api/api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/Body.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/Body.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/Books/EveryBook/smallCat.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/bookstore/media/profile/smallCat.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/NavMenu/NavMenu.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/NavMenu/NavMenu.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/NavMenu/NavMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/NavMenu/NavMenu.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/NavMenu/NavMenuContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/NavMenu/NavMenuContainer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/OneBook/BookDetail.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/OneBook/BookDetail.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/OneBook/BookDetail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/OneBook/BookDetail.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/OneBook/Comments/CommentForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/OneBook/Comments/CommentForm.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/components/OneBook/Comments/Comments.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/OneBook/Comments/Comments.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/bgBody/BgBody.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/bgBody/BgBody.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/body.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/body.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/redux/authReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/redux/authReducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/redux/bookReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/redux/bookReducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/redux/commentReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/redux/commentReducer.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -187,7 +164,8 @@
       <workItem from="1619058619880" duration="4160000" />
       <workItem from="1619183557818" duration="5069000" />
       <workItem from="1619245644719" duration="1536000" />
-      <workItem from="1619334274778" duration="2125000" />
+      <workItem from="1619334274778" duration="2428000" />
+      <workItem from="1619444961625" duration="4329000" />
     </task>
     <servers />
   </component>

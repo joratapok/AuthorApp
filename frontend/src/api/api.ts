@@ -122,8 +122,8 @@ export const commentApi = {
     getComments(id: number) {
         return instance.get<CommentsDataType>(`comments/${id}/`).then(res => res)
     },
-    getNewCommentsPage(url: any) {
-        return axios.get<CommentsDataType>(url).then(res => res)
+    getNewCommentsPage(id: number, numPage: number) {
+        return instance.get<CommentsDataType>(`comments/${id}/?page=${numPage}`).then(res => res)
     },
     patchComment(id: number, textMessage: string, JWTToken: string) {
         return instance.patch(`add_comments/${id}/`, {

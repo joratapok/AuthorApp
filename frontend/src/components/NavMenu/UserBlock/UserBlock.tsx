@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme: Theme) =>
         root: {
             transform: 'translateZ(0px)',
             flexGrow: 1,
+            zIndex: 2003,
         },
         large: {
             width: theme.spacing(7),
