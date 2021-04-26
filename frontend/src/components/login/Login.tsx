@@ -23,6 +23,7 @@ const LoginForm: React.FC<PropsType> = ({onSubmit,}) => (
                         {({input, meta: {touched, error}}) => (
                             <div>
                                 <TextField {...input} type="text"
+                                          autoFocus={true}
                                            label="Логин"
                                            margin="normal"
                                            required={true}/>

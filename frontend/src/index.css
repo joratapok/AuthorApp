@@ -32,7 +32,7 @@ q:before, q:after {
 :focus {
     outline: 0; /* Firefox выделяет рамкой из точек все ссылки при нажатии */
 }
-ins {
+ins, a {
     text-decoration: none;
 }
 del {
@@ -42,7 +42,9 @@ table {
     border-collapse: collapse; /* cellspacing="0" */
     border-spacing: 0;
 }
-
+img {
+  display: block;
+}
 body {
     overflow: auto;
     margin: 0;

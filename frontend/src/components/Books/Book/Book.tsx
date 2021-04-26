@@ -40,7 +40,7 @@ const Book: React.FC<BookType> = ({book}) => {
                         <div className={classCover}/>
                     </NavLink>
 
-                    <img className={classes.cover} src={book.poster} alt={'Обложка'}/>
+                    <img className={classes.cover} src={book.mini_poster} alt={'Обложка'}/>
                 </div>
             </div>
             <div className={classes.genreWrapper}>

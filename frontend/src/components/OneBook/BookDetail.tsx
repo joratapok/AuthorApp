@@ -7,7 +7,10 @@ import Comments from "./Comments/Comments"
 import Modal from "./Modal/Modal"
 import {AuthinitialType} from "../../redux/authReducer"
 import {Rating} from "@material-ui/lab";
-import {Box, createStyles, Grid, makeStyles, Paper, Theme, Typography} from "@material-ui/core";
+import {Box, createStyles, Grid, makeStyles, withStyles,
+  Button, Paper, Theme, Typography, Tooltip} from "@material-ui/core";
+import { deepOrange, green } from '@material-ui/core/colors';
+
 
 type BookDetailType = {
     book: OneBookType
@@ -31,10 +34,40 @@ const useStyles = makeStyles((theme: Theme) =>
         typography: {
             fontWeight: 700,
             color: 'white'
+        },
+        totalMarks: {
 
-        }
+        },
     }),
-);
+)
+
+const LightTooltip = withStyles((theme) => ({
+  tooltip: {
+    backgroundColor: theme.palette.common.white,
+    color: 'rgba(0, 0, 0, 0.87)',
+    boxShadow: theme.shadows[1],
+    fontSize: 11,
+  },
+}))(Tooltip);
+const DownloadButton = withStyles((theme: Theme) => ({
+  root: {
+    color: theme.palette.getContrastText(deepOrange[500]),
+    backgroundColor: deepOrange[400],
+    '&:hover': {
+      backgroundColor: deepOrange[600],
+    },
+  },
+}))(Button);
+const ReadButton = withStyles((theme: Theme) => ({
+  root: {
+    color: theme.palette.getContrastText(green[600]),
+    backgroundColor: green[500],
+    '&:hover': {
+      backgroundColor: green[700],
+    },
+  },
+}))(Button);
+
 
 export const BookDetail: React.FC<BookDetailType> = ({
                                                          book, comments,
@@ -49,6 +82,8 @@ export const BookDetail: React.FC<BookDetailType> = ({
         setCurrentRatingThunk(book.id, newValue, auth.accessToken)
     }
 
+
+
     return (
         <div className={classes.bookWrapper}>
 
@@ -59,24 +94,64 @@ export const BookDetail: React.FC<BookDetailType> = ({
 
                 <Grid item xs={12} sm={6}>
                     <Paper className={cl.paper}>
-                        <button onClick={() => setModal(true)}>Читать</button>
-                        <a href={book.book_file} download>Скачать</a>
-                        <Box borderRadius='50%' bgcolor='#BAD227' alignSelf='flex-start' p={1}>
-                            <Typography className={cl.typography}>{book.rated_books}</Typography>
+                        <Box display='flex' alignItems='center' my={1}>
+                            <Box mx={2} width='50%'>
+                            <a href={book.book_file}>
+                            <DownloadButton variant="contained" color="primary" className={classes.margin}
+                             fullWidth>
+                                Скачать
+                            </DownloadButton></a>
+                            </Box>
+                            <Box mx={2} width='50%'>
+                            <ReadButton variant="contained" color="primary" className={classes.margin}
+                            onClick={() => setModal(true)} fullWidth>
+                                Читать
+                            </ReadButton>
+                            </Box>
                         </Box>
-                        Всего оценок: {book.count_rate}
 
-                        <Rating
+                        <Box display='flex' alignItems='center'>
+                            <Box width='40px' height='40px' borderRadius='50%' bgcolor='#BAD227' alignSelf='flex-start' p={1}>
+                                <Typography className={cl.typography}>{book.rated_books}</Typography>
+                            </Box>
+                            <Box mx={1}>Всего оценок: {book.count_rate}</Box>
+                        </Box>
+
+                        <Box my={1} display='flex' alignSelf='flex-start'>
+                          {!auth.isAuth &&
+                            <LightTooltip disableFocusListener
+                            title="для того оценить книгу необходимо авторизоваться"
+                            placement="right">
+                            <Box>
+                            <Rating
+                              name="simple-controlled"
+                              value={Math.floor(book.rated_books)}
+                              readOnly={!auth.isAuth}
+                              onChange={(event, newValue) => {
+                                  onStarClick(newValue);
+                              }}
+                          />
+                          </Box>
+                          </LightTooltip>
+                          }
+
+                        {auth.isAuth && <Rating
                             name="simple-controlled"
                             value={book.current_rate}
                             onChange={(event, newValue) => {
                                 onStarClick(newValue);
                             }}
-                        />
+                            />
+                        }
+                        </Box>
 
-                        <Typography variant="h4" component="h2">
+                        <Typography variant="h4">
                             {book.name}
                         </Typography>
+                        <Typography variant="body2">
+                            {book.description}
+                        </Typography>
+
 
                     </Paper>
                 </Grid>

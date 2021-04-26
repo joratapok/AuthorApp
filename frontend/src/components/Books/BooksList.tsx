@@ -4,6 +4,7 @@ import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {bookType} from "../../redux/bookReducer";
 import Book from "./EveryBook/Book";
+import {Box} from "@material-ui/core";
 
 type BooksType = {
     books: Array<bookType>
@@ -22,7 +23,7 @@ const BooksList: React.FC<BooksType> = ({books}) => {
 
     return (
         <React.Fragment>
-
+                <Box height='500px'></Box>
                 <Container className={classes.cardGrid} maxWidth="md">
                     <Grid container spacing={4}>
                         {books.map((book) => (

@@ -1,6 +1,10 @@
 from rest_framework import serializers
 from bookstore import settings
-from store.models import Book, UserBookRelation, Comments, Profile
+from store.models import Book, UserBookRelation, Comments, Profile, Chapters, Genre
+
+class GenreSerializer(serializers.ModelSerializer):
+	model = Genre
+	fields = '__all__'
 
 
 class AllBooksSerializer(serializers.ModelSerializer):
@@ -9,17 +13,18 @@ class AllBooksSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Book
-        fields = ('id', 'name', 'poster', 'rated_books', 'book_file', 'genre')
+        fields = ('id', 'name', 'mini_poster', 'rated_books', 'book_file', 'genre')
 
 
 class BookSerializer(serializers.ModelSerializer):
     rated_books = serializers.DecimalField(max_digits=2, decimal_places=1, read_only=True)
     current_rate = serializers.SerializerMethodField()
     count_rate = serializers.SerializerMethodField()
+    
 
     class Meta:
         model = Book
-        fields = ('id', 'name', 'poster', 'rated_books', 'current_rate', 'count_rate', 'book_file', 'genre')
+        fields = ('id', 'name', 'poster', 'rated_books', 'current_rate', 'count_rate', 'book_file', 'genre', 'description')
 
     def get_count_rate(self, instance):
         return UserBookRelation.objects.filter(book=instance).count()
@@ -34,6 +39,15 @@ class BookSerializer(serializers.ModelSerializer):
                 return current_rate[0]
         else:
             return 0
+
+
+
+
+class ChaptersSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Chapters
+        fields = '__all__'
 
 
 class UserBookRelationSerializer(serializers.ModelSerializer):
@@ -64,7 +78,6 @@ class CommentsSerializer(serializers.ModelSerializer):
         if len(list_avatar) > 0:
                 return request.scheme + "://" + host + '%s%s' % (settings.MEDIA_URL, list_avatar[0])
         return ''
-
         
 
 class ProfileSerializer(serializers.ModelSerializer):

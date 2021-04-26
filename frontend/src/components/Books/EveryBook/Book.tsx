@@ -64,7 +64,7 @@ const Book: React.FC<BookType> = ({book}) => {
                         </div>
                         <CardMedia
                             className={classes.cardMedia}
-                            image={book.poster}
+                            image={book.mini_poster}
                             title="Image title"
                             onMouseEnter={setHoverOn}
                             onMouseLeave={setHoverOff}

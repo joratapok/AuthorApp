@@ -7,7 +7,7 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 from bookstore import settings
-from store.views import BookViewSet, UserBookRelationView, CommentsInBookView, CommentsCreateView, UserActivationView, ProfileDetailView
+from store.views import BookViewSet, UserBookRelationView, CommentsInBookView, CommentsCreateView, UserActivationView, ProfileDetailView, ChaptersViewSet
 
 router = SimpleRouter()
 
@@ -24,6 +24,7 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 	path('profile/<master>', ProfileDetailView.as_view()),
+	path('chapters/<book>', ChaptersViewSet.as_view()),
     re_path('^comments/(?P<book>.+)/$', CommentsInBookView.as_view()),
 ]
 

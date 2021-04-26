@@ -5,7 +5,7 @@ import {ThunkAction} from "redux-thunk";
 export type bookType = {
     id: number
     name: string
-    poster: string
+    mini_poster: string
     rated_books: string
 
 }
@@ -17,7 +17,7 @@ export type OneBookType = {
     current_rate: number
     count_rate: number
     book_file: string
-
+    description: string
 }
 export type initialType = typeof initial
 export type bookReducerActionsTypes = InferActionsTypes<typeof actionsBooksReducer>
@@ -39,13 +39,14 @@ let initial = {
         current_rate: 0,
         count_rate: 0,
         book_file: '',
+        description: '',
     } as OneBookType,
 
     books: [
         {
             id: 0,
             name: 'initialBook',
-            poster: '',
+            mini_poster: '',
             rated_books: '0',
         }
     ] as Array<bookType>

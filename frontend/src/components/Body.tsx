@@ -18,11 +18,10 @@ const Body: React.FC = () => {
             <div className={classes.content}>
                 <NavMenuContainer/>
 
-                <div className={classes.fish}>
-                    <Route path='/login' render={() => <LoginContainer/>}/>
-                    <Route path='/signUp' render={() => <SignUpContainer/>}/>
-                </div>
-                
+                <Route path='/login' render={() => <LoginContainer/>}/>
+                <Route path='/signUp' render={() => <SignUpContainer/>}/>
+
+
                 <Route path='/book/:bookId' render={() => <OneBookContainer/>}/>
                 <Route exact path='/' render={() => <BooksContainer/>}/>
 

@@ -29,7 +29,7 @@ const LoginContainer: React.FC<PropsType> = ({loginThunk, isAuth}) => {
         try {
           await loginThunk(data)
         } catch (e) {
-            if (e.response.status == 401) {
+            if (e.response.status && e.response.status == 401) {
                 return { [FORM_ERROR]: 'Неверный логин или пароль' }
             } else {
                 return { [FORM_ERROR]: e.message }

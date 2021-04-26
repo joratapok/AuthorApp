@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.admin import ModelAdmin
 
-from store.models import Book, Genre, UserBookRelation, Comments, Profile
+from store.models import Book, Genre, UserBookRelation, Comments, Profile, Chapters
 
 
 @admin.register(Book)
@@ -25,4 +25,9 @@ class CommentsAdmin(ModelAdmin):
 
 @admin.register(Profile)
 class ProfileAdmin(ModelAdmin):
+    pass
+
+
+@admin.register(Chapters)
+class ChaptersAdmin(ModelAdmin):
     pass

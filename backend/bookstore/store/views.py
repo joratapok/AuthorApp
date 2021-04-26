@@ -8,9 +8,11 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from .permissions import IsOwnerProfileOrReadOnly
 from rest_framework.views import APIView
 from rest_framework.viewsets import ReadOnlyModelViewSet, GenericViewSet
-from store.serializers import BookSerializer, UserBookRelationSerializer, CommentsSerializer, AllBooksSerializer, ProfileSerializer
-from store.models import Book, UserBookRelation, Comments, Profile
+from store.serializers import BookSerializer, UserBookRelationSerializer, CommentsSerializer, AllBooksSerializer, ProfileSerializer, ChaptersSerializer
+from store.models import Book, UserBookRelation, Comments, Profile, Chapters
 from django.db.models import Avg
+from rest_framework.pagination import PageNumberPagination
+
 
 
 class BookViewSet(ReadOnlyModelViewSet):
@@ -27,6 +29,20 @@ class BookViewSet(ReadOnlyModelViewSet):
         if self.action == 'retrieve':
             return BookSerializer
         return BookSerializer
+
+
+class ChapterPagination(PageNumberPagination):
+   page_size = 1
+
+class ChaptersViewSet(generics.ListAPIView):
+    serializer_class = ChaptersSerializer
+    permission_classes = [AllowAny]
+    pagination_class = ChapterPagination
+    lookup_field = 'book'
+
+    def get_queryset(self):
+        return Chapters.objects.filter(book__id=self.kwargs['book'])
+    
 
 
 class UserBookRelationView(UpdateModelMixin, GenericViewSet):

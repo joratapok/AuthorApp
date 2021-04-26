@@ -13,12 +13,3 @@
     width: 100%;
     z-index: 5;
 }
-
-.fish {
-    height: 700px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-
-}

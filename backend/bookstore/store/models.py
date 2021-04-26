@@ -19,9 +19,11 @@ class Book(models.Model):
     price = models.DecimalField('Цена', max_digits=7, decimal_places=2)
     author_name = models.CharField('Автор', max_length=255, default='Дарья Урусова')
     poster = models.ImageField('Обложка', upload_to='book/')
+    mini_poster = models.ImageField('Миниатюра-обложки', upload_to='book_mini/')
     genre = models.ManyToManyField(Genre, verbose_name='жанры')
     readers = models.ManyToManyField(User, through='UserBookRelation')
     book_file = models.FileField(upload_to='book_file', blank=True)
+    description = models.CharField('Описание', max_length=2000, default='Описание')
 
     def __str__(self):
         return f'ID: {self.id} -- Книга: {self.name}'
@@ -29,6 +31,20 @@ class Book(models.Model):
     class Meta:
         verbose_name = 'Книга'
         verbose_name_plural = 'Книги'
+
+
+class Chapters(models.Model):
+    chapter = models.TextField('Глава', blank=True)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+
+    def __str__(self):
+        
+        
+        return f'Книга: {self.book.name} -- Глава: {self.chapter[:35]}...'
+
+    class Meta:
+        verbose_name = 'Глава'
+        verbose_name_plural = 'Главы'
 
 
 class UserBookRelation(models.Model):
@@ -78,3 +94,6 @@ class Profile(models.Model):
 
     def __str__(self):
         return f'Profile for user {self.master.username}'
+
+    class Meta:
+        verbose_name = 'Аватар'
