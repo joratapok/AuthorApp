@@ -32,6 +32,14 @@ refresh: ...refresh token
 получаем JWT токены сохраняем в Localstorage
 
 
+
+разбираюсь с OAUTH2  
+127.0.0.1:8000/auth/o/google-oauth2/?redirect_uri=http://localhost:8000
+window.location.replace(respose.data.authorization_url)
+
+
+
+
 get  -- Получаем инфу о юзере
 http://127.0.0.1:8000/auth/users/me/
 

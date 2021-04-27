@@ -21,6 +21,7 @@ urlpatterns = [
     path('activate/<str:uid>/<str:token>/', UserActivationView.as_view()),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
+    path('auth/', include('djoser.social.urls')),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 	path('profile/<master>', ProfileDetailView.as_view()),

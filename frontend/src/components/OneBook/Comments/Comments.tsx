@@ -1,8 +1,8 @@
-import React from 'react'
-import {commentsInitialType} from "../../../redux/commentReducer";
-import CommentForm, {addCommentDataType} from "./CommentForm";
+import React from "react"
+import {commentsInitialType} from "../../../redux/commentReducer"
+import CommentForm, {addCommentDataType} from "./CommentForm"
 import defaultAvatarCat from "../../../assets/image/defaultAvatarCat.png"
-import {makeStyles} from "@material-ui/core/styles";
+import {makeStyles} from "@material-ui/core/styles"
 import {
     ListItem,
     Divider,
@@ -10,9 +10,9 @@ import {
     ListItemAvatar,
     Avatar,
     Typography, Box
-} from "@material-ui/core";
-import Container from "@material-ui/core/Container";
-import {Pagination} from "@material-ui/lab";
+} from "@material-ui/core"
+import Container from "@material-ui/core/Container"
+import {Pagination} from "@material-ui/lab"
 
 type CommentsType = {
     isAuth: boolean

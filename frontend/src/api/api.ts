@@ -48,7 +48,15 @@ export type RegisterResponseType = {
     username: string
     id: number
 }
-
+export type ChaptersType = {
+  count: number
+  next: string
+  previous: string
+  results: Array<Chapter>
+}
+type Chapter = {
+  chapter: string
+}
 
 export const instance = axios.create({
     baseURL: 'http://127.0.0.1:8000/',
@@ -65,7 +73,13 @@ export const bookApi = {
         return instance.get<OneBookType>(`book/${id}/`, {
             headers: { 'Authorization': token }
         }).then(res => res)
-    }
+    },
+    getChapters(bookId: number) {
+        return instance.get<any>(`book/${bookId}/`).then(res => res)
+    },
+    geChapterPage(id: number, numPage: number) {
+        return instance.get<ChaptersType>(`comments/${id}/?page=${numPage}`).then(res => res)
+    },
 }
 
 export const rateApi = {

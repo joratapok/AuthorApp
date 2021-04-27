@@ -19,7 +19,7 @@ class BookViewSet(ReadOnlyModelViewSet):
     permission_classes = [AllowAny]
     queryset = Book.objects.all().annotate(rated_books=Avg('userbookrelation__rate'))
     filter_backends = [DjangoFilterBackend, SearchFilter]
-    filter_fields = ['name', 'genre']
+    filter_fields = ['name', 'genre__name']
     search_fields = ['name']
 
     def get_serializer_class(self):

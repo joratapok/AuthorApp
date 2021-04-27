@@ -1,5 +1,5 @@
 import {AppStateType, InferActionsTypes} from "./store";
-import {bookApi, rateApi} from "../api/api";
+import {bookApi, rateApi, ChaptersType} from "../api/api";
 import {ThunkAction} from "redux-thunk";
 
 export type bookType = {
@@ -19,6 +19,12 @@ export type OneBookType = {
     book_file: string
     description: string
 }
+
+type Chapter = {
+  chapter: string
+}
+
+
 export type initialType = typeof initial
 export type bookReducerActionsTypes = InferActionsTypes<typeof actionsBooksReducer>
 type ThunkType = ThunkAction<Promise<void>, AppStateType, any, bookReducerActionsTypes>
@@ -29,6 +35,9 @@ export const SET_NEW_BOOK = "SET_NEW_BOOK"
 export const SET_CURRENT_RATING = "SET_CURRENT_RATING"
 export const SET_AVG_RATING = "SET_AVG_RATING"
 export const SET_COUNT_RATE = "SET_COUNT_RATE"
+export const SET_NEW_CHAPTER = "SET_NEW_CHAPTER"
+
+
 
 let initial = {
     book: {
@@ -49,7 +58,14 @@ let initial = {
             mini_poster: '',
             rated_books: '0',
         }
-    ] as Array<bookType>
+    ] as Array<bookType>,
+
+    chapters: {
+        count: 0,
+        next: '',
+        previous: '',
+        results: [{chapter: 'Что то пошло не так...'}] as Array<Chapter>,
+    },
 }
 
 const bookReducer = (state = initial, action: bookReducerActionsTypes): initialType => {
@@ -79,6 +95,11 @@ const bookReducer = (state = initial, action: bookReducerActionsTypes): initialT
                 ...state,
                 book: {...state.book, count_rate: action.count_rate}
             }
+        case SET_NEW_CHAPTER:
+            return {
+                ...state,
+                chapters: action.chapters
+            }
 
         default:
             return state
@@ -91,6 +112,7 @@ export const actionsBooksReducer = {
     setCurrentRating: (rating: number) => ({type: SET_CURRENT_RATING, rating} as const),
     setAVGRating: (avgRating: number) => ({type: SET_AVG_RATING, avgRating} as const),
     setCount_rate: (count_rate: number) => ({type: SET_COUNT_RATE, count_rate} as const),
+    setChapters: (chapters: ChaptersType) => ({type: SET_NEW_CHAPTER, chapters} as const),
 }
 
 export const getAllBooks = (): ThunkType => {
@@ -123,6 +145,17 @@ export const setCurrentRatingThunk = (bookId: number, data: number | null, JWTTo
             dispatch(actionsBooksReducer.setCurrentRating(response.rate))
             dispatch(actionsBooksReducer.setAVGRating(response.avg_rate.avg_rate))
             dispatch(actionsBooksReducer.setCount_rate(response.avg_rate.count_rate))
+        } catch (e) {
+            console.error(e)
+        }
+    }
+}
+
+export const getChaptersThunk = (bookId: number, numPage: number = 1): ThunkType => {
+    return async (dispatch) => {
+        try {
+            const chapters = await bookApi.geChapterPage(bookId, numPage)
+            dispatch(actionsBooksReducer.setChapters(chapters))
         } catch (e) {
             console.error(e)
         }

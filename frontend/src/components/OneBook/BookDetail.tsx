@@ -4,7 +4,7 @@ import {OneBookType,} from "../../redux/bookReducer"
 import {commentsInitialType} from "../../redux/commentReducer"
 import {addCommentDataType} from "./Comments/CommentForm"
 import Comments from "./Comments/Comments"
-import Modal from "./Modal/Modal"
+import ReaderBoxContainer from "./ReaderBox/ReaderBoxContainer"
 import {AuthinitialType} from "../../redux/authReducer"
 import {Rating} from "@material-ui/lab";
 import {
@@ -164,7 +164,8 @@ export const BookDetail: React.FC<BookDetailType> = ({
                           bookId={book.id}
                           isAuth={auth.isAuth}/>
             </div>
-            <Modal setOn={modal}/>
+
+            <ReaderBoxContainer />
             <button className={buttonModalOffClass}
                     onClick={() => setModal(false)}>Не Читать
             </button>
