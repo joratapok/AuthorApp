@@ -154,7 +154,7 @@ export const setCurrentRatingThunk = (bookId: number, data: number | null, JWTTo
 export const getChaptersThunk = (bookId: number, numPage: number = 1): ThunkType => {
     return async (dispatch) => {
         try {
-            const chapters = await bookApi.geChapterPage(bookId, numPage)
+            const chapters = await bookApi.getChapterPage(bookId, numPage)
             dispatch(actionsBooksReducer.setChapters(chapters))
         } catch (e) {
             console.error(e)

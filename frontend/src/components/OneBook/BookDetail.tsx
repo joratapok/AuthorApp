@@ -9,9 +9,10 @@ import {AuthinitialType} from "../../redux/authReducer"
 import {Rating} from "@material-ui/lab";
 import {
     Box, createStyles, Grid, makeStyles, withStyles,
-    Button, Paper, Theme, Typography, Tooltip
+    Button, Paper, Theme, Typography, Tooltip, IconButton
 } from "@material-ui/core";
 import {deepOrange, green} from '@material-ui/core/colors';
+import CloseIcon from '@material-ui/icons/Close';
 
 
 type BookDetailType = {
@@ -38,6 +39,10 @@ const useStyles = makeStyles((theme: Theme) =>
             color: 'white'
         },
         totalMarks: {},
+        xButton: {
+            width: 50,
+            height: 50,
+        },
     }),
 )
 
@@ -82,6 +87,13 @@ export const BookDetail: React.FC<BookDetailType> = ({
         setCurrentRatingThunk(book.id, newValue, auth.accessToken)
     }
 
+    const setReaderOn = () => {
+        setModal(true)
+    }
+    const setReaderOff = () => {
+        setModal(false)
+    }
+
 
     return (
         <div className={classes.bookWrapper}>
@@ -103,7 +115,7 @@ export const BookDetail: React.FC<BookDetailType> = ({
                             </Box>
                             <Box mx={2} width='50%'>
                                 <ReadButton variant="contained" color="primary" className={classes.margin}
-                                            onClick={() => setModal(true)} fullWidth>
+                                            onClick={setReaderOn} fullWidth>
                                     Читать
                                 </ReadButton>
                             </Box>
@@ -165,10 +177,16 @@ export const BookDetail: React.FC<BookDetailType> = ({
                           isAuth={auth.isAuth}/>
             </div>
 
-            <ReaderBoxContainer />
-            <button className={buttonModalOffClass}
-                    onClick={() => setModal(false)}>Не Читать
-            </button>
+            <ReaderBoxContainer toggleReader={modal} />
+            <Box className={buttonModalOffClass}>
+                <IconButton aria-label="delete"
+                            color='secondary'
+                            onClick={setReaderOff}>
+                    <CloseIcon className={cl.xButton} />
+                </IconButton>
+            </Box>
+
+
         </div>
     )
 }

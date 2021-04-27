@@ -74,11 +74,8 @@ export const bookApi = {
             headers: { 'Authorization': token }
         }).then(res => res)
     },
-    getChapters(bookId: number) {
-        return instance.get<any>(`book/${bookId}/`).then(res => res)
-    },
-    geChapterPage(id: number, numPage: number) {
-        return instance.get<ChaptersType>(`comments/${id}/?page=${numPage}`).then(res => res)
+    getChapterPage(id: number, numPage: number) {
+        return instance.get<ChaptersType>(`chapters/${id}?page=${numPage}`).then(res => res.data)
     },
 }
 
