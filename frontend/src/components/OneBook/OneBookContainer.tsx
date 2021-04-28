@@ -24,7 +24,6 @@ type MapDispatchToPropsType = {
     addNewCommentThunk: (id: number, text: string, JWTToken: string | null) => void
     fetchNewPageComments: (id: number, page: number) => void
     setCurrentRatingThunk: (bookId: number, data: number | null, JWTToken: any) => void
-    actionsBooksReducer: (toggle: boolean) => void
 }
 type OwnPropsType = {}
 type PathParamsType = {
@@ -36,15 +35,11 @@ type OneBookPropsType = MapDispatchToPropsType & MapStateToPropsType & OwnPropsT
 
 const OneBookContainer: React.FC<OneBookPropsType> =
     ({book, comments, auth, getBookByIdThunk, addNewCommentThunk,
-      getCommentsToBookThunk, fetchNewPageComments, setCurrentRatingThunk, actionsBooksReducer  ...props}) => {
+      getCommentsToBookThunk, fetchNewPageComments, setCurrentRatingThunk, ...props}) => {
 
     const addComment = (formData: addCommentDataType) => {
         let bookId = props.match.params.bookId
         addNewCommentThunk(Number(bookId), formData.text, auth.accessToken)
-    }
-
-    const toggleReaderMode = (toggle: boolean) => {
-        actionsBooksReducer(toggle)
     }
 
     useEffect(() => {
@@ -76,5 +71,5 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
 
 export default compose<React.ComponentType>(
 connect(mapStateToProps, {getBookByIdThunk, getCommentsToBookThunk,
-  addNewCommentThunk, fetchNewPageComments, setCurrentRatingThunk, actionsBooksReducer}),
+  addNewCommentThunk, fetchNewPageComments, setCurrentRatingThunk,}),
 withRouter,)(OneBookContainer)

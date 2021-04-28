@@ -25,11 +25,9 @@ type Chapter = {
   chapter: string
 }
 
-
 export type initialType = typeof initial
 export type bookReducerActionsTypes = InferActionsTypes<typeof actionsBooksReducer>
 type ThunkType = ThunkAction<Promise<void>, AppStateType, any, bookReducerActionsTypes>
-
 
 export const SET_NEW_BOOKS = "SET_NEW_BOOKS"
 export const SET_NEW_BOOK = "SET_NEW_BOOK"
@@ -37,11 +35,6 @@ export const SET_CURRENT_RATING = "SET_CURRENT_RATING"
 export const SET_AVG_RATING = "SET_AVG_RATING"
 export const SET_COUNT_RATE = "SET_COUNT_RATE"
 export const SET_NEW_CHAPTER = "SET_NEW_CHAPTER"
-export const CHANGE_READER_MODE = "CHANGE_READER_MODE"
-
-
-
-
 
 let initial = {
     book: {
@@ -105,11 +98,6 @@ const bookReducer = (state = initial, action: bookReducerActionsTypes): initialT
                 ...state,
                 chapters: action.chapters
             }
-        case CHANGE_READER_MODE:
-            return {
-                ...state,
-                book: {...state.book, readerMode: action.toggle}
-            }
 
         default:
             return state
@@ -123,7 +111,6 @@ export const actionsBooksReducer = {
     setAVGRating: (avgRating: number) => ({type: SET_AVG_RATING, avgRating} as const),
     setCount_rate: (count_rate: number) => ({type: SET_COUNT_RATE, count_rate} as const),
     setChapters: (chapters: ChaptersType) => ({type: SET_NEW_CHAPTER, chapters} as const),
-    changeReaderMode: (toggle: boolean) => ({type: CHANGE_READER_MODE, toggle} as const),
 }
 
 export const getAllBooks = (): ThunkType => {

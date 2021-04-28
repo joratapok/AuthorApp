@@ -16,11 +16,12 @@ type MapDispatchToPropsType = {
 }
 type OwnPropsType = {
     toggleReader: boolean
+    setReaderOff: () => void
 }
 type BoxContainerType = MapDispatchToPropsType & MapStateToPropsType & OwnPropsType
 
 const ReaderBoxContainer: React.FC<BoxContainerType> =
-    ({bookId, chapters, getChaptersThunk, toggleReader}) => {
+    ({bookId, chapters, getChaptersThunk, toggleReader, setReaderOff}) => {
 
     const getNewChapter = (event: object, numPage: number) => {
         getChaptersThunk(bookId, numPage)
@@ -35,6 +36,7 @@ const ReaderBoxContainer: React.FC<BoxContainerType> =
             <ReaderBox bookId={bookId}
             chapters={chapters} toggleReader={toggleReader}
             getNewChapter={getNewChapter}
+                       setReaderOff={setReaderOff}
             />
         </div>
     )

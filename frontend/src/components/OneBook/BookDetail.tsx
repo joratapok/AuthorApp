@@ -9,10 +9,9 @@ import {AuthinitialType} from "../../redux/authReducer"
 import {Rating} from "@material-ui/lab";
 import {
     Box, createStyles, Grid, makeStyles, withStyles,
-    Button, Paper, Theme, Typography, Tooltip, IconButton
+    Button, Paper, Theme, Typography, Tooltip
 } from "@material-ui/core";
 import {deepOrange, green} from '@material-ui/core/colors';
-import CloseIcon from '@material-ui/icons/Close';
 import ScrollContainer from "react-indiana-drag-scroll";
 
 
@@ -44,11 +43,6 @@ const useStyles = makeStyles((theme: Theme) =>
             width: 50,
             height: 50,
         },
-        tempo: {
-          height: '100%',
-          width: '100%',
-          overflow: 'auto',
-        }
     }),
 )
 
@@ -83,7 +77,7 @@ const ReadButton = withStyles((theme: Theme) => ({
 export const BookDetail: React.FC<BookDetailType> = ({
                                                          book, comments,
                                                          auth, addComment,
-                                                         fetchNewPageComments, setCurrentRatingThunk
+                                                         fetchNewPageComments, setCurrentRatingThunk,
                                                      }) => {
     const cl = useStyles();
     const [modal, setModal] = useState(false)
@@ -182,22 +176,7 @@ export const BookDetail: React.FC<BookDetailType> = ({
                           bookId={book.id}
                           isAuth={auth.isAuth}/>
             </div>
-
             <ReaderBoxContainer toggleReader={modal} setReaderOff={setReaderOff} />
-
-
-
-            <Box display='block' height='200px' width='200px' overflow='hidden' border='2px solid black' >
-                <ScrollContainer vertical={true} horizontal={true} hideScrollbars={false}
-                className={cl.tempo}>
-
-                e test text ----Глава 1 И пришел спаситель и сказал - Дети мои да прибудет с вами сила, да окрепнут запястия на трудовых руках ваших, да Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer mollis dui nulla, quis laoreet lorem euismod ut. Cras dictum lacinia lacus, vitae condimentum magna vehicula id. Nulla in lobortis augue. Duis sit amet quam ac dui blandit accumsan. Ut quis dui mi. Duis eget magna a nunc auctor semper. Maecenas quis ultricies nulla. Curabitur vestibulum dui et nulla luctus iaculis at id sapien. Nulla facilisi. Donec consectetur dignissim tempus. Aliquam erat volutpat. Morbi at leo ac eros tincidunt accumsan sit amet eget nunc. Donec ac lorem ligula. Quisque fringilla nec elit ut lacinia. Donec nunc lorem, ornare vel feugiat quis, commodo in mauris. Sed tempor, urna eget bibendum placerat, neque velit placerat ex, sed tristique lectus dui ut ex. Nullam vehicula sem ac vulputate volutpat. Donec ultricies est a dictum feugiat. Curabitur consectetur tempor nibh ut interdum. Aenean efficitur libero id magna suscipit, blandit sollicitudin risus bibendum. Curabitur molestie tortor at augue tempus, sed fermentum turpis vulp
-
-                </ScrollContainer>
-            </Box>
-
-
-
         </div>
     )
 }
