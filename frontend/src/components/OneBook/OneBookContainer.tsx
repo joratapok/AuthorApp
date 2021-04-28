@@ -2,7 +2,8 @@ import React, {useEffect} from 'react'
 import {connect} from "react-redux"
 import {AppStateType} from "../../redux/store"
 import {AuthinitialType} from "../../redux/authReducer"
-import {OneBookType, getBookByIdThunk, setCurrentRatingThunk} from "../../redux/bookReducer"
+import {OneBookType, getBookByIdThunk, setCurrentRatingThunk,
+  actionsBooksReducer} from "../../redux/bookReducer"
 import {compose} from "redux"
 import {withRouter, RouteComponentProps} from "react-router-dom"
 import BookDetail from "./BookDetail"
@@ -23,6 +24,7 @@ type MapDispatchToPropsType = {
     addNewCommentThunk: (id: number, text: string, JWTToken: string | null) => void
     fetchNewPageComments: (id: number, page: number) => void
     setCurrentRatingThunk: (bookId: number, data: number | null, JWTToken: any) => void
+    actionsBooksReducer: (toggle: boolean) => void
 }
 type OwnPropsType = {}
 type PathParamsType = {
@@ -34,11 +36,15 @@ type OneBookPropsType = MapDispatchToPropsType & MapStateToPropsType & OwnPropsT
 
 const OneBookContainer: React.FC<OneBookPropsType> =
     ({book, comments, auth, getBookByIdThunk, addNewCommentThunk,
-      getCommentsToBookThunk, fetchNewPageComments, setCurrentRatingThunk,  ...props}) => {
+      getCommentsToBookThunk, fetchNewPageComments, setCurrentRatingThunk, actionsBooksReducer  ...props}) => {
 
     const addComment = (formData: addCommentDataType) => {
         let bookId = props.match.params.bookId
         addNewCommentThunk(Number(bookId), formData.text, auth.accessToken)
+    }
+
+    const toggleReaderMode = (toggle: boolean) => {
+        actionsBooksReducer(toggle)
     }
 
     useEffect(() => {
@@ -70,5 +76,5 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
 
 export default compose<React.ComponentType>(
 connect(mapStateToProps, {getBookByIdThunk, getCommentsToBookThunk,
-  addNewCommentThunk, fetchNewPageComments, setCurrentRatingThunk}),
+  addNewCommentThunk, fetchNewPageComments, setCurrentRatingThunk, actionsBooksReducer}),
 withRouter,)(OneBookContainer)

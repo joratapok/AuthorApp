@@ -1,3 +1,20 @@
+.buttonModalOff {
+    position: fixed;
+    z-index: -10;
+    top: 50px;
+    right: 50px;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.activeButtonModalOff {
+    z-index: 2015;
+    opacity: 1;
+}
+
+
+
+
 .modal {
     height: 100vh;
     width: 100vw;
@@ -19,9 +36,8 @@
 
 .contentWrapper {
     z-index: -10;
-    height: 100vh;
-    width: 100vw;
-
+    height: 100%;
+    width: 100%;
     justify-content: center;
     align-items: flex-start;
     position: absolute;
@@ -36,8 +52,8 @@
 }
 
 .contentModal {
-    z-index: -10;
     overflow-y: scroll;
+    position: relative;
     height: 100%;
     padding: 20px;
     background-color: white;
@@ -49,5 +65,31 @@
 
 .activeContentModal {
     transform: scale(1);
-    z-index: 12;
+
 }
+
+.dragScroll {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+/*
+let modalClass = classes.modal + ' ' + ( modal ? classes.activeModal : '')
+let contentModalClass = classes.contentModal + ' ' + ( modal ? classes.activeContentModal : '')
+let contentWrapper = classes.contentWrapper + ' ' + ( modal ? classes.activeContentWrapper : '')
+
+
+
+<div className={modalClass}>
+</div>
+
+<ScrollContainer className={contentWrapper}>
+    <div className={contentModalClass}>
+        <Box display='flex' justifyContent='center' my={1}>
+            <Pagination count={chapters.count} color="primary" onChange={getNewChapter}/>
+        </Box>
+        some test text ----
+        {chapters.results.length && chapters.results[0].chapter}
+    </div>
+</ScrollContainer>
+*/

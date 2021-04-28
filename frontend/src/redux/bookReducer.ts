@@ -18,6 +18,7 @@ export type OneBookType = {
     count_rate: number
     book_file: string
     description: string
+    readerMode: boolean
 }
 
 type Chapter = {
@@ -36,6 +37,9 @@ export const SET_CURRENT_RATING = "SET_CURRENT_RATING"
 export const SET_AVG_RATING = "SET_AVG_RATING"
 export const SET_COUNT_RATE = "SET_COUNT_RATE"
 export const SET_NEW_CHAPTER = "SET_NEW_CHAPTER"
+export const CHANGE_READER_MODE = "CHANGE_READER_MODE"
+
+
 
 
 
@@ -49,6 +53,7 @@ let initial = {
         count_rate: 0,
         book_file: '',
         description: '',
+        readerMode: false,
     } as OneBookType,
 
     books: [
@@ -100,6 +105,11 @@ const bookReducer = (state = initial, action: bookReducerActionsTypes): initialT
                 ...state,
                 chapters: action.chapters
             }
+        case CHANGE_READER_MODE:
+            return {
+                ...state,
+                book: {...state.book, readerMode: action.toggle}
+            }
 
         default:
             return state
@@ -113,6 +123,7 @@ export const actionsBooksReducer = {
     setAVGRating: (avgRating: number) => ({type: SET_AVG_RATING, avgRating} as const),
     setCount_rate: (count_rate: number) => ({type: SET_COUNT_RATE, count_rate} as const),
     setChapters: (chapters: ChaptersType) => ({type: SET_NEW_CHAPTER, chapters} as const),
+    changeReaderMode: (toggle: boolean) => ({type: CHANGE_READER_MODE, toggle} as const),
 }
 
 export const getAllBooks = (): ThunkType => {

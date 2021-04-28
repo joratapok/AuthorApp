@@ -13,17 +13,3 @@
 .bookNameWrapper {
     font-size: 25px;
 }
-
-.buttonModalOff {
-    position: fixed;
-    z-index: -10;
-    top: 50px;
-    right: 50px;
-    opacity: 0;
-    transition: 0.5s;
-}
-
-.activeButtonModalOff {
-    z-index: 2015;
-    opacity: 1;
-}
