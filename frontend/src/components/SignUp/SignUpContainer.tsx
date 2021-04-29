@@ -37,8 +37,6 @@ const SignUpContainer: React.FC<PropsType> = ({signUpThunk, isAuth}) => {
                     errorField[FORM_ERROR] = e.response.data[i]
                     break
                 }
-                // e.response.data.forEach((el: any) => errorField[FORM_ERROR] = e.response.data[el])
-
                 return errorField
             }
             return {[FORM_ERROR]: e.message}

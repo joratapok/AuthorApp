@@ -22,11 +22,7 @@
     <list default="true" id="a2a56fec-9f1f-4185-b64d-e82deaa6fc17" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bookstore/bookstore/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookstore/bookstore/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/api/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/api/api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/OneBook/BookDetail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/OneBook/BookDetail.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/components/OneBook/ReaderBox/ReaderBox.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/OneBook/ReaderBox/ReaderBox.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/OneBook/ReaderBox/ReaderBoxContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/OneBook/ReaderBox/ReaderBoxContainer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/redux/bookReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/redux/bookReducer.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,6 +52,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="add_unversioned_files" value="$PROJECT_DIR$/bookstore/bookstore/local_settings.py" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/bookstore/bookstore" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
@@ -165,6 +162,8 @@
       <workItem from="1619334274778" duration="2428000" />
       <workItem from="1619444961625" duration="4329000" />
       <workItem from="1619525102066" duration="777000" />
+      <workItem from="1619618734993" duration="639000" />
+      <workItem from="1619703394519" duration="2734000" />
     </task>
     <servers />
   </component>
