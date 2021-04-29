@@ -11,6 +11,9 @@ import AddIcon from '@material-ui/icons/Add';
 import CloseIcon from '@material-ui/icons/Close';
 import RemoveIcon from '@material-ui/icons/Remove';
 import Grid from "@material-ui/core/Grid";
+import Icon from '@material-ui/core/Icon'
+import Button from '@material-ui/core/Button';
+import Link from '@material-ui/core/Link';
 
 
 type ReaderBoxType = {
@@ -30,13 +33,20 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         paper: {
             backgroundColor: theme.palette.background.paper,
-            width: '85%',
-            maxWidth: '1300px',
-            minWidth: '320px',
             height: '90%',
             border: '2px solid #000',
             boxShadow: theme.shadows[5],
-            padding: theme.spacing(0, 0, 0, 2),
+            padding: theme.spacing(0, 1, 0, 2),
+            [theme.breakpoints.up('xs')]: {
+              width: '97%',
+            },
+            [theme.breakpoints.up('sm')]: {
+              width: '92%',
+            },
+            [theme.breakpoints.up('lg')]: {
+              width: '85%',
+            },
+            maxWidth: '1300px',
         },
         xButton: {
             width: 60,
@@ -45,6 +55,9 @@ const useStyles = makeStyles((theme: Theme) =>
         fontButtons: {
             width: 40,
             height: 40,
+        },
+        nextButton: {
+            margin: theme.spacing(3),
         },
 
     }),
@@ -55,7 +68,9 @@ export const ReaderBox: React.FC<ReaderBoxType & any> = ({bookId, chapters, togg
 
     const [modal, setModal] = useState(false)
     const [font, setFont] = useState(16)
+
     const buttonModalOffClass = classes.buttonModalOff + ' ' + (modal ? classes.activeButtonModalOff : '')
+    const isNextChapter: boolean = (chapters.next) ? false : true
 
     const addFont = () => {
         setFont(font + 2)
@@ -85,56 +100,83 @@ export const ReaderBox: React.FC<ReaderBoxType & any> = ({bookId, chapters, togg
             >
                 <Fade in={modal}>
                     <>
-                        <div className={cl.paper}>
-                            <ScrollContainer vertical={true} horizontal={true} hideScrollbars={false}
+                        <Box className={cl.paper}>
+                             <ScrollContainer vertical={true} horizontal={true} hideScrollbars={false}
                                              className={classes.dragScroll}>
                                 <Grid container spacing={0}>
-                                    <Grid item xs={12} sm={3}>
+                                    <Grid item xs={4}>
                                         <Box display='flex' justifyContent='flex-start' alignItems='center' my={1}>
 
                                             <IconButton aria-label="exit"
                                                         color='primary'
-                                                        disabled={font > 26}
+                                                        disabled={font > 28}
                                                         onClick={addFont}>
                                                 <AddIcon className={cl.fontButtons}/>
                                             </IconButton>
                                             <IconButton aria-label="exit"
                                                         color='secondary'
-                                                        disabled={font < 10}
+                                                        disabled={font < 12}
                                                         onClick={subtractFont}>
                                                 <RemoveIcon className={cl.fontButtons}/>
                                             </IconButton>
                                         </Box>
                                     </Grid>
 
+                                    <Grid item xs={4}>
+                                    </Grid>
 
-                                    <Grid item xs={12} sm={6}>
-                                        <Box display='flex' justifyContent='center' alignItems='center'
-                                             width='100%' height='100%'>
-                                            <Pagination count={chapters.count} color="primary"
-                                                        onChange={getNewChapter}/>
+                                    <Grid item xs={4}>
+                                        <Box className={buttonModalOffClass}>
+                                            <Box position='fixed'>
+                                            <IconButton aria-label="exit"
+                                                        color='secondary'
+                                                        onClick={setReaderOff}>
+                                                <CloseIcon className={cl.xButton}/>
+                                            </IconButton>
+                                            </Box>
                                         </Box>
                                     </Grid>
 
+
+                                    <Grid item xs={12} >
+                                        <Box py={1} display='flex' justifyContent='center' alignItems='center'
+                                             width='100%' height='100%'>
+                                            <Pagination count={chapters.count}
+                                                        color="primary"
+                                                        onChange={getNewChapter}
+                                                        page={chapters.currentPage}/>
+                                        </Box>
+                                    </Grid>
+
+
                                 </Grid>
+
+
 
 
                                 <Box fontSize={`${font}px`}>
                                     {chapters.results.length && chapters.results[0].chapter}
                                 </Box>
 
-                                <Box display='flex' justifyContent='center' my={1}>
-                                    <Pagination count={chapters.count} color="primary" onChange={getNewChapter}/>
+
+
+                                <Box display='flex' justifyContent='flex-end' my={1}>
+                                    <Button
+                                        variant="contained"
+                                        disabled={isNextChapter}
+                                        onClick={() => getNewChapter(null, chapters.currentPage + 1)}
+                                        color="primary"
+                                        className={cl.nextButton}
+                                        endIcon={<Icon>send</Icon>}
+                                      >
+                                            следующая глава
+                                    </Button>
                                 </Box>
+
                             </ScrollContainer>
-                        </div>
-                        <Box className={buttonModalOffClass}>
-                            <IconButton aria-label="exit"
-                                        color='secondary'
-                                        onClick={setReaderOff}>
-                                <CloseIcon className={cl.xButton}/>
-                            </IconButton>
                         </Box>
+
+
                     </>
                 </Fade>
             </Modal>

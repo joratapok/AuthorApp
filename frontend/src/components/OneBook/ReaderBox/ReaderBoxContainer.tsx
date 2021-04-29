@@ -28,7 +28,12 @@ const ReaderBoxContainer: React.FC<BoxContainerType> =
     }
 
     useEffect(() => {
-        getChaptersThunk(bookId)
+        const recoveryPage = Number(localStorage.getItem(`bookMark_${bookId}`))
+        if (recoveryPage) {
+            getChaptersThunk(bookId, recoveryPage)
+        } else {
+            getChaptersThunk(bookId, )
+        }
     }, [bookId])
 
     return (

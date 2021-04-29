@@ -52,6 +52,7 @@ export type ChaptersType = {
   count: number
   next: string
   previous: string
+  currentPage: number
   results: Array<Chapter>
 }
 type Chapter = {

@@ -35,6 +35,7 @@ export const SET_CURRENT_RATING = "SET_CURRENT_RATING"
 export const SET_AVG_RATING = "SET_AVG_RATING"
 export const SET_COUNT_RATE = "SET_COUNT_RATE"
 export const SET_NEW_CHAPTER = "SET_NEW_CHAPTER"
+export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE"
 
 let initial = {
     book: {
@@ -62,6 +63,7 @@ let initial = {
         count: 0,
         next: '',
         previous: '',
+        currentPage: 1,
         results: [{chapter: 'Что то пошло не так...'}] as Array<Chapter>,
     },
 }
@@ -98,6 +100,11 @@ const bookReducer = (state = initial, action: bookReducerActionsTypes): initialT
                 ...state,
                 chapters: action.chapters
             }
+        case SET_CURRENT_PAGE:
+            return {
+                ...state,
+                chapters: {...state.chapters, currentPage: action.page}
+            }
 
         default:
             return state
@@ -111,6 +118,7 @@ export const actionsBooksReducer = {
     setAVGRating: (avgRating: number) => ({type: SET_AVG_RATING, avgRating} as const),
     setCount_rate: (count_rate: number) => ({type: SET_COUNT_RATE, count_rate} as const),
     setChapters: (chapters: ChaptersType) => ({type: SET_NEW_CHAPTER, chapters} as const),
+    setCurrentPage: (page: number) => ({type: SET_CURRENT_PAGE, page} as const),
 }
 
 export const getAllBooks = (): ThunkType => {
@@ -149,11 +157,19 @@ export const setCurrentRatingThunk = (bookId: number, data: number | null, JWTTo
     }
 }
 
+const savePageToLocalStorage = (bookId: number, numPage: number) => {
+    localStorage.setItem(`bookMark_${bookId}`, numPage.toString())
+}
+
 export const getChaptersThunk = (bookId: number, numPage: number = 1): ThunkType => {
     return async (dispatch) => {
         try {
             const chapters = await bookApi.getChapterPage(bookId, numPage)
+            if (numPage > 1) {
+                savePageToLocalStorage(bookId, numPage)
+            }
             dispatch(actionsBooksReducer.setChapters(chapters))
+            dispatch(actionsBooksReducer.setCurrentPage(numPage))
         } catch (e) {
             console.error(e)
         }
