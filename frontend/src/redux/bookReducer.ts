@@ -35,7 +35,7 @@ export const SET_CURRENT_RATING = "SET_CURRENT_RATING"
 export const SET_AVG_RATING = "SET_AVG_RATING"
 export const SET_COUNT_RATE = "SET_COUNT_RATE"
 export const SET_NEW_CHAPTER = "SET_NEW_CHAPTER"
-export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE"
+
 
 let initial = {
     book: {
@@ -96,16 +96,11 @@ const bookReducer = (state = initial, action: bookReducerActionsTypes): initialT
                 book: {...state.book, count_rate: action.count_rate}
             }
         case SET_NEW_CHAPTER:
+            const chapters = {...action.chapters, currentPage: action.page}
             return {
                 ...state,
-                chapters: action.chapters
+                chapters: chapters,
             }
-        case SET_CURRENT_PAGE:
-            return {
-                ...state,
-                chapters: {...state.chapters, currentPage: action.page}
-            }
-
         default:
             return state
     }
@@ -117,8 +112,7 @@ export const actionsBooksReducer = {
     setCurrentRating: (rating: number) => ({type: SET_CURRENT_RATING, rating} as const),
     setAVGRating: (avgRating: number) => ({type: SET_AVG_RATING, avgRating} as const),
     setCount_rate: (count_rate: number) => ({type: SET_COUNT_RATE, count_rate} as const),
-    setChapters: (chapters: ChaptersType) => ({type: SET_NEW_CHAPTER, chapters} as const),
-    setCurrentPage: (page: number) => ({type: SET_CURRENT_PAGE, page} as const),
+    setChapters: (chapters: ChaptersType, page: number) => ({type: SET_NEW_CHAPTER, chapters, page} as const),
 }
 
 export const getAllBooks = (): ThunkType => {
@@ -168,8 +162,7 @@ export const getChaptersThunk = (bookId: number, numPage: number = 1): ThunkType
             if (numPage > 1) {
                 savePageToLocalStorage(bookId, numPage)
             }
-            dispatch(actionsBooksReducer.setChapters(chapters))
-            dispatch(actionsBooksReducer.setCurrentPage(numPage))
+            dispatch(actionsBooksReducer.setChapters(chapters, numPage))
         } catch (e) {
             console.error(e)
         }

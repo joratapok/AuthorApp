@@ -2,7 +2,7 @@ import React from 'react';
 import {makeStyles, createStyles, Theme} from '@material-ui/core/styles';
 import SpeedDial from '@material-ui/lab/SpeedDial';
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
-import {Avatar} from "@material-ui/core";
+import {Avatar, IconButton} from "@material-ui/core";
 import ChangeUser from "./ChangeLogin/ChangeLogin";
 import Logout from "./Logout/Logout";
 import c from "./UserBlock.module.css";
@@ -11,6 +11,8 @@ import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import classes from "../../Books/Book/Book.module.css";
 import {NavLink} from "react-router-dom";
+import LoginContainer from "../Login/LoginContainer"
+import SighUpContainer from "../SignUp/SignUpContainer"
 
 type OwnPropsType = {
     auth: AuthinitialType
@@ -31,29 +33,56 @@ const useStyles = makeStyles((theme: Theme) =>
             position: 'absolute',
         },
     }),
-);
+)
 
-const actionsDefaulUser = [
-    {icon: <NavLink to={'/login'}><PersonRoundedIcon/></NavLink>, name: 'Логин'},
-    {icon: <NavLink to={'/signup'}><ExitToAppIcon/></NavLink>, name: 'Регистрация'},
-];
 
 const actionsLoginUser = [
     {icon: <ChangeUser/>, name: 'Сменить аватар'},
     {icon: <Logout/>, name: 'Разлогиниться'},
-];
+]
 
 const UserAvatar: React.FC<OwnPropsType> = ({auth,}) => {
-    const classes = useStyles();
-    const [open, setOpen] = React.useState(false);
+    const classes = useStyles()
+    const [open, setOpen] = React.useState(false)
 
     const handleClose = () => {
-        setOpen(false);
-    };
+        setOpen(false)
+    }
 
     const handleOpen = () => {
-        setOpen(true);
-    };
+        setOpen(true)
+    }
+
+    const [loginModal, setLoginModal] = React.useState(false)
+
+    const openLoginModal = () => {
+        setLoginModal(true)
+    }
+
+    const closeLoginModal = () =>{
+        setLoginModal(false)
+    }
+
+    const [signUpModal, setSignUpModal] = React.useState(false)
+
+    const openSignUpModal = () => {
+        setSignUpModal(true)
+    }
+
+    const closeSignUpModal = () =>{
+        setSignUpModal(false)
+    }
+
+    if (window.location.href == 'http://127.0.0.1:3000/login') {
+        //setLoginModal(true)
+        console.log('yyyyyyyyyyyyyyyyyyyyy')
+    }
+
+
+    const actionsDefaulUser = [
+        {icon: <IconButton onClick={openLoginModal}><PersonRoundedIcon/></IconButton>, name: 'Логин'},
+        {icon: <IconButton onClick={openSignUpModal}><ExitToAppIcon/></IconButton>, name: 'Регистрация'},
+    ]
 
     const actions = auth.isAuth ? actionsLoginUser : actionsDefaulUser
     let avatarWrapper = c.avatarPassive + ' ' + (open ? c.avatarActive : '')
@@ -86,6 +115,8 @@ const UserAvatar: React.FC<OwnPropsType> = ({auth,}) => {
                     />
                 ))}
             </SpeedDial>
+            <LoginContainer loginModal={loginModal}  closeLoginModal={closeLoginModal} />
+            <SighUpContainer signUpModal={signUpModal}  closeSignUpModal={closeSignUpModal} />
         </div>
     );
 }

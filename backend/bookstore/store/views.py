@@ -17,7 +17,7 @@ from rest_framework.pagination import PageNumberPagination
 
 class BookViewSet(ReadOnlyModelViewSet):
     permission_classes = [AllowAny]
-    queryset = Book.objects.all().annotate(rated_books=Avg('userbookrelation__rate'))
+    queryset = Book.objects.all().order_by('id').annotate(rated_books=Avg('userbookrelation__rate'))
     filter_backends = [DjangoFilterBackend, SearchFilter]
     filter_fields = ['name', 'genre__name']
     search_fields = ['name']
@@ -40,7 +40,7 @@ class ChaptersViewSet(generics.ListAPIView):
     lookup_field = 'book'
 
     def get_queryset(self):
-        return Chapters.objects.filter(book__id=self.kwargs['book'])
+        return Chapters.objects.order_by('id').filter(book__id=self.kwargs['book'])
     
 
 

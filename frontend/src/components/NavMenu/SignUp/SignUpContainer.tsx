@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {signUpThunk,} from "../../redux/authReducer";
-import {SignUpFormDataType,} from "../../api/api";
-import {AppStateType} from "../../redux/store";
+import {signUpThunk,} from "../../../redux/authReducer";
+import {SignUpFormDataType,} from "../../../api/api";
+import {AppStateType} from "../../../redux/store";
 import SignUp from "./SignUp"
 import {Redirect} from "react-router-dom/";
 import {FORM_ERROR} from 'final-form'
@@ -15,11 +15,14 @@ type MapDispatchPropsType = {
     signUpThunk: (data: SignUpFormDataType) => void
 }
 
-type MapOwnPropsType = {}
+type MapOwnPropsType = {
+    signUpModal: boolean
+    closeSignUpModal: () => void
+}
 
 type PropsType = MapsStatePorpsType & MapDispatchPropsType & MapOwnPropsType
 
-const SignUpContainer: React.FC<PropsType> = ({signUpThunk, isAuth}) => {
+const SignUpContainer: React.FC<PropsType> = ({signUpThunk, isAuth, signUpModal, closeSignUpModal}) => {
 
     const onSubmit = async (data: SignUpFormDataType) => {
         try {
@@ -44,11 +47,11 @@ const SignUpContainer: React.FC<PropsType> = ({signUpThunk, isAuth}) => {
     }
 
     if (isAuth) {
-        return <Redirect to={'/'}/>
+        closeSignUpModal()
     }
 
     return (
-        <SignUp onSubmit={onSubmit}/>
+        <SignUp onSubmit={onSubmit} signUpModal={signUpModal} closeSignUpModal={closeSignUpModal}/>
     )
 }
 

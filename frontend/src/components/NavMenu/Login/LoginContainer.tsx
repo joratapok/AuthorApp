@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {loginThunk,} from "../../redux/authReducer";
-import {AppStateType} from "../../redux/store";
+import {loginThunk,} from "../../../redux/authReducer";
+import {AppStateType} from "../../../redux/store";
 import Login from "./Login"
 import {Redirect} from "react-router-dom/";
 import { FORM_ERROR } from 'final-form'
@@ -19,11 +19,14 @@ type MapDispatchPropsType = {
     loginThunk: (data: LoginFormDataType) => void
 }
 
-type MapOwnPropsType = {}
+type MapOwnPropsType = {
+    loginModal: boolean
+    closeLoginModal: () => void
+}
 
 type PropsType = MapsStatePorpsType & MapDispatchPropsType & MapOwnPropsType
 
-const LoginContainer: React.FC<PropsType> = ({loginThunk, isAuth}) => {
+const LoginContainer: React.FC<PropsType> = ({loginThunk, isAuth, loginModal, closeLoginModal}) => {
 
     const onSubmit = async (data: LoginFormDataType) => {
         try {
@@ -38,11 +41,11 @@ const LoginContainer: React.FC<PropsType> = ({loginThunk, isAuth}) => {
     }
 
     if (isAuth) {
-        return <Redirect to={'/'}/>
+        closeLoginModal()
     }
 
     return (
-        <Login onSubmit={onSubmit}/>
+        <Login onSubmit={onSubmit} loginModal={loginModal} closeLoginModal={closeLoginModal}/>
     )
 }
 

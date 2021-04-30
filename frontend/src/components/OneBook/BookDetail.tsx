@@ -81,7 +81,7 @@ export const BookDetail: React.FC<BookDetailType> = ({
                                                      }) => {
     const cl = useStyles();
     const [modal, setModal] = useState(false)
-    let buttonModalOffClass = classes.buttonModalOff + ' ' + (modal ? classes.activeButtonModalOff : '')
+    
 
     const onStarClick = (newValue: number | null) => {
         setCurrentRatingThunk(book.id, newValue, auth.accessToken)

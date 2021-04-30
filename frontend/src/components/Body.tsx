@@ -2,12 +2,10 @@ import React from 'react'
 import classes from './body.module.css'
 import BgBody from './bgBody/BgBody'
 import BooksContainer from "./Books/BooksContainer"
-import LoginContainer from "./login/LoginContainer"
-import {Route,} from "react-router-dom";
+import {Route,} from "react-router-dom"
 import NavMenuContainer from "./NavMenu/NavMenuContainer"
 import OneBookContainer from "./OneBook/OneBookContainer"
-import SignUpContainer from "./SignUp/SignUpContainer"
-import {CssBaseline} from "@material-ui/core";
+import {CssBaseline} from "@material-ui/core"
 
 
 const Body: React.FC = () => {
@@ -16,15 +14,14 @@ const Body: React.FC = () => {
             <CssBaseline/>
             <BgBody/>
             <div className={classes.content}>
-                <NavMenuContainer/>
-
-                <Route path='/login' render={() => <LoginContainer/>}/>
-                <Route path='/signUp' render={() => <SignUpContainer/>}/>
-
+                 <NavMenuContainer/>
 
                 <Route path='/book/:bookId' render={() => <OneBookContainer/>}/>
                 <Route exact path='/' render={() => <BooksContainer/>}/>
 
+            </div>
+            <div className={classes.footer}>
+                footer
             </div>
         </div>
     );
