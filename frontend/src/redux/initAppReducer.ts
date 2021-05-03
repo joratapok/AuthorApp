@@ -49,9 +49,9 @@ export const actions = {
 export const initAppThunk = (): ThunkType => {
     return async (dispatch) => {
         try {
-            const refreshToken = localStorage.getItem('refresh')
-            if (refreshToken) {
-                await dispatch(authMeThunk(refreshToken))
+            const accessToken = localStorage.getItem('access')
+            if (accessToken) {
+                await dispatch(authMeThunk(accessToken))
             }
         } catch (e) {
             console.log(e)

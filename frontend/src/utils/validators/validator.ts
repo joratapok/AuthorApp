@@ -18,7 +18,7 @@ export const loginRequired: FieldValidatorType = (value) => {
     return undefined
 }
 
-export const moreThan30: FieldValidatorType = (value) => {
-  if (value.length > 30) return `max length 30 symbols`
+export const moreThan2000: FieldValidatorType = (value) => {
+  if (value && value.length > 2000) return `один комментарий ограничен 2000 симоволов ༼ つ ◕_◕ ༽つ`
   return undefined
 }

@@ -3,18 +3,23 @@ import NavMenu from "./NavMenu";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import {AppStateType} from "../../redux/store";
-import {AuthinitialType, } from "../../redux/authReducer";
+import {actionsAuthReducer, AuthinitialType,} from "../../redux/authReducer";
 
 export type MapStatePropsType = {
     auth: AuthinitialType
 }
-export type MapDispatchPropsType = {}
+export type MapDispatchPropsType = {
+    setIsShowLogin: (toggle: boolean) => void
+    setIsShowSignUp: (toggle: boolean) => void
+}
 
 const NavMenuContainer: React.FC<MapStatePropsType & MapDispatchPropsType> =
-    ({auth,}) => {
+    ({auth, setIsShowLogin, setIsShowSignUp}) => {
 
         return (
-            <NavMenu auth={auth}/>
+            <NavMenu auth={auth}
+                     setIsShowLogin={setIsShowLogin}
+                     setIsShowSignUp={setIsShowSignUp}/>
         )
     }
 
@@ -24,6 +29,7 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => ({
 
 const Nav = compose<React.ComponentType>(
     connect<MapStatePropsType, MapDispatchPropsType, null, AppStateType>
-    (mapStateToProps, {}))(NavMenuContainer)
+    (mapStateToProps, {setIsShowLogin: actionsAuthReducer.setIsShowLogin,
+        setIsShowSignUp: actionsAuthReducer.setIsShowSignUp}))(NavMenuContainer)
 
 export default Nav

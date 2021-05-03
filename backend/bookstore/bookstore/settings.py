@@ -27,23 +27,33 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 
+    'corsheaders',
     'store',
     'rest_framework',
     'rest_framework.authtoken',
+
+    'rest_auth',
+    'rest_auth.registration',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+
     'djoser',
     'social_django',
     'rest_framework_simplejwt',
-    'rest_framework_simplejwt.token_blacklist',
+    #'rest_framework_simplejwt.token_blacklist',
     
     'django_filters',
-    'corsheaders',
-    
+
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
-    'social_django.middleware.SocialAuthExceptionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -52,6 +62,11 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
+]
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 ROOT_URLCONF = 'bookstore.urls'
@@ -79,8 +94,14 @@ WSGI_APPLICATION = 'bookstore.wsgi.application'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
+
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework.authentication.BasicAuthentication',
+
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-        'rest_framework.authentication.TokenAuthentication',
+        'django.contrib.auth.backends.ModelBackend',
+        # 'allauth.account.auth_backends.AuthenticationBackend',
     ),
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny'
@@ -97,8 +118,9 @@ REST_FRAMEWORK = {
     #    'rest_framework_json_api.renderers.JSONRenderer',
     #    'rest_framework_json_api.renderers.BrowsableAPIRenderer',
     # ),
-
 }
+
+REST_USE_JWT = True
 
 DATABASES = {
     'default': {
@@ -123,29 +145,66 @@ DJOSER = {
     'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
     'USERNAME_RESET_CONFIRM_URL': '#/username/reset/confirm/{uid}/{token}',
      "ACTIVATION_URL": "activate/{uid}/{token}",
-    'SEND_ACTIVATION_EMAIL': True,
+    'SEND_ACTIVATION_EMAIL': False,
     'SERIALIZERS': {},
     "USER_CREATE_PASSWORD_RETYPE": True,
-    'SOCIAL_AUTH_TOKEN_STRATEGY': 'djoser.social.token.jwt.TokenStrategy',
-    'SOCIAL_AUTH_ALLOWED_REDIRECT_URIS': ['http://127.0.0.1:3000'],
-    #'SERIALIZERS': {
-    #'current_user': 'accounts.serializers.UserCreateSerializer'
-    #}
+}
+
+# JWT_AUTH = {
+#     'JWT_EXPIRATION_DELTA': datetime.timedelta(days=2),
+#     'JWT_ALLOW_REFRESH': True,
+#     'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),
+# }
+#
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(days=1),
+    'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=14),
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': False,
+    'ALGORITHM': 'HS256',
+    'SIGNING_KEY': SECRET_KEY,
+    'VERIFYING_KEY': None,
+    'AUTH_HEADER_TYPES': ('JWT',),
+    'USER_ID_FIELD': 'id',
+    'USER_ID_CLAIM': 'user_id',
+    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
+    'TOKEN_TYPE_CLAIM': 'token_type',
 }
 
 JWT_AUTH = {
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=2),
+    'JWT_ENCODE_HANDLER':
+    'rest_framework_jwt.utils.jwt_encode_handler',
+
+    'JWT_DECODE_HANDLER':
+    'rest_framework_jwt.utils.jwt_decode_handler',
+
+    'JWT_PAYLOAD_HANDLER':
+    'rest_framework_jwt.utils.jwt_payload_handler',
+
+    'JWT_PAYLOAD_GET_USER_ID_HANDLER':
+    'rest_framework_jwt.utils.jwt_get_user_id_from_payload_handler',
+
+    'JWT_RESPONSE_PAYLOAD_HANDLER':
+    'rest_framework_jwt.utils.jwt_response_payload_handler',
+
+    'JWT_SECRET_KEY': SECRET_KEY,
+    'JWT_GET_USER_SECRET_KEY': None,
+    'JWT_PUBLIC_KEY': None,
+    'JWT_PRIVATE_KEY': None,
+    'JWT_ALGORITHM': 'HS256',
+    'JWT_VERIFY': True,
+    'JWT_VERIFY_EXPIRATION': True,
+    'JWT_LEEWAY': 0,
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),
+    'JWT_AUDIENCE': None,
+    'JWT_ISSUER': None,
+
     'JWT_ALLOW_REFRESH': True,
     'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),
-}
 
-SIMPLE_JWT = {
-    'AUTH_HEADER_TYPES': ('JWT',),
-    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(days=1),
-    'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=14),
-    'AUTH_TOKEN_CLASSES': (
-        'rest_framework_simplejwt.tokens.AccessToken',
-    )
+    'JWT_AUTH_HEADER_PREFIX': 'JWT',
+    'JWT_AUTH_COOKIE': None,
+
 }
 
 
@@ -184,18 +243,9 @@ CORS_ORIGIN_WHITELIST = [
     'http://127.0.0.1:3000'
 ]
 
-AUTHENTICATION_BACKENDS = (
-    'social_core.backends.google.GoogleOAuth2',
-    'social_core.backends.vk.VKOAuth2', 
-    'django.contrib.auth.backends.ModelBackend',
-)
-
-SOCIAL_AUTH_PROCESS_EXCEPTIONS = 'social_auth.utils.process_exceptions'
-SOCIAL_AUTH_RAISE_EXCEPTIONS = True
-
+DEBUG = True
 
 LOGIN_REDIRECT_URL = 'http://127.0.0.1:3000'
-
 
 try:
     from .local_settings import *

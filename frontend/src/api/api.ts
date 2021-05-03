@@ -15,8 +15,7 @@ export type GetAvatarDataType = {
     master: number
 }
 export type JWTResponseType = {
-    refresh: string
-    access: string
+    token: string
 }
 
 export type LoginFormDataType = {
@@ -28,6 +27,14 @@ export type SignUpFormDataType = {
     email: string
     password: string
     re_password: string
+}
+export type GoogleTokenResponseType = {
+    token: string
+    user: {
+        pk: number
+        username: string
+        email: string
+    }
 }
 export type CommentsDataType = {
     count: number
@@ -91,15 +98,20 @@ export const rateApi = {
 }
 
 export const authApi = {
-    postCreateJWT(data: LoginFormDataType) {
-        return instance.post<JWTResponseType>('api/token/', {
+    postCreateJWT(data: LoginFormDataType | SignUpFormDataType) {
+        return instance.post<JWTResponseType>('api-token-auth/', {
             username: data.username,
             password: data.password,
         }).then(res => res.data)
     },
     postRefreshJWT(data: string) {
-        return instance.post<JWTResponseType>('api/token/refresh/', {
-            refresh: data,
+        return instance.post<JWTResponseType>('api-token-refresh/', {
+            token: data,
+        }).then(res => res.data)
+    },
+    postGoogleToken(access_token: string) {
+        return instance.post<GoogleTokenResponseType>('api-google/', {
+            access_token: access_token,
         }).then(res => res.data)
     },
     getAuthMe(JWTToken: string) {

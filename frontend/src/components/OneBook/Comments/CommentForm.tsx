@@ -1,6 +1,6 @@
 import React from "react"
 import {Field, Form} from "react-final-form"
-import {required} from "../../../utils/validators/validator"
+import {moreThan2000, required} from "../../../utils/validators/validator"
 import {Box, TextField} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Icon from "@material-ui/core/Icon";
@@ -14,6 +14,9 @@ type PropsType = {
 export type addCommentDataType = {
     text: string
 }
+type ErrorsType = {
+    text: null | string
+}
 
 const useStyles = makeStyles((theme) => ({
     textInput: {
@@ -25,9 +28,19 @@ const useStyles = makeStyles((theme) => ({
 const CommentForm: React.FC<PropsType> = ({isAuth, addComment}) => {
     const cl = useStyles();
 
+    const validate = (values: ErrorsType) => {
+        const errors: ErrorsType = {text: null};
+        if (!values.text) {
+            errors.text = 'NADA';
+        }
+
+        return errors;
+    };
+
     return (
         <Form
             onSubmit={addComment}
+            validate={validate}
             render={({handleSubmit, submitError, form,
                          submitting, pristine, values}) => (
                 <form onSubmit={async (event) => {
@@ -41,13 +54,14 @@ const CommentForm: React.FC<PropsType> = ({isAuth, addComment}) => {
                     <Field name={'text'}
                            component="input"
                            validate={required}>
-                        {({input, meta}) => (
-                            <TextField
-                                {...input}
-                                id="outlined-multiline-static"
+                        {({input, meta: {touched, error}}) => (
+                            <TextField {...input}
+                                type="text"
                                 label={isAuth ? "Комментарий" : "Что бы оставить комментарий необходимо авторизоваться"}
+                                disabled={!isAuth}
                                 multiline
                                 rows={4}
+                                required={true}
                                 variant="outlined"
                                 className={cl.textInput}
                             />

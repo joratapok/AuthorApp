@@ -16,26 +16,30 @@ token: al0hy2-88f2e2077fd2d56dc9272f2a1f991bca
 
 
 post  -- выписываем токен
-http://127.0.0.1:8000/api/token/
+-----(http://127.0.0.1:8000/api/token/)
+http://127.0.0.1:8000/api-token-auth/
 
 username: jora
 password: 123
 
-получаем JWT токены сохраняем в Localstorage
+response
+{ token: ...}
 
 
-post  -- обновляем токен
-http://127.0.0.1:8000/api/token/refresh/
+post  --обновляем
+http://127.0.0.1:8000/api-token-refresh/
+token: ...
 
-refresh: ...refresh token
-
-получаем JWT токены сохраняем в Localstorage
-
+response
+{ token: ...}
 
 
-разбираюсь с OAUTH2  
-127.0.0.1:8000/auth/o/google-oauth2/?redirect_uri=http://localhost:8000
-window.location.replace(respose.data.authorization_url)
+post --отдаем гугловский токен получаем свой
+http://127.0.0.1:8000/google/ (token)
+
+
+get  -- 
+127.0.0.1:8000/auth/users/me/
 
 
 

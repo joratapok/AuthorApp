@@ -36,8 +36,6 @@ class BookSerializer(serializers.ModelSerializer):
             return 0
 
 
-
-
 class ChaptersSerializer(serializers.ModelSerializer):
     
     class Meta:
@@ -70,7 +68,7 @@ class CommentsSerializer(serializers.ModelSerializer):
         request = self.context.get("request")
         host = request.META["HTTP_HOST"]
         list_avatar = Profile.objects.filter(master=instance.owner.id).values_list('photo', flat=True)
-        if len(list_avatar) > 0:
+        if len(list_avatar) > 0 and list_avatar[0] != '':
                 return request.scheme + "://" + host + '%s%s' % (settings.MEDIA_URL, list_avatar[0])
         return ''
         

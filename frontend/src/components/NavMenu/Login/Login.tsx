@@ -1,5 +1,4 @@
-import React, {useEffect} from 'react'
-import {required, loginRequired} from "../../../utils/validators/validator";
+import React from 'react'
 import classes from "./Login.module.css"
 import {Form, Field} from 'react-final-form'
 import {
@@ -10,6 +9,8 @@ import {
     Button, Modal
 } from '@material-ui/core';
 import {makeStyles, Theme, createStyles} from '@material-ui/core/styles'
+import GoogleLogin from 'react-google-login';
+import {AuthinitialType} from "../../../redux/authReducer";
 
 export type LoginFormDataType = {
     username: string
@@ -73,8 +74,9 @@ const LoginForm: React.FC<LoginFormType> = ({onSubmit,}) => (
 
 type LoginType = {
     onSubmit: (data: LoginFormDataType) => any
-    loginModal: boolean
-    closeLoginModal: () => void
+    auth: AuthinitialType
+    loginWithGoogleThunk: (google_token: string) => void
+    setIsShowLogin: (toggle: boolean) => void
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -88,23 +90,31 @@ const useStyles = makeStyles((theme: Theme) =>
 )
 
 
-const Login: React.FC<LoginType> = ({onSubmit, loginModal, closeLoginModal}) => {
+const Login: React.FC<LoginType> = ({onSubmit,
+                                        auth,
+                                        loginWithGoogleThunk,
+                                        setIsShowLogin}) => {
 
     const cl = useStyles();
 
-    const [modal, setModal] = React.useState(false)
+    const accessResponseGoogle = (response: any) => {
+        loginWithGoogleThunk(response.accessToken)
+    }
 
-    useEffect(() => {
-        setModal(loginModal)
-    }, [loginModal])
+    const denyResponseGoogle = (response: any) => {
+        console.error(response)
+    }
 
+    const closeLoginModal = () => {
+        setIsShowLogin(false)
+    }
 
     return (
       <Modal
           aria-labelledby="transition-modal-title"
           aria-describedby="transition-modal-description"
           className={cl.modal}
-          open={modal}
+          open={auth.isShowLogin}
           onClose={closeLoginModal}
           closeAfterTransition
           BackdropComponent={Backdrop}
@@ -112,11 +122,19 @@ const Login: React.FC<LoginType> = ({onSubmit, loginModal, closeLoginModal}) => 
               timeout: 500,
           }}
       >
-          <Fade in={modal}>
+          <Fade in={auth.isShowLogin}>
               <>
                   <div className={classes.loginWrap}>
                       <div className={classes.title}>Авторизация</div>
                       <LoginForm onSubmit={onSubmit}/>
+                      <GoogleLogin
+                          clientId="836913855059-m5bsk43ik1l7o7l8g4kkhd4pjj66d2rb.apps.googleusercontent.com"
+                          buttonText="Войти с помощью Google аккаунта"
+                          onSuccess={accessResponseGoogle}
+                          onFailure={denyResponseGoogle}
+                          cookiePolicy={'single_host_origin'}
+                          className={classes.googleButton}
+                      />
                   </div>
               </>
           </Fade>

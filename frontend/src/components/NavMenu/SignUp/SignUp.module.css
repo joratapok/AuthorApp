@@ -1,21 +1,26 @@
 .signWrap {
-	display: flex;
-	width: 100%;
-	max-width: 600px;
-	min-width: 300px;
-	flex-direction: column;
-	margin: 10px 15px;
-	background-color: white;
-	padding: 15px 15px 20px 15px;
-	border-radius: 10px;
+    display: flex;
+    width: 100%;
+    max-width: 600px;
+    min-width: 300px;
+    flex-direction: column;
+    margin: 10px 15px;
+    background-color: white;
+    padding: 15px 15px 20px 15px;
+    border-radius: 10px;
 }
 
 .title {
-	font-size: 34px;
-	text-align: center;
+    font-size: 34px;
+    text-align: center;
 }
 
 .newPostWrap form {
-	display: flex;
-	width: 100%
+    display: flex;
+    width: 100%
+}
+
+.googleButton {
+    margin: 16px 0;
+    width: 100%;
 }

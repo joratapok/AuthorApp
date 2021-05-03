@@ -10,11 +10,14 @@ import {
     Typography, Fade, Backdrop,
     Grid, Modal, Button,
 } from '@material-ui/core';
+import {AuthinitialType} from "../../../redux/authReducer";
+import GoogleLogin from "react-google-login";
 
 type PropsType = {
     onSubmit: (data: SignUpFormDataType) => void
-    signUpModal: boolean
-    closeSignUpModal: () => void
+    auth: AuthinitialType
+    setIsShowSignUp: (toggle: boolean) => void
+    loginWithGoogleThunk: (google_token: string) => void
 }
 
 const formFields: Array<any> = [
@@ -82,39 +85,28 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 )
 
-const SignUp: React.FC<PropsType> = ({onSubmit, signUpModal, closeSignUpModal}) => {
+const SignUp: React.FC<PropsType> = ({onSubmit, auth, setIsShowSignUp, loginWithGoogleThunk}) => {
 
     const cl = useStyles();
 
-    const [modal, setModal] = React.useState(false)
+    const closeSignUpModal = () => {
+        setIsShowSignUp(false)
+    }
 
-    useEffect(() => {
-        setModal(signUpModal)
-    }, [signUpModal])
+    const accessResponseGoogle = (response: any) => {
+        loginWithGoogleThunk(response.accessToken)
+    }
 
-    const validate = (values: SignUpFormDataType) => {
-        const errors: any = {};
-        if (!values.username) {
-            errors.username = 'Обязательное поле';
-        }
-        if (!values.email) {
-            errors.email = 'Обязательное поле';
-        }
-        if (!values.password) {
-            errors.password = 'Обязательное поле';
-        }
-        if (!values.re_password) {
-            errors.re_password = 'Обязательное поле';
-        }
-        return errors;
-    };
+    const denyResponseGoogle = (response: any) => {
+        console.error(response)
+    }
 
     return (
         <Modal
             aria-labelledby="transition-modal-title"
             aria-describedby="transition-modal-description"
             className={cl.modal}
-            open={modal}
+            open={auth.isShowSignUp}
             onClose={closeSignUpModal}
             closeAfterTransition
             BackdropComponent={Backdrop}
@@ -122,7 +114,7 @@ const SignUp: React.FC<PropsType> = ({onSubmit, signUpModal, closeSignUpModal}) 
                 timeout: 500,
             }}
         >
-            <Fade in={modal}>
+            <Fade in={auth.isShowSignUp}>
                 <>
                     <div className={classes.signWrap}>
                         <Form
@@ -143,7 +135,7 @@ const SignUp: React.FC<PropsType> = ({onSubmit, signUpModal, closeSignUpModal}) 
 
                                         {submitError && <div className="error">{submitError}</div>}
 
-                                        <Grid item style={{marginTop: 16}}>
+                                        <Grid item xs={12} style={{marginTop: 16}}>
                                             <Button
                                                 variant="contained"
                                                 color="primary"
@@ -152,6 +144,17 @@ const SignUp: React.FC<PropsType> = ({onSubmit, signUpModal, closeSignUpModal}) 
                                             >
                                                 Отправить
                                             </Button>
+                                        </Grid>
+
+                                        <Grid item xs={12}>
+                                        <GoogleLogin
+                                            clientId="836913855059-m5bsk43ik1l7o7l8g4kkhd4pjj66d2rb.apps.googleusercontent.com"
+                                            buttonText="Войти с помощью Google аккаунта"
+                                            onSuccess={accessResponseGoogle}
+                                            onFailure={denyResponseGoogle}
+                                            cookiePolicy={'single_host_origin'}
+                                            className={classes.googleButton}
+                                        />
                                         </Grid>
                                     </Grid>
                                 </form>

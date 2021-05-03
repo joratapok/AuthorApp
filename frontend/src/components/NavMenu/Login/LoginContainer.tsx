@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {loginThunk,} from "../../../redux/authReducer";
+import {actionsAuthReducer, AuthinitialType, loginThunk, loginWithGoogleThunk, } from "../../../redux/authReducer";
 import {AppStateType} from "../../../redux/store";
 import Login from "./Login"
 import {Redirect} from "react-router-dom/";
@@ -12,21 +12,22 @@ export type LoginFormDataType = {
 }
 
 type MapsStatePorpsType = {
-    isAuth: boolean
+    auth: AuthinitialType
 }
 
 type MapDispatchPropsType = {
     loginThunk: (data: LoginFormDataType) => void
+    loginWithGoogleThunk: (google_token: string) => void
+    setIsShowLogin: (toggle: boolean) => void
 }
 
 type MapOwnPropsType = {
-    loginModal: boolean
-    closeLoginModal: () => void
 }
 
 type PropsType = MapsStatePorpsType & MapDispatchPropsType & MapOwnPropsType
 
-const LoginContainer: React.FC<PropsType> = ({loginThunk, isAuth, loginModal, closeLoginModal}) => {
+const LoginContainer: React.FC<PropsType> = ({auth, loginThunk,
+                                                 loginWithGoogleThunk, setIsShowLogin}) => {
 
     const onSubmit = async (data: LoginFormDataType) => {
         try {
@@ -40,18 +41,21 @@ const LoginContainer: React.FC<PropsType> = ({loginThunk, isAuth, loginModal, cl
         }
     }
 
-    if (isAuth) {
-        closeLoginModal()
+    if (auth.isAuth && auth.isShowLogin) {
+        setIsShowLogin(false)
     }
 
     return (
-        <Login onSubmit={onSubmit} loginModal={loginModal} closeLoginModal={closeLoginModal}/>
+        <Login onSubmit={onSubmit}
+               auth={auth}
+               loginWithGoogleThunk={loginWithGoogleThunk}
+               setIsShowLogin={setIsShowLogin}/>
     )
 }
 
 const mapStateToProps = (state: AppStateType): MapsStatePorpsType => ({
-    isAuth: state.auth.isAuth,
+    auth: state.auth,
 })
 
 export default connect<MapsStatePorpsType, MapDispatchPropsType, MapOwnPropsType, AppStateType>
-(mapStateToProps, {loginThunk})(LoginContainer)
+(mapStateToProps, {loginThunk, loginWithGoogleThunk, setIsShowLogin: actionsAuthReducer.setIsShowLogin})(LoginContainer)

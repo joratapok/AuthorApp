@@ -9,13 +9,15 @@ import c from "./UserBlock.module.css";
 import {AuthinitialType} from "../../../redux/authReducer";
 import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import classes from "../../Books/Book/Book.module.css";
-import {NavLink} from "react-router-dom";
 import LoginContainer from "../Login/LoginContainer"
 import SighUpContainer from "../SignUp/SignUpContainer"
+import defaultAvatarCat from "../../../assets/image/defaultAvatarCat.png";
+import {Redirect} from "react-router-dom/";
 
 type OwnPropsType = {
     auth: AuthinitialType
+    setIsShowLogin: (toggle: boolean) => void
+    setIsShowSignUp: (toggle: boolean) => void
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -41,9 +43,10 @@ const actionsLoginUser = [
     {icon: <Logout/>, name: 'Разлогиниться'},
 ]
 
-const UserAvatar: React.FC<OwnPropsType> = ({auth,}) => {
+const UserAvatar: React.FC<OwnPropsType> = ({auth, setIsShowLogin, setIsShowSignUp}) => {
     const classes = useStyles()
     const [open, setOpen] = React.useState(false)
+    const avatar = auth.avatar ? auth.avatar : defaultAvatarCat
 
     const handleClose = () => {
         setOpen(false)
@@ -53,29 +56,18 @@ const UserAvatar: React.FC<OwnPropsType> = ({auth,}) => {
         setOpen(true)
     }
 
-    const [loginModal, setLoginModal] = React.useState(false)
-
     const openLoginModal = () => {
-        setLoginModal(true)
+        setIsShowLogin(true)
     }
 
-    const closeLoginModal = () =>{
-        setLoginModal(false)
+     const openSignUpModal = () => {
+        setIsShowSignUp(true)
     }
 
-    const [signUpModal, setSignUpModal] = React.useState(false)
+    if (window.location.href == 'http://localhost:3000/login') {
+        openLoginModal()
+        return <Redirect to={'/'}/>
 
-    const openSignUpModal = () => {
-        setSignUpModal(true)
-    }
-
-    const closeSignUpModal = () =>{
-        setSignUpModal(false)
-    }
-
-    if (window.location.href == 'http://127.0.0.1:3000/login') {
-        //setLoginModal(true)
-        console.log('yyyyyyyyyyyyyyyyyyyyy')
     }
 
 
@@ -99,7 +91,7 @@ const UserAvatar: React.FC<OwnPropsType> = ({auth,}) => {
                 ariaLabel="AvatarButton"
                 className={classes.speedDial}
                 hidden={false}
-                icon={auth.isAuth ? <AvatarWrapper alt="avatar" src={auth.avatar} className={classes.large}/> : <PersonRoundedIcon/>}
+                icon={auth.isAuth ? <AvatarWrapper alt="avatar" src={avatar} className={classes.large}/> : <PersonRoundedIcon/>}
                 onClose={handleClose}
                 onOpen={handleOpen}
                 open={open}
@@ -115,8 +107,8 @@ const UserAvatar: React.FC<OwnPropsType> = ({auth,}) => {
                     />
                 ))}
             </SpeedDial>
-            <LoginContainer loginModal={loginModal}  closeLoginModal={closeLoginModal} />
-            <SighUpContainer signUpModal={signUpModal}  closeSignUpModal={closeSignUpModal} />
+            <LoginContainer/>
+            <SighUpContainer/>
         </div>
     );
 }

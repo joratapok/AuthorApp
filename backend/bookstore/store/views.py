@@ -12,6 +12,8 @@ from store.serializers import BookSerializer, UserBookRelationSerializer, Commen
 from store.models import Book, UserBookRelation, Comments, Profile, Chapters
 from django.db.models import Avg
 from rest_framework.pagination import PageNumberPagination
+from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
+from rest_auth.registration.views import SocialLoginView
 
 
 
@@ -97,3 +99,7 @@ class ProfileDetailView(generics.RetrieveUpdateDestroyAPIView):
     def get_object(self):
         obj, _ = Profile.objects.get_or_create(master_id=self.kwargs['master'])
         return obj
+
+
+class GoogleLogin(SocialLoginView):
+    adapter_class = GoogleOAuth2Adapter

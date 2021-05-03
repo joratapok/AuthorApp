@@ -19,3 +19,8 @@
 	display: flex;
 	width: 100%
 }
+
+.googleButton {
+	margin: 24px 0 8px 0;
+
+}

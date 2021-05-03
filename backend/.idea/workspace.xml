@@ -20,9 +20,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a2a56fec-9f1f-4185-b64d-e82deaa6fc17" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/bookstore/authentication/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bookstore/authentication/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bookstore/authentication/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bookstore/authentication/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bookstore/authentication/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bookstore/authentication/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bookstore/authentication/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bookstore/media/profile/defaultAvatar_dJCJHIi.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bookstore/media/profile/myAva.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JWT TOken.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../JWT TOken.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bookstore/bookstore/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookstore/bookstore/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/OneBook/ReaderBox/ReaderBox.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/OneBook/ReaderBox/ReaderBox.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookstore/bookstore/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookstore/bookstore/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookstore/sqlite3.db" beforeDir="false" afterPath="$PROJECT_DIR$/bookstore/sqlite3.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookstore/store/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookstore/store/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookstore/store/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookstore/store/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/api/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/api/api.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/NavMenu/Login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/NavMenu/Login/Login.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/NavMenu/Login/LoginContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/NavMenu/Login/LoginContainer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/NavMenu/NavMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/NavMenu/NavMenu.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/NavMenu/NavMenuContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/NavMenu/NavMenuContainer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/NavMenu/SignUp/SignUp.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/NavMenu/SignUp/SignUp.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/NavMenu/SignUp/SignUpContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/NavMenu/SignUp/SignUpContainer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/NavMenu/UserBlock/UserBlock.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/NavMenu/UserBlock/UserBlock.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/redux/authReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/redux/authReducer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/redux/initAppReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/redux/initAppReducer.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,7 +188,11 @@
       <workItem from="1619444961625" duration="4329000" />
       <workItem from="1619525102066" duration="777000" />
       <workItem from="1619618734993" duration="639000" />
-      <workItem from="1619703394519" duration="2734000" />
+      <workItem from="1619703394519" duration="3399000" />
+      <workItem from="1619797122431" duration="10259000" />
+      <workItem from="1619883535712" duration="8810000" />
+      <workItem from="1619923613174" duration="17883000" />
+      <workItem from="1620032083133" duration="1563000" />
     </task>
     <servers />
   </component>
@@ -186,10 +215,10 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2142" y="483" key="FileChooserDialogImpl" timestamp="1618319047768">
+    <state x="2142" y="483" key="FileChooserDialogImpl" timestamp="1619924649311">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
-    <state x="2142" y="483" key="FileChooserDialogImpl/0.0.3440.1400@0.0.3440.1400" timestamp="1618319047768" />
+    <state x="2142" y="483" key="FileChooserDialogImpl/0.0.3440.1400@0.0.3440.1400" timestamp="1619924649311" />
     <state width="1508" height="580" key="GridCell.Tab.0.bottom" timestamp="1618075726816">
       <screen x="0" y="0" width="3440" height="1400" />
     </state>
