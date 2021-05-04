@@ -31,11 +31,12 @@
 .readButton {
     z-index: 2001;
     position: absolute;
-    transform: translate(0, -50px);
+    transform: translate(0, -50px) rotate(360deg) scale(0.3);
     transition: 0.6s;
 }
 
 .hoverButton {
     z-index: 2001;
-    transform: translate(0, 0);
+    transform: translate(0, 50px) rotate(0deg) scale(1);
+
 }

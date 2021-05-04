@@ -27,6 +27,7 @@ export type SignUpFormDataType = {
     email: string
     password: string
     re_password: string
+    recaptcha: string | null
 }
 export type GoogleTokenResponseType = {
     token: string
@@ -132,6 +133,16 @@ export const authApi = {
         }).then(res => res.data)
     },
     postRegistrNewUser(data: SignUpFormDataType) {
+        return instance.post<RegisterResponseType>('register/', {
+            username: data.username,
+            email: data.email,
+            password: data.password,
+            password2: data.re_password,
+            recaptcha: data.recaptcha
+        }).then(res => res.data)
+    },
+
+    postRegistrNewUserDEPRECATED(data: SignUpFormDataType) {
         return instance.post<RegisterResponseType>('auth/users/', {
             username: data.username,
             email: data.email,
@@ -139,8 +150,8 @@ export const authApi = {
             re_password: data.re_password,
         }).then(res => res.data)
     },
-
 }
+
 
 export const commentApi = {
     getComments(id: number) {

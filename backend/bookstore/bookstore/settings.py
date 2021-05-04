@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'store',
     'rest_framework',
     'rest_framework.authtoken',
+    "drf_recaptcha",
 
     'rest_auth',
     'rest_auth.registration',

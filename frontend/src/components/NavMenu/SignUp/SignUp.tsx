@@ -12,12 +12,14 @@ import {
 } from '@material-ui/core';
 import {AuthinitialType} from "../../../redux/authReducer";
 import GoogleLogin from "react-google-login";
+import ReCAPTCHA from "react-google-recaptcha";
 
 type PropsType = {
     onSubmit: (data: SignUpFormDataType) => void
     auth: AuthinitialType
     setIsShowSignUp: (toggle: boolean) => void
     loginWithGoogleThunk: (google_token: string) => void
+    handlerRecaptcha: (token: string | null) => void
 }
 
 const formFields: Array<any> = [
@@ -85,7 +87,8 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 )
 
-const SignUp: React.FC<PropsType> = ({onSubmit, auth, setIsShowSignUp, loginWithGoogleThunk}) => {
+const SignUp: React.FC<PropsType> = ({onSubmit, auth, setIsShowSignUp,
+  loginWithGoogleThunk, handlerRecaptcha}) => {
 
     const cl = useStyles();
 
@@ -119,7 +122,7 @@ const SignUp: React.FC<PropsType> = ({onSubmit, auth, setIsShowSignUp, loginWith
                     <div className={classes.signWrap}>
                         <Form
                             onSubmit={onSubmit}
-                            
+
                             render={({handleSubmit, submitError, form, submitting, pristine, values}) => (
                                 <form onSubmit={handleSubmit}>
                                     <Typography variant="h5" align="center" component="h2" gutterBottom>
@@ -132,6 +135,13 @@ const SignUp: React.FC<PropsType> = ({onSubmit, auth, setIsShowSignUp, loginWith
                                                 {item.field}
                                             </Grid>
                                         ))}
+
+                                        <Grid item xs={12}>
+                                            <ReCAPTCHA
+                                                sitekey="6Ld4X8UaAAAAAMws3AVzcduNTDy4RCz-3DaOJmbo"
+                                                onChange={handlerRecaptcha}
+                                            />
+                                        </Grid>
 
                                         {submitError && <div className="error">{submitError}</div>}
 

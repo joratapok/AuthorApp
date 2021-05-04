@@ -40,7 +40,7 @@ const CommentForm: React.FC<PropsType> = ({isAuth, addComment}) => {
     return (
         <Form
             onSubmit={addComment}
-            validate={validate}
+            
             render={({handleSubmit, submitError, form,
                          submitting, pristine, values}) => (
                 <form onSubmit={async (event) => {

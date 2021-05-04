@@ -8,6 +8,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import {NavLink} from "react-router-dom";
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 type BookType = {
@@ -43,7 +44,7 @@ const Book: React.FC<BookType> = ({book}) => {
         setHover(false)
     }
 
-    let classCover = c.passiveBook + ' ' + (hover ? c.activeBook : '')
+    let classCover =classes.cardMedia + ' ' + c.passiveBook + ' ' + (hover ? c.activeBook : '')
     let classButton = c.readButton + ' ' + (hover ? c.hoverButton : '')
 
     return (
@@ -62,14 +63,17 @@ const Book: React.FC<BookType> = ({book}) => {
                              onMouseEnter={setHoverOn}
                              onMouseLeave={setHoverOff}>
                         </div>
-                        <CardMedia
-                            className={classes.cardMedia}
-                            image={book.mini_poster}
-                            title="Image title"
-                            onMouseEnter={setHoverOn}
-                            onMouseLeave={setHoverOff}
-                        />
 
+                        {book.mini_poster ? (
+                            <CardMedia
+                                className={classes.cardMedia}
+                                image={book.mini_poster}
+                                title="Image title"
+                                onMouseEnter={setHoverOn}
+                                onMouseLeave={setHoverOff}
+                            />
+                            ) : ( <CircularProgress/> )
+                        }
                         <CardContent className={classes.cardContent}>
                             <Typography align='center'
                                         variant='subtitle1'>

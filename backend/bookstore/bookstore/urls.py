@@ -9,7 +9,7 @@ from rest_framework_simplejwt.views import (
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
 from bookstore import settings
 from store.views import BookViewSet, UserBookRelationView, CommentsInBookView, CommentsCreateView, UserActivationView, \
-    ProfileDetailView, ChaptersViewSet, GoogleLogin
+    ProfileDetailView, ChaptersViewSet, GoogleLogin, RegisterView
 
 router = SimpleRouter()
 
@@ -26,14 +26,13 @@ urlpatterns = [
     path('auth/', include('djoser.social.urls')),
     path('oauth', include('social_django.urls',)),
     path('api-google/', GoogleLogin.as_view(), ),
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('profile/<master>', ProfileDetailView.as_view()),
     path('chapters/<book>', ChaptersViewSet.as_view()),
     re_path('^comments/(?P<book>.+)/$', CommentsInBookView.as_view()),
     path('api-token-auth/', obtain_jwt_token),
     path('api-token-refresh/', refresh_jwt_token),
     path('api-token-verify/', verify_jwt_token),
+    path('register/', RegisterView.as_view(), name='auth_register'),
 ]
 
 urlpatterns += router.urls

@@ -19,13 +19,22 @@ type MapDispatchPropsType = {
 type MapOwnPropsType = {
 }
 
+
 type PropsType = MapsStatePorpsType & MapDispatchPropsType & MapOwnPropsType
 
 const SignUpContainer: React.FC<PropsType> = ({signUpThunk, auth, loginWithGoogleThunk, setIsShowSignUp}) => {
 
+    let recaptcha: string | null = ''
+
+    const handlerRecaptcha = (token: string | null) => {
+        recaptcha = token
+    }
+
     const onSubmit = async (data: SignUpFormDataType) => {
         try {
-            await signUpThunk(data)
+            const formData = {...data, recaptcha: recaptcha}
+
+            await signUpThunk(formData)
         } catch (e) {
             if (e.response.data.password) {
                 return {['password']: e.response.data.password}
@@ -54,6 +63,7 @@ const SignUpContainer: React.FC<PropsType> = ({signUpThunk, auth, loginWithGoogl
                 auth={auth}
                 setIsShowSignUp={setIsShowSignUp}
                 loginWithGoogleThunk={loginWithGoogleThunk}
+                handlerRecaptcha={handlerRecaptcha}
         />
     )
 }

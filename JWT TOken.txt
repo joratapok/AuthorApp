@@ -1,11 +1,12 @@
-https://djoser.readthedocs.io/en/latest/jwt_endpoints.html --- JWT endpoints
-
 
 post -- регистрация
-http://127.0.0.1:8000/auth/users
+------(http://127.0.0.1:8000/auth/users)
+http://127.0.0.1:8000/register/
 username: jora
 password: 123
+password2: 123
 email: jora@mail.ru
+recaptcha: ...
 
 
 post  -- подтверждение почты
@@ -16,7 +17,6 @@ token: al0hy2-88f2e2077fd2d56dc9272f2a1f991bca
 
 
 post  -- выписываем токен
------(http://127.0.0.1:8000/api/token/)
 http://127.0.0.1:8000/api-token-auth/
 
 username: jora
@@ -36,12 +36,6 @@ response
 
 post --отдаем гугловский токен получаем свой
 http://127.0.0.1:8000/google/ (token)
-
-
-get  -- 
-127.0.0.1:8000/auth/users/me/
-
-
 
 
 get  -- Получаем инфу о юзере

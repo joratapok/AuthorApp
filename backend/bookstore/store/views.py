@@ -8,13 +8,13 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from .permissions import IsOwnerProfileOrReadOnly
 from rest_framework.views import APIView
 from rest_framework.viewsets import ReadOnlyModelViewSet, GenericViewSet
-from store.serializers import BookSerializer, UserBookRelationSerializer, CommentsSerializer, AllBooksSerializer, ProfileSerializer, ChaptersSerializer
+from store.serializers import BookSerializer, UserBookRelationSerializer, CommentsSerializer, AllBooksSerializer, ProfileSerializer, ChaptersSerializer, RegisterSerializer
 from store.models import Book, UserBookRelation, Comments, Profile, Chapters
 from django.db.models import Avg
 from rest_framework.pagination import PageNumberPagination
 from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
 from rest_auth.registration.views import SocialLoginView
-
+from django.contrib.auth.models import User
 
 
 class BookViewSet(ReadOnlyModelViewSet):
@@ -103,3 +103,15 @@ class ProfileDetailView(generics.RetrieveUpdateDestroyAPIView):
 
 class GoogleLogin(SocialLoginView):
     adapter_class = GoogleOAuth2Adapter
+
+
+
+class RegisterView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    permission_classes = (AllowAny,)
+    serializer_class = RegisterSerializer
+
+    #def post(self, request):
+    #    serializer = V2Serializer(data=request.data, context={"request": request})
+    #    serializer.is_valid(raise_exception=True)
+    #    return self.create(request, *args, **kwargs)
