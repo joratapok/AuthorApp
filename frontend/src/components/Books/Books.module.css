@@ -21,3 +21,8 @@
     align-items: flex-start;
 
 }
+
+.introWrapper {
+  display: flex;
+  justify-content: center;
+}

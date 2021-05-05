@@ -3,6 +3,9 @@ import classes from './BgBody.module.css'
 import octa1 from "../../assets/backGround/Asset2.png"
 import octa2 from "../../assets/backGround/Asset1.png"
 
+
+
+
 const BgBody: React.FC = () => {
 
     const [move, setMove] = useState({x: 0, y: 0})

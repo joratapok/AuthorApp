@@ -1,17 +1,18 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import {makeStyles} from '@material-ui/core/styles';
+import {makeStyles, Theme} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {bookType} from "../../redux/bookReducer";
 import Book from "./EveryBook/Book";
-import {Box} from "@material-ui/core";
+import {Box, Typography} from "@material-ui/core";
+import Intro from './Intro/Intro'
 import axios from "axios";
 
 type BooksType = {
     books: Array<bookType>
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
     cardGrid: {
         paddingTop: theme.spacing(8),
         paddingBottom: theme.spacing(8),
@@ -28,8 +29,22 @@ const BooksList: React.FC<BooksType> = ({books}) => {
 
     return (
         <React.Fragment>
-            <Box height='500px'>
-            </Box>
+            <Container className={classes.cardGrid} maxWidth="lg">
+                <Grid container spacing={4}>
+                    <Grid item xs={12} sm={6}>
+                        <Box textAlign='center'>
+                            <Intro/>
+                        </Box>
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                        <Typography variant="h6">
+                              image must be here
+                        </Typography>
+
+                    </Grid>
+
+                </Grid>
+            </Container>
 
             <Container className={classes.cardGrid} maxWidth="md">
                 <Grid container spacing={4}>

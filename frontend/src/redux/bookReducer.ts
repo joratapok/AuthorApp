@@ -40,7 +40,7 @@ export const SET_NEW_CHAPTER = "SET_NEW_CHAPTER"
 let initial = {
     book: {
         id: 0,
-        name: 'initialBook',
+        name: '',
         poster: '',
         rated_books: 0,
         current_rate: 0,

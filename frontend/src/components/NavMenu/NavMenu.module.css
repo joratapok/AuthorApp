@@ -9,3 +9,19 @@
 .userInfoWrapper {
     display: flex;
 }
+
+.logoWrapper {
+    flex: 1 1 auto;
+    justify-content: flex-start;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+    margin: 0 0 0 0px;
+
+}
+
+.navLink {
+    text-decoration: none;
+}

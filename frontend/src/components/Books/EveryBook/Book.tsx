@@ -47,6 +47,7 @@ const Book: React.FC<BookType> = ({book}) => {
     let classCover =classes.cardMedia + ' ' + c.passiveBook + ' ' + (hover ? c.activeBook : '')
     let classButton = c.readButton + ' ' + (hover ? c.hoverButton : '')
 
+
     return (
         <Grid item xs={12} sm={6} md={4}>
             <div className={c.bookWrapper}>

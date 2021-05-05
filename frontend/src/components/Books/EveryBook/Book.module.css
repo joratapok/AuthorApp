@@ -38,5 +38,4 @@
 .hoverButton {
     z-index: 2001;
     transform: translate(0, 50px) rotate(0deg) scale(1);
-
 }
