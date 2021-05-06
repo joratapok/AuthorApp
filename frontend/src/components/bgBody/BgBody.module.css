@@ -30,7 +30,7 @@
     justify-content: space-between;
     align-items: flex-start;
     width: 100%;
-    margin-top: 200px;
+    margin-top: 0px;
 }
 
 img {
@@ -41,7 +41,7 @@ img {
 .chunk1 {
     position: relative;
     top: -50px;
-    left: 50px;
+    left: 100px;
     display: flex;
     width: 47%
 }
@@ -66,4 +66,21 @@ img {
     top: -4vh;
     display: flex;
     width: 40%
+}
+
+
+@media (max-width: 1200px) {
+  .orange {
+    width: 800px;
+
+  }
+  .chunk1 {
+      left: -100px;
+      display: flex;
+      width: 800px;
+  }
+  .chunk3 {
+      display: flex;
+      width: 500px;
+  }
 }

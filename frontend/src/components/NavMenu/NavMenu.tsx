@@ -2,7 +2,8 @@ import React from 'react';
 import classes from './NavMenu.module.css'
 import {AuthinitialType} from "../../redux/authReducer"
 import UserAvatar from "./UserBlock/UserBlock"
-import Avatar from '@material-ui/core/Avatar'
+import {Avatar, Box} from '@material-ui/core'
+
 import logo from '../../assets/image/logo.png'
 import {NavLink} from "react-router-dom"
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
@@ -18,9 +19,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       display: 'flex',
-      '& > *': {
-        margin: theme.spacing(1),
-      },
+
     },
     small: {
       width: theme.spacing(8),
@@ -29,6 +28,7 @@ const useStyles = makeStyles((theme: Theme) =>
     large: {
       width: theme.spacing(12),
       height: theme.spacing(12),
+      boxSizing: 'content-box',
     },
   }),
 );
@@ -41,9 +41,11 @@ const NavMenu: React.FC<NavMenuPropsType> =
         return (
             <div className={classes.nawWrapper}>
                 <div className={classes.logoWrapper}>
-                    <NavLink className={classes.navLink} to='/'>
-                        <Avatar alt="logo" className={c.large} src={logo} />
-                    </NavLink>
+                    <Box width='100px'>
+                        <NavLink className={classes.navLink} to='/'>
+                            <Avatar alt="logo" className={c.large} src={logo} />
+                        </NavLink>
+                    </Box>
                 </div>
 
                 <div className={classes.userInfoWrapper}>

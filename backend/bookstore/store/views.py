@@ -111,7 +111,3 @@ class RegisterView(generics.CreateAPIView):
     permission_classes = (AllowAny,)
     serializer_class = RegisterSerializer
 
-    #def post(self, request):
-    #    serializer = V2Serializer(data=request.data, context={"request": request})
-    #    serializer.is_valid(raise_exception=True)
-    #    return self.create(request, *args, **kwargs)

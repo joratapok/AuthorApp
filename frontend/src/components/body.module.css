@@ -18,11 +18,3 @@
     width: 100%;
     z-index: 5;
 }
-
-.footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 200px;
-    z-index: 5;
-}

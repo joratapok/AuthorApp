@@ -27,7 +27,7 @@ const BgBody: React.FC = () => {
 
                 <div className={classes.first}>
                     <div className={classes.chunk1}>
-                        <img src={octa1}
+                        <img src={octa1} className={classes.orange}
                              style={{top: (move['y'] / 50) + 'px', left: (move['x'] / 50) + 'px'}}/>
                     </div>
 

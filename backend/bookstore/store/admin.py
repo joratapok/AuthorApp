@@ -2,6 +2,19 @@ from django.contrib import admin
 from django.contrib.admin import ModelAdmin
 
 from store.models import Book, Genre, UserBookRelation, Comments, Profile, Chapters
+from django import forms
+from django.contrib import admin
+from ckeditor.widgets import CKEditorWidget
+
+
+
+
+class ChaptersAdminForm(forms.ModelForm):
+    chapter = forms.CharField(widget=CKEditorWidget())
+    class Meta:
+        model = Chapters
+        fields = '__all__'
+
 
 
 @admin.register(Book)
@@ -30,4 +43,4 @@ class ProfileAdmin(ModelAdmin):
 
 @admin.register(Chapters)
 class ChaptersAdmin(ModelAdmin):
-    pass
+    form = ChaptersAdminForm

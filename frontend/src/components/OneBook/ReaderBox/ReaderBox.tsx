@@ -148,7 +148,9 @@ export const ReaderBox: React.FC<ReaderBoxType & any> = ({bookId, chapters, togg
                                 </Grid>
 
                                 <Box fontSize={`${font}px`}>
-                                    {chapters.results.length && chapters.results[0].chapter}
+                                    {chapters.results.length &&
+                                    <div dangerouslySetInnerHTML={{ __html: chapters.results[0].chapter }} />
+                                    }
                                 </Box>
 
                                 <Box display='flex' justifyContent='flex-end' my={1}>
