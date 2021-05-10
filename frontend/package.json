@@ -28,7 +28,6 @@
     "react-final-form": "^6.5.3",
     "react-google-login": "^5.2.2",
     "react-google-recaptcha": "^2.1.0",
-    "react-images-upload": "^1.2.8",
     "react-indiana-drag-scroll": "^2.0.1",
     "react-redux": "^7.2.3",
     "react-router-dom": "^5.2.0",

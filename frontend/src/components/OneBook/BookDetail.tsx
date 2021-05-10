@@ -1,22 +1,19 @@
 import React, {useState} from 'react'
 import classes from './BookDetail.module.css'
+import {OneBookType,} from "../../redux/bookReducer"
 import {commentsInitialType} from "../../redux/commentReducer"
 import {addCommentDataType} from "./Comments/CommentForm"
 import Comments from "./Comments/Comments"
 import ReaderBoxContainer from "./ReaderBox/ReaderBoxContainer"
 import {AuthinitialType} from "../../redux/authReducer"
+import {Rating} from "@material-ui/lab";
 import {
     Box, createStyles, Grid, makeStyles, withStyles,
     Button, Paper, Theme, Typography, Tooltip
 } from "@material-ui/core";
 import {deepOrange, green} from '@material-ui/core/colors';
-import {OneBookType} from "../common/types/types";
-import {Rating} from '@material-ui/lab';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import duck from '../../assets/image/rubberDuck/rubber-duck.png'
-import duckGray from '../../assets/image/rubberDuck/rubber-duck-gray.png'
-import activeCat from '../../assets/image/rubberDuck/activeCat.png'
-import passiveCat from '../../assets/image/rubberDuck/passiveCat.png'
+import ScrollContainer from "react-indiana-drag-scroll";
+
 
 type BookDetailType = {
     book: OneBookType
@@ -97,15 +94,6 @@ export const BookDetail: React.FC<BookDetailType> = ({
         setModal(false)
     }
 
-    const StyledRating = withStyles({
-        iconFilled: {
-            color: '#ff6d75',
-        },
-        iconHover: {
-            color: '#ff3d47',
-        },
-    })(Rating);
-
 
     return (
         <div className={classes.bookWrapper}>
@@ -138,7 +126,7 @@ export const BookDetail: React.FC<BookDetailType> = ({
                                  p={1}>
                                 <Typography className={cl.typography}>{book.rated_books}</Typography>
                             </Box>
-                            <Box mx={1}>кото-рейтинг. Всего оценивших: {book.count_rate}</Box>
+                            <Box mx={1}>Всего оценок: {book.count_rate}</Box>
                         </Box>
 
                         <Box my={1} display='flex' alignSelf='flex-start'>
@@ -147,29 +135,25 @@ export const BookDetail: React.FC<BookDetailType> = ({
                                           title="для того оценить книгу необходимо авторизоваться"
                                           placement="right">
                                 <Box>
-                                    <Box width='200px'>
-                                        <Rating name="bookRating"
-                                                icon={<img width='50px' src={activeCat} />}
-                                                emptyIcon={<img width='50px' src={passiveCat} />}
-                                                value={Math.floor(book.rated_books)}
-                                                readOnly={!auth.isAuth}
-                                                onChange={(event, newValue) => {
-                                                    onStarClick(newValue);
-                                                }}/>
-                                    </Box>
+                                    <Rating
+                                        name="simple-controlled"
+                                        value={Math.floor(book.rated_books)}
+                                        readOnly={!auth.isAuth}
+                                        onChange={(event, newValue) => {
+                                            onStarClick(newValue);
+                                        }}
+                                    />
                                 </Box>
                             </LightTooltip>
                             }
 
-                            {auth.isAuth &&  <Box width='200px'>
-                                <Rating name="bookRating"
-                                        icon={<img width='50px' src={activeCat} />}
-                                        emptyIcon={<img width='50px' src={passiveCat} />}
-                                        value={book.current_rate}
-                                        onChange={(event, newValue) => {
-                                            onStarClick(newValue);
-                                        }}/>
-                            </Box>
+                            {auth.isAuth && <Rating
+                                name="simple-controlled"
+                                value={book.current_rate}
+                                onChange={(event, newValue) => {
+                                    onStarClick(newValue);
+                                }}
+                            />
                             }
                         </Box>
 
@@ -193,7 +177,6 @@ export const BookDetail: React.FC<BookDetailType> = ({
                           isAuth={auth.isAuth}/>
             </div>
             <ReaderBoxContainer toggleReader={modal} setReaderOff={setReaderOff} />
-
         </div>
     )
 }

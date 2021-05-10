@@ -1,37 +1,25 @@
 .footerContainer {
     display: flex;
     justify-content: center;
+
+    height: 200px;
     z-index: 10;
+
 }
 
 .footerWrapper {
     display: flex;
     justify-content: center;
-    background-position: center;
-    background-size: 80% 90%;
-    background-repeat: no-repeat;
+    
     width: 80%;
 }
 
 .footerCatWrapper {
-    width: 15%;
-    min-width: 100px;
-    max-width: 120px;
-    display: flex;
-    align-items: center;
+    width: 30%;
+    border: 1px solid blue;
 }
 
 .footerContentWrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    border: 2px solid red;
     width: 68%;
-}
-
-@media (max-width: 600px) {
-    .footerWrapper {
-        background-size: 95% 90%;
-        width: 95%;
-    }
 }

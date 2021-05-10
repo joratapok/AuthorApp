@@ -1,6 +1,6 @@
 import React from "react"
 import {commentsInitialType} from "../../../redux/commentReducer"
-import CommentForm, {addCommentDataType} from "./CommentForm"
+import CommentForm,  {addCommentDataType} from "./CommentForm"
 import defaultAvatarCat from "../../../assets/image/defaultAvatarCat.png"
 import {makeStyles} from "@material-ui/core/styles"
 import {
@@ -39,9 +39,6 @@ const useStyles = makeStyles(theme => ({
     },
     listComments: {
         margin: '16px 0'
-    },
-    noComment: {
-        textAlign: 'center'
     }
 }));
 
@@ -58,14 +55,12 @@ export const Comments: React.FC<CommentsType> = ({
     return (
         <Box my={5}>
             {!comments.results.length &&
-            <Typography className={classes.noComment}>
-                Комментариев пока нет, но вы можете оставить один... или два
-            </Typography>}
+            <Typography>Комментариев пока нет, но вы можете оставить один... или два</Typography>}
             <Container maxWidth="md" className={classes.commentForm}>
                 <CommentForm isAuth={isAuth} comments={comments} addComment={addComment}/>
             </Container>
-            <Container maxWidth="md">
-                <Paper elevation={3} className={classes.listComments}>
+            <Container maxWidth="md" >
+                <Paper elevation={3} className={classes.listComments} >
                     {comments.results.map((el) => {
                         return <React.Fragment key={el.id}>
                             <ListItem key={el.id} alignItems="flex-start">

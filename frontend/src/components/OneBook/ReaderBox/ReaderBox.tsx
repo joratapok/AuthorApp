@@ -31,6 +31,7 @@ const useStyles = makeStyles((theme: Theme) =>
             justifyContent: 'center',
         },
         paper: {
+            backgroundColor: theme.palette.background.paper,
             height: '90%',
             border: '2px solid #000',
             boxShadow: theme.shadows[5],
@@ -98,7 +99,7 @@ export const ReaderBox: React.FC<ReaderBoxType & any> = ({bookId, chapters, togg
             >
                 <Fade in={modal}>
                     <>
-                        <Box className={cl.paper}  bgcolor='#e9e9e9'>
+                        <Box className={cl.paper}>
                             <ScrollContainer vertical={true} horizontal={true} hideScrollbars={false}
                                              className={classes.dragScroll}>
                                 <Grid container spacing={0}>
@@ -148,7 +149,7 @@ export const ReaderBox: React.FC<ReaderBoxType & any> = ({bookId, chapters, togg
 
                                 <Box fontSize={`${font}px`}>
                                     {chapters.results.length &&
-                                    <div dangerouslySetInnerHTML={{__html: chapters.results[0].chapter}}/>
+                                    <div dangerouslySetInnerHTML={{ __html: chapters.results[0].chapter }} />
                                     }
                                 </Box>
 

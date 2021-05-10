@@ -6,7 +6,6 @@
     padding: 0 70px 0 0;
     box-sizing: border-box;
 }
-
 .userInfoWrapper {
     display: flex;
 }
@@ -20,6 +19,7 @@
     width: 100px;
     height: 100px;
     margin: 0 0 0 0px;
+
 }
 
 .navLink {

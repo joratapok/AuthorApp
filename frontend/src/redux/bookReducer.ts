@@ -1,7 +1,29 @@
 import {AppStateType, InferActionsTypes} from "./store";
 import {bookApi, rateApi, ChaptersType} from "../api/api";
 import {ThunkAction} from "redux-thunk";
-import {bookType, Chapter, OneBookType} from "../components/common/types/types";
+
+export type bookType = {
+    id: number
+    name: string
+    mini_poster: string
+    rated_books: string
+
+}
+export type OneBookType = {
+    id: number
+    name: string
+    poster: string
+    rated_books: number
+    current_rate: number
+    count_rate: number
+    book_file: string
+    description: string
+    readerMode: boolean
+}
+
+type Chapter = {
+  chapter: string
+}
 
 export type initialType = typeof initial
 export type bookReducerActionsTypes = InferActionsTypes<typeof actionsBooksReducer>
@@ -34,7 +56,6 @@ let initial = {
             name: 'initialBook',
             mini_poster: '',
             rated_books: '0',
-            genre: [],
         }
     ] as Array<bookType>,
 

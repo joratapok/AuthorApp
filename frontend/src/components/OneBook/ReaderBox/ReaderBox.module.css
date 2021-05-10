@@ -22,7 +22,3 @@
 .dragScroll:hover {
     cursor: grab;
 }
-
-span {
-    font-size: 15px;
-}
