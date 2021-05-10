@@ -1,6 +1,5 @@
 import axios from "axios";
-import {bookType, OneBookType} from "../redux/bookReducer";
-import {CommentType} from "../redux/commentReducer";
+import {bookType, CommentType, OneBookType} from "../components/common/types/types";
 
 type GetAllBooksType = {
     results: Array<bookType>

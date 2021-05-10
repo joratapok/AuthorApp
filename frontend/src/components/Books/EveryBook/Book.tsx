@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import {bookType} from "../../../redux/bookReducer";
 import c from "../EveryBook/Book.module.css";
 import {makeStyles} from "@material-ui/core/styles";
 import Card from '@material-ui/core/Card';
@@ -9,6 +8,8 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import {NavLink} from "react-router-dom";
 import CircularProgress from '@material-ui/core/CircularProgress';
+import {bookType} from "../../common/types/types";
+import octaButton from '../../../assets/image/octaButton.png'
 
 
 type BookType = {
@@ -22,15 +23,19 @@ const useStyles = makeStyles((theme) => ({
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
-
     },
     cardMedia: {
-        paddingTop: '125%', // 4:3
+        paddingTop: '125%',
+        transition: '2s',
+        '&:hover': {
+            transform: 'scale(1.1)',
+            filter: 'saturate(300%)',
+        },
     },
     cardContent: {
         flexGrow: 1,
+        zIndex: 3001,
     },
-
 }));
 
 const Book: React.FC<BookType> = ({book}) => {
@@ -44,52 +49,58 @@ const Book: React.FC<BookType> = ({book}) => {
         setHover(false)
     }
 
-    let classCover =classes.cardMedia + ' ' + c.passiveBook + ' ' + (hover ? c.activeBook : '')
     let classButton = c.readButton + ' ' + (hover ? c.hoverButton : '')
 
 
     return (
         <Grid item xs={12} sm={6} md={4}>
             <div className={c.bookWrapper}>
-                <NavLink className={c.navLink} to={'/book/' + book.id}>
 
-                    <button className={classButton}
-                            onMouseEnter={setHoverOn}
-                            onMouseLeave={setHoverOff}>
-                        Скачать
-                    </button>
+                <div className={classButton}
+                     onMouseEnter={setHoverOn}
+                     onMouseLeave={setHoverOff}>
+                    <img src={octaButton} alt=""/>
+                </div>
 
-                    <Card className={classes.card}>
-                        <div className={classCover}
-                             onMouseEnter={setHoverOn}
-                             onMouseLeave={setHoverOff}>
-                        </div>
+                <Card className={classes.card}>
+
+                    <NavLink className={c.navLink} to={'/book/' + book.id}>
 
                         {book.mini_poster ? (
                             <CardMedia
                                 className={classes.cardMedia}
                                 image={book.mini_poster}
-                                title="Image title"
+                                title={book.name}
                                 onMouseEnter={setHoverOn}
                                 onMouseLeave={setHoverOff}
                             />
-                            ) : ( <CircularProgress/> )
+                        ) : (<CircularProgress/>)
                         }
-                        <CardContent className={classes.cardContent}>
-                            <Typography align='center'
-                                        variant='subtitle1'>
-                                Фэнтези / Комедия
-                            </Typography>
 
-                            <Typography variant="h5"
-                                        component="h2"
-                                        align='center'>
-                                {book.name}
-                            </Typography>
+                    </NavLink>
 
-                        </CardContent>
-                    </Card>
-                </NavLink>
+                    <CardContent className={classes.cardContent}>
+                        <Typography align='center'
+                                    variant='body2'>
+                            {book.genre.map((el, idx) => {
+                                if (idx === book.genre.length - 1) {
+                                    return <span key={el}> {el} </span>
+                                }
+                                return (<span key={el}>
+                                        {el + ' / '}
+                                    </span>)
+                            })}
+                        </Typography>
+
+                        <Typography variant="h5"
+                                    component="h2"
+                                    align='center'>
+                            {book.name}
+                        </Typography>
+
+                    </CardContent>
+                </Card>
+
             </div>
         </Grid>
     )

@@ -67,9 +67,7 @@ const UserAvatar: React.FC<OwnPropsType> = ({auth, setIsShowLogin, setIsShowSign
     if (window.location.href == 'http://localhost:3000/login') {
         openLoginModal()
         return <Redirect to={'/'}/>
-
     }
-
 
     const actionsDefaulUser = [
         {icon: <IconButton onClick={openLoginModal}><PersonRoundedIcon/></IconButton>, name: 'Логин'},
@@ -99,6 +97,7 @@ const UserAvatar: React.FC<OwnPropsType> = ({auth, setIsShowLogin, setIsShowSign
             >
                 {actions.map((action) => (
                     <SpeedDialAction
+                        title={'profile'}
                         key={action.name}
                         icon={action.icon}
                         tooltipTitle={action.name}

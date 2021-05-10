@@ -1,13 +1,11 @@
-import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import {makeStyles, Theme} from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import {bookType} from "../../redux/bookReducer";
-import Book from "./EveryBook/Book";
-import {Box, Typography} from "@material-ui/core";
+import React from 'react'
+import Grid from '@material-ui/core/Grid'
+import {makeStyles, Theme} from '@material-ui/core/styles'
+import Container from '@material-ui/core/Container'
+import Book from "./EveryBook/Book"
 import Introduction from './Introduction/Introduction'
-import axios from "axios";
-import typeCat from '../../assets/image/typeCatSmall.png'
+import axios from "axios"
+import {bookType} from "../common/types/types"
 
 type BooksType = {
     books: Array<bookType>
@@ -16,7 +14,7 @@ type BooksType = {
 const useStyles = makeStyles((theme: Theme) => ({
     introGrid: {
         paddingTop: theme.spacing(1),
-        paddingBottom: theme.spacing(5),
+        paddingBottom: theme.spacing(8),
     },
     cardGrid: {
         paddingTop: theme.spacing(3),

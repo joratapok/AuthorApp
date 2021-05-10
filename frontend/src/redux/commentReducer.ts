@@ -1,14 +1,7 @@
 import {AppStateType, InferActionsTypes} from "./store";
 import {commentApi, CommentsDataType} from "../api/api";
 import {ThunkAction} from "redux-thunk";
-
-export type CommentType = {
-    id: number
-    text: string
-    owner: string
-    book: number
-    avatar: string
-}
+import {CommentType} from "../components/common/types/types";
 
 export type commentsInitialType = typeof initial
 export type bookReducerActionsTypes = InferActionsTypes<typeof actionsBooksReducer>
