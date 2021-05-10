@@ -23,29 +23,29 @@ type BoxContainerType = MapDispatchToPropsType & MapStateToPropsType & OwnPropsT
 const ReaderBoxContainer: React.FC<BoxContainerType> =
     ({bookId, chapters, getChaptersThunk, toggleReader, setReaderOff}) => {
 
-    const getNewChapter = (event: object, numPage: number) => {
-        getChaptersThunk(bookId, numPage)
-    }
-
-    useEffect(() => {
-        const recoveryPage = Number(localStorage.getItem(`bookMark_${bookId}`))
-        if (recoveryPage) {
-            getChaptersThunk(bookId, recoveryPage)
-        } else {
-            getChaptersThunk(bookId, )
+        const getNewChapter = (event: object, numPage: number) => {
+            getChaptersThunk(bookId, numPage)
         }
-    }, [bookId])
 
-    return (
-        <div>
-            <ReaderBox bookId={bookId}
-            chapters={chapters} toggleReader={toggleReader}
-            getNewChapter={getNewChapter}
-                       setReaderOff={setReaderOff}
-            />
-        </div>
-    )
-}
+        useEffect(() => {
+            const recoveryPage = Number(localStorage.getItem(`bookMark_${bookId}`))
+            if (recoveryPage) {
+                getChaptersThunk(bookId, recoveryPage)
+            } else {
+                getChaptersThunk(bookId,)
+            }
+        }, [bookId])
+
+        return (
+            <div>
+                <ReaderBox bookId={bookId}
+                           chapters={chapters} toggleReader={toggleReader}
+                           getNewChapter={getNewChapter}
+                           setReaderOff={setReaderOff}
+                />
+            </div>
+        )
+    }
 
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
     bookId: state.books.book.id,
@@ -53,5 +53,5 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
 })
 
 export default compose<React.ComponentType<OwnPropsType>>(
-connect(mapStateToProps, {getChaptersThunk}),
-withRouter,)(ReaderBoxContainer)
+    connect(mapStateToProps, {getChaptersThunk}),
+    withRouter,)(ReaderBoxContainer)

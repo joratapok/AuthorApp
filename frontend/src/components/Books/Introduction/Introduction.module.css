@@ -1,21 +1,21 @@
 .introductionWrapper {
-  display: flex;
-  flex-wrap:wrap-reverse;
-  position: relative;
+    display: flex;
+    flex-wrap: wrap-reverse;
+    position: relative;
 }
 
 .typeWrapper {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  width: 48%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 48%;
 }
 
 .catWrapper {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  width: 48%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 48%;
 }
 
 .typeContainer {
@@ -27,21 +27,16 @@
 }
 
 @media (max-width: 600px) {
-  .introductionWrapper {
-    justify-content: center;
+    .introductionWrapper {
+        justify-content: center;
+    }
 
+    .typeWrapper {
+        width: 70%;
+        margin: -30px 100px 0 0;
+    }
 
-  }
-  .typeWrapper {
-    width: 70%;
-    margin: -30px 100px 0 0;
-
-
-  }
-
-  .catWrapper {
-    width: 70%;
-
-
-  }
+    .catWrapper {
+        width: 70%;
+    }
 }

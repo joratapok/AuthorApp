@@ -29,11 +29,11 @@ const LoginForm: React.FC<LoginFormType> = ({onSubmit,}) => (
                 <div>
                     <Field name={'username'}
                            component="input"
-                           >
+                    >
                         {({input, meta: {touched, error}}) => (
                             <div>
                                 <TextField {...input} type="text"
-                                            variant="outlined"
+                                           variant="outlined"
                                            label="Логин"
                                            margin="normal"
                                            required
@@ -90,10 +90,12 @@ const useStyles = makeStyles((theme: Theme) =>
 )
 
 
-const Login: React.FC<LoginType> = ({onSubmit,
+const Login: React.FC<LoginType> = ({
+                                        onSubmit,
                                         auth,
                                         loginWithGoogleThunk,
-                                        setIsShowLogin}) => {
+                                        setIsShowLogin
+                                    }) => {
 
     const cl = useStyles();
 
@@ -110,35 +112,35 @@ const Login: React.FC<LoginType> = ({onSubmit,
     }
 
     return (
-      <Modal
-          aria-labelledby="transition-modal-title"
-          aria-describedby="transition-modal-description"
-          className={cl.modal}
-          open={auth.isShowLogin}
-          onClose={closeLoginModal}
-          closeAfterTransition
-          BackdropComponent={Backdrop}
-          BackdropProps={{
-              timeout: 500,
-          }}
-      >
-          <Fade in={auth.isShowLogin}>
-              <>
-                  <div className={classes.loginWrap}>
-                      <div className={classes.title}>Авторизация</div>
-                      <LoginForm onSubmit={onSubmit}/>
-                      <GoogleLogin
-                          clientId="836913855059-m5bsk43ik1l7o7l8g4kkhd4pjj66d2rb.apps.googleusercontent.com"
-                          buttonText="Войти с помощью Google аккаунта"
-                          onSuccess={accessResponseGoogle}
-                          onFailure={denyResponseGoogle}
-                          cookiePolicy={'single_host_origin'}
-                          className={classes.googleButton}
-                      />
-                  </div>
-              </>
-          </Fade>
-      </Modal>
+        <Modal
+            aria-labelledby="transition-modal-title"
+            aria-describedby="transition-modal-description"
+            className={cl.modal}
+            open={auth.isShowLogin}
+            onClose={closeLoginModal}
+            closeAfterTransition
+            BackdropComponent={Backdrop}
+            BackdropProps={{
+                timeout: 500,
+            }}
+        >
+            <Fade in={auth.isShowLogin}>
+                <>
+                    <div className={classes.loginWrap}>
+                        <div className={classes.title}>Авторизация</div>
+                        <LoginForm onSubmit={onSubmit}/>
+                        <GoogleLogin
+                            clientId="836913855059-m5bsk43ik1l7o7l8g4kkhd4pjj66d2rb.apps.googleusercontent.com"
+                            buttonText="Войти с помощью Google аккаунта"
+                            onSuccess={accessResponseGoogle}
+                            onFailure={denyResponseGoogle}
+                            cookiePolicy={'single_host_origin'}
+                            className={classes.googleButton}
+                        />
+                    </div>
+                </>
+            </Fade>
+        </Modal>
     )
 }
 export default Login
