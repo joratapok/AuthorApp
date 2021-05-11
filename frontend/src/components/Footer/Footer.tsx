@@ -1,6 +1,6 @@
 import React from 'react'
 import classes from './Footer.module.css'
-import footerBG from '../../assets/backGround/FooterBG.png'
+import footerBG from '../../assets/backGround/footerBG.png'
 import readCat from '../../assets/image/readCat.png'
 
 

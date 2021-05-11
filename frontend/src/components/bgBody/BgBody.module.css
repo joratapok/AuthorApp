@@ -75,9 +75,9 @@ img {
 
   }
   .chunk1 {
-      left: -100px;
+      left: 100px;
       display: flex;
-      width: 800px;
+      width: 1000px;
   }
   .chunk3 {
       display: flex;

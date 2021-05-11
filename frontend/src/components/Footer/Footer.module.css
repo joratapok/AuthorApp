@@ -34,4 +34,8 @@
         background-size: 95% 90%;
         width: 95%;
     }
+    .footerContentWrapper {
+        font-size: 11px;
+        margin: 0 10px;
+    }
 }

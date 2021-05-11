@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
-import {compose} from "redux";
-import {connect} from "react-redux";
-import {AppStateType} from "../../../../redux/store";
-import {AuthinitialType, changeAvatarThunk} from "../../../../redux/authReducer";
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import {Backdrop, Modal} from "@material-ui/core";
-import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
+import React, {useState} from 'react'
+import {compose} from "redux"
+import {connect} from "react-redux"
+import {AppStateType} from "../../../../redux/store"
+import {AuthinitialType, changeAvatarThunk} from "../../../../redux/authReducer"
+import AccountCircleIcon from '@material-ui/icons/AccountCircle'
+import {Backdrop, Modal} from "@material-ui/core"
+import {createStyles, makeStyles, Theme} from "@material-ui/core/styles"
 import ImageUploader from 'react-images-upload'
 
 export type MapStatePropsType = {
