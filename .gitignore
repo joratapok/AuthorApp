@@ -12,6 +12,7 @@ venv/
 prod_settings.py
 local_settings.py
 media/*
+static/*
 
 
 # Byte-compiled / optimized / DLL files
