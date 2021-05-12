@@ -33,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     cardContent: {
+        backgroundColor: '#A9A9A9',
         flexGrow: 1,
         zIndex: 3001,
     },

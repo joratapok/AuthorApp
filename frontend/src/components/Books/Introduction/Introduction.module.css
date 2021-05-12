@@ -1,31 +1,51 @@
 .introductionWrapper {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
     position: relative;
     width: 100%;
 }
 
-.typeWrapper {
+.test_image {
+    position: absolute;
+    width: 700px;
+    height: 700px;
+}
+
+
+.first {
+    position: relative;
     display: flex;
     justify-content: center;
-    align-items: flex-end;
-    width: 48%;
+    align-items: center;
+    width: 90%;
+    height: 750px;
+    overflow: hidden;
+    transition: 0.2s;
+}
+
+.first:after {
+    content:'';
+    position:absolute;
+    border-radius:100%;
+    width:600px; height:600px;
+    box-shadow: 0px 0px 0px 2000px #333;
 }
 
 .catWrapper {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    width: 48%;
-
+    position: absolute;
+    bottom: 0;
+    right: 50px;
+    width: 20%;
 }
 
 .typingCat {
-      width: 70%;
       max-width: 300px;
+      min-width: 140px;
       cursor: pointer;
       animation: mymove 1s infinite;
       animation-direction: alternate;
+      transition: 0.5s;
 }
 
 @keyframes mymove {
@@ -33,14 +53,6 @@
   to {transform: scale(1.03);}
   from {transform: scale(1.03);}
   to {transform: scale(1.0);}
-}
-
-.typeContainer {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    position: relative;
-
 }
 
 .boxIntro {
@@ -57,17 +69,51 @@
   background-color: white;
 }
 
+@media (max-width: 800px) {
+  .test_image {
+      width: 500px;
+      height: 500px;
+  }
+  .first {
+      height: 550px;
+  }
+  .first:after {
+      width:400px;
+      height:400px;
+  }
+
+}
+
 @media (max-width: 600px) {
-    .introductionWrapper {
-        justify-content: center;
+    .test_image {
+        width: 280px;
+        height: 280px;
     }
-
-    .typeWrapper {
-        width: 70%;
-
+    .first {
+        height: 350px;
+        width: 100%;
+    }
+    .first:after {
+        width:250px;
+        height:250px;
     }
 
     .catWrapper {
-        width: 95%;
+        width: 30%;
+    }
+}
+
+@media (max-width: 330px) {
+    .test_image {
+        width: 240px;
+        height: 240px;
+    }
+    .first {
+        height: 280px;
+        width: 100%;
+    }
+    .first:after {
+        width:210px;
+        height:210px;
     }
 }

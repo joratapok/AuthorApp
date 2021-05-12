@@ -21,7 +21,9 @@ type ErrorsType = {
 const useStyles = makeStyles((theme) => ({
     textInput: {
         width: '100%',
-        margin: '10px 0'
+        margin: '10px 0',
+        backgroundColor: 'white',
+        borderRadius: '5px',
     },
 }));
 

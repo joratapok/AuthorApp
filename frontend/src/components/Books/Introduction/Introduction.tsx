@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {Box} from "@material-ui/core"
 import Intro from './Intro/Intro'
 import typeCat from '../../../assets/image/typeCatSmall.png'
+import test_image from '../../../assets/image/test_image.jpg'
 import classes from './Introduction.module.css'
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles"
 import {Backdrop, Modal} from "@material-ui/core"
@@ -48,18 +49,19 @@ const Introduction: React.FC = () => {
     return (
         <div className={classes.introductionWrapper}>
 
-            <div className={classes.typeWrapper}>
-                <div className={classes.typeContainer} style={{left: -(move['x'] / 20) + 50 + 'px'}}>
-                    
-                </div>
+            <img src={test_image} alt='image' className={classes.test_image}/>
+
+            <div className={classes.first}
+                style={{top: (move['y'] / 40) - 30 + 'px', left: (move['x'] / 40) + 'px'}}>
+
             </div>
+
             <div className={classes.catWrapper}>
-
-                    <img src={typeCat} alt='typing cat' className={classes.typingCat}
-                         style={{top: (move['y'] / 15) + 'px', left: (move['x'] / 20) + 'px'}}
+                <img src={typeCat} alt='typing cat' className={classes.typingCat}
+                         
                          onClick={modalOn}/>
-
             </div>
+
 
             <Modal
                 aria-labelledby="transition-modal-title"

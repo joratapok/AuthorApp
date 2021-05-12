@@ -10,7 +10,7 @@
     background-position: center;
     background-size: 80% 90%;
     background-repeat: no-repeat;
-    width: 80%;
+    width: 85%;
 }
 
 .footerCatWrapper {
@@ -27,6 +27,8 @@
     align-items: center;
     text-align: center;
     width: 68%;
+    font-size: 13px;
+    margin: 0 60px 0 0;
 }
 
 @media (max-width: 600px) {

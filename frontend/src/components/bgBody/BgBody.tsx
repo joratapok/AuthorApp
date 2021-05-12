@@ -23,26 +23,6 @@ const BgBody: React.FC = () => {
         <div className={classes.bgWrapper}>
             <div className={classes.bgContainer}>
 
-                <div className={classes.first}>
-                    <div className={classes.chunk1}>
-                        <img src={octa1} className={classes.orange}
-                             style={{top: (move['y'] / 50) + 'px', left: (move['x'] / 50) + 'px'}}/>
-                    </div>
-
-                    <div className={classes.chunk2}>
-
-                    </div>
-                </div>
-
-                <div className={classes.second}>
-                    <div className={classes.chunk3}>
-                        <img src={octa2}
-                             style={{top: (-move['y'] / 20) + 'px', left: (-move['x'] / 20) + 'px'}}/>
-                    </div>
-                    <div className={classes.chunk4}>
-
-                    </div>
-                </div>
             </div>
         </div>
     )
