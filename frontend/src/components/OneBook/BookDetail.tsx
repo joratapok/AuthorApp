@@ -35,7 +35,9 @@ const useStyles = makeStyles((theme: Theme) =>
             padding: theme.spacing(3),
             textAlign: 'center',
             height: '100%',
-            color: theme.palette.text.secondary,
+            color: theme.palette.text.primary,
+            
+
         },
         typography: {
             fontWeight: 700,
@@ -84,7 +86,7 @@ export const BookDetail: React.FC<BookDetailType> = ({
                                                      }) => {
     const cl = useStyles();
     const [modal, setModal] = useState(false)
-    
+
 
     const onStarClick = (newValue: number | null) => {
         setCurrentRatingThunk(book.id, newValue, auth.accessToken)

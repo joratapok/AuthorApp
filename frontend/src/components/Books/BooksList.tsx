@@ -7,6 +7,7 @@ import Introduction from './Introduction/Introduction'
 import axios from "axios"
 import {bookType} from "../common/types/types"
 
+
 type BooksType = {
     books: Array<bookType>
 }
@@ -19,6 +20,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     cardGrid: {
         paddingTop: theme.spacing(3),
         paddingBottom: theme.spacing(3),
+        
     },
 }));
 

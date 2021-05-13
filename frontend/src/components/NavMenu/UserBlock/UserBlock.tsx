@@ -2,7 +2,7 @@ import React from 'react';
 import {makeStyles, createStyles, Theme} from '@material-ui/core/styles';
 import SpeedDial from '@material-ui/lab/SpeedDial';
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
-import {Avatar, IconButton} from "@material-ui/core";
+import {Avatar, IconButton, Paper} from "@material-ui/core";
 import ChangeUser from "./ChangeLogin/ChangeLogin";
 import Logout from "./Logout/Logout";
 import c from "./UserBlock.module.css";
@@ -13,6 +13,7 @@ import LoginContainer from "../Login/LoginContainer"
 import SighUpContainer from "../SignUp/SignUpContainer"
 import defaultAvatarCat from "../../../assets/image/defaultAvatarCat.png";
 import {Redirect} from "react-router-dom/";
+
 
 type OwnPropsType = {
     auth: AuthinitialType
@@ -34,6 +35,13 @@ const useStyles = makeStyles((theme: Theme) =>
         speedDial: {
             position: 'absolute',
         },
+        hello: {
+            position: 'absolute',
+            right: '10px',
+            transition: '0.5s',
+            textAlign: 'center',
+            padding: '8px',
+        }
     }),
 )
 
@@ -85,6 +93,9 @@ const UserAvatar: React.FC<OwnPropsType> = ({auth, setIsShowLogin, setIsShowSign
 
     return (
         <div className={classes.root}>
+            <Paper className={classes.hello} style={{'opacity': (open && auth.isAuth ? '1': '0')}}>
+                Привет, {auth.username}
+            </Paper>
             <SpeedDial
                 ariaLabel="AvatarButton"
                 className={classes.speedDial}

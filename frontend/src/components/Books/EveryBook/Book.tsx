@@ -10,6 +10,7 @@ import {NavLink} from "react-router-dom";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {bookType} from "../../common/types/types";
 import octaButton from '../../../assets/image/octaButton.png'
+import ScrollAnimation from 'react-animate-on-scroll'
 
 
 type BookType = {
@@ -26,14 +27,14 @@ const useStyles = makeStyles((theme) => ({
     },
     cardMedia: {
         paddingTop: '125%',
-        transition: '2s',
+        transition: '0.5s',
         '&:hover': {
-            transform: 'scale(1.1)',
+            transform: 'scale(1.07)',
             filter: 'saturate(300%)',
         },
     },
     cardContent: {
-        backgroundColor: '#A9A9A9',
+        backgroundColor: 'white',
         flexGrow: 1,
         zIndex: 3001,
     },
@@ -55,19 +56,13 @@ const Book: React.FC<BookType> = ({book}) => {
 
 
     return (
-        <Grid item xs={12} sm={6} md={4}>
+        <Grid item  xs={6} md={4}>
             <div className={c.bookWrapper}>
 
-                <div className={classButton}
-                     onMouseEnter={setHoverOn}
-                     onMouseLeave={setHoverOff}>
-                    <img src={octaButton} alt=""/>
-                </div>
+                <ScrollAnimation animateIn='fadeInUp' offset='100'>
 
                 <Card className={classes.card}>
-
                     <NavLink className={c.navLink} to={'/book/' + book.id}>
-
                         {book.mini_poster ? (
                             <CardMedia
                                 className={classes.cardMedia}
@@ -102,7 +97,7 @@ const Book: React.FC<BookType> = ({book}) => {
 
                     </CardContent>
                 </Card>
-
+                </ScrollAnimation>
             </div>
         </Grid>
     )

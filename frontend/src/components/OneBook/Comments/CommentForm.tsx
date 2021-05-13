@@ -25,6 +25,11 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: 'white',
         borderRadius: '5px',
     },
+    button: {
+        "&:disabled": {
+          backgroundColor: "grey"
+        }
+      }
 }));
 
 const CommentForm: React.FC<PropsType> = ({isAuth, addComment}) => {
@@ -76,6 +81,7 @@ const CommentForm: React.FC<PropsType> = ({isAuth, addComment}) => {
                             type="submit"
                             variant="contained"
                             color="primary"
+                            className={cl.button}
                             disabled={submitting || pristine}
                             endIcon={<Icon>send</Icon>}
                         >
