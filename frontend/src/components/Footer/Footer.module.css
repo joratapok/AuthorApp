@@ -2,13 +2,14 @@
     display: flex;
     justify-content: center;
     z-index: 10;
+    margin: 32px;
 }
 
 .footerWrapper {
     display: flex;
     justify-content: center;
     background-position: center;
-    background-size: 80% 90%;
+    background-size: 100% 90%;
     background-repeat: no-repeat;
     width: 85%;
 }
@@ -27,17 +28,17 @@
     align-items: center;
     text-align: center;
     width: 68%;
-    font-size: 13px;
+    font-size: 14px;
     margin: 0 60px 0 0;
 }
 
 @media (max-width: 600px) {
     .footerWrapper {
-        background-size: 95% 90%;
-        width: 95%;
+        background-size: 100% 90%;
+        width: 100%;
     }
     .footerContentWrapper {
         font-size: 11px;
-        margin: 0 10px;
+        margin: 0 20px;
     }
 }

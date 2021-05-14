@@ -135,7 +135,6 @@ const Login: React.FC<LoginType> = ({
                             onSuccess={accessResponseGoogle}
                             onFailure={denyResponseGoogle}
                             cookiePolicy={'single_host_origin'}
-                            className={classes.googleButton}
                         />
                     </div>
                 </>

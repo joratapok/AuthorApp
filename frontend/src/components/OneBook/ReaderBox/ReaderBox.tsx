@@ -13,6 +13,7 @@ import RemoveIcon from '@material-ui/icons/Remove';
 import Grid from "@material-ui/core/Grid";
 import Icon from '@material-ui/core/Icon'
 import Button from '@material-ui/core/Button';
+import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 
 
 type ReaderBoxType = {
@@ -54,18 +55,46 @@ const useStyles = makeStyles((theme: Theme) =>
             width: 40,
             height: 40,
         },
+        darkThemeButton: {
+          width: 40,
+          height: 40,
+          color: '#e9e9e9',
+        },
+        lightThemeButton: {
+          width: 40,
+          height: 40,
+          color: '#2F4F4F',
+        },
         nextButton: {
             margin: theme.spacing(3),
         },
-
+        paginDark: {
+          "& .MuiPaginationItem-root": {
+            color: "#e9e9e9"
+          }
+        },
+        paginLight: {
+          "& .MuiPaginationItem-root": {
+            color: "black"
+          },
+          "& .MuiPaginationItem-textPrimary.Mui-selected": {
+            color: "white"
+          }
+        }
     }),
 );
+
+
+
+
+
 
 export const ReaderBox: React.FC<ReaderBoxType & any> = ({bookId, chapters, toggleReader, getNewChapter, setReaderOff}) => {
     const cl = useStyles();
 
     const [modal, setModal] = useState(false)
-    const [font, setFont] = useState(16)
+    const [font, setFont] = useState(18)
+    const [dark, setDark] = useState(false)
 
     const buttonModalOffClass = classes.buttonModalOff + ' ' + (modal ? classes.activeButtonModalOff : '')
     const isNextChapter: boolean = (!chapters.next)
@@ -76,6 +105,10 @@ export const ReaderBox: React.FC<ReaderBoxType & any> = ({bookId, chapters, togg
 
     const subtractFont = () => {
         setFont(font - 2)
+    }
+
+    const toggleDark = () => {
+        setDark(!dark)
     }
 
     useEffect(() => {
@@ -98,25 +131,31 @@ export const ReaderBox: React.FC<ReaderBoxType & any> = ({bookId, chapters, togg
             >
                 <Fade in={modal}>
                     <>
-                        <Box className={cl.paper}  bgcolor='#e9e9e9'>
-                            <ScrollContainer vertical={true} horizontal={true} hideScrollbars={false}
+                        <Box className={cl.paper}  bgcolor={(dark) ? '#2F4F4F' : '#e9e9e9' }>
+                            <ScrollContainer vertical={true} horizontal={false} hideScrollbars={false}
                                              className={classes.dragScroll}>
                                 <Grid container spacing={0}>
                                     <Grid item xs={4}>
                                         <Box display='flex' justifyContent='flex-start' alignItems='center' my={1}>
 
-                                            <IconButton aria-label="exit"
+                                            <IconButton aria-label="add font size"
                                                         color='primary'
                                                         disabled={font > 28}
                                                         onClick={addFont}>
                                                 <AddIcon className={cl.fontButtons}/>
                                             </IconButton>
-                                            <IconButton aria-label="exit"
+                                            <IconButton aria-label="low font size"
                                                         color='secondary'
                                                         disabled={font < 12}
                                                         onClick={subtractFont}>
                                                 <RemoveIcon className={cl.fontButtons}/>
                                             </IconButton>
+
+                                            <IconButton aria-label="dark theme"
+                                                        onClick={toggleDark}>
+                                                <FiberManualRecordIcon  className={dark ? cl.darkThemeButton : cl.lightThemeButton}/>
+                                            </IconButton>
+
                                         </Box>
                                     </Grid>
 
@@ -140,13 +179,14 @@ export const ReaderBox: React.FC<ReaderBoxType & any> = ({bookId, chapters, togg
                                              width='100%' height='100%'>
                                             <Pagination count={chapters.count}
                                                         color="primary"
+                                                        classes={dark ? {ul: cl.paginDark} :  {ul: cl.paginLight} }
                                                         onChange={getNewChapter}
                                                         page={chapters.currentPage}/>
                                         </Box>
                                     </Grid>
                                 </Grid>
 
-                                <Box fontSize={`${font}px`}>
+                                <Box mr={1} fontSize={`${font}px`} color={(dark) ? '#e9e9e9' : 'black'}>
                                     {chapters.results.length &&
                                     <div dangerouslySetInnerHTML={{__html: chapters.results[0].chapter}}/>
                                     }

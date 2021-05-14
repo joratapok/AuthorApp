@@ -51,8 +51,7 @@
 @keyframes mymove {
   from {transform: scale(1);}
   to {transform: scale(1.03);}
-  from {transform: scale(1.03);}
-  to {transform: scale(1.0);}
+
 }
 
 .boxIntro {

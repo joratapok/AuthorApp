@@ -7,7 +7,7 @@ import ReaderBoxContainer from "./ReaderBox/ReaderBoxContainer"
 import {AuthinitialType} from "../../redux/authReducer"
 import {
     Box, createStyles, Grid, makeStyles, withStyles,
-    Button, Paper, Theme, Typography, Tooltip
+    Button, Paper, Theme, Typography, Tooltip, Avatar
 } from "@material-ui/core";
 import {deepOrange, green} from '@material-ui/core/colors';
 import {OneBookType} from "../common/types/types";
@@ -17,6 +17,9 @@ import duck from '../../assets/image/rubberDuck/rubber-duck.png'
 import duckGray from '../../assets/image/rubberDuck/rubber-duck-gray.png'
 import activeCat from '../../assets/image/rubberDuck/activeCat.png'
 import passiveCat from '../../assets/image/rubberDuck/passiveCat.png'
+import ReplyIcon from '@material-ui/icons/Reply';
+import {NavLink} from "react-router-dom"
+
 
 type BookDetailType = {
     book: OneBookType
@@ -36,7 +39,7 @@ const useStyles = makeStyles((theme: Theme) =>
             textAlign: 'center',
             height: '100%',
             color: theme.palette.text.primary,
-            
+
 
         },
         typography: {
@@ -111,7 +114,20 @@ export const BookDetail: React.FC<BookDetailType> = ({
 
     return (
         <div className={classes.bookWrapper}>
-            <Box height='100px'></Box>
+            <Box height='100px' position='relative'>
+
+                <LightTooltip disableFocusListener
+                              enterTouchDelay='600'
+                              title="назад"
+                              placement="right">
+                    <Box position='absolute' left='8px' bottom='24px' width='42px' height='42px' borderRadius='50%' bgcolor='white'>
+                        <NavLink className={classes.navLink} to='/'>
+                            <ReplyIcon style={{ color: 'primary', fontSize: 40 }} />
+                        </NavLink>
+                    </Box>
+                </LightTooltip>
+
+            </Box>
             <Grid container spacing={3}>
                 <Grid item xs={12} sm={6}>
                     <img src={book.poster} alt={"Обложка"}/>
@@ -119,7 +135,7 @@ export const BookDetail: React.FC<BookDetailType> = ({
 
                 <Grid item xs={12} sm={6}>
                     <Paper className={cl.paper}>
-                        <Box display='flex' alignItems='center' my={1}>
+                        <Box display='flex' alignItems='center' mt={1} mb={2}>
                             <Box mx={2} width='50%'>
                                 <a href={book.book_file}>
                                     <DownloadButton variant="contained" color="primary" className={classes.margin}
@@ -146,6 +162,7 @@ export const BookDetail: React.FC<BookDetailType> = ({
                         <Box my={1} display='flex' alignSelf='flex-start'>
                             {!auth.isAuth &&
                             <LightTooltip disableFocusListener
+                                          enterTouchDelay='10'
                                           title="для того оценить книгу необходимо авторизоваться"
                                           placement="right">
                                 <Box>

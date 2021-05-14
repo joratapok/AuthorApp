@@ -99,7 +99,7 @@ export const Comments: React.FC<CommentsType> = ({
                         </React.Fragment>
                     })}
                     <Box display='flex' justifyContent='center' padding='8px 0 8px 0'>
-                        <Pagination count={Math.ceil(comments.count / 10)} color="primary" onChange={paginationHandler}/>
+                      { comments.count >= 1 && <Pagination count={Math.ceil(comments.count / 10)} color="primary" onChange={paginationHandler}/> }
                     </Box>
                 </Paper>
 

@@ -78,7 +78,7 @@ const UserAvatar: React.FC<OwnPropsType> = ({auth, setIsShowLogin, setIsShowSign
     }
 
     const actionsDefaulUser = [
-        {icon: <IconButton onClick={openLoginModal}><PersonRoundedIcon/></IconButton>, name: 'Логин'},
+        {icon: <IconButton onClick={openLoginModal}><PersonRoundedIcon/></IconButton>, name: 'Войти'},
         {icon: <IconButton onClick={openSignUpModal}><ExitToAppIcon/></IconButton>, name: 'Регистрация'},
     ]
 

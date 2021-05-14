@@ -31,7 +31,7 @@ let initial = {
     books: [
         {
             id: 0,
-            name: 'initialBook',
+            name: '',
             mini_poster: '',
             rated_books: '0',
             genre: [],
@@ -43,7 +43,7 @@ let initial = {
         next: '',
         previous: '',
         currentPage: 1,
-        results: [{chapter: 'Что то пошло не так...'}] as Array<Chapter>,
+        results: [{chapter: 'Хм... похоже что то пошло не так...'}] as Array<Chapter>,
     },
 }
 

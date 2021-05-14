@@ -24,12 +24,26 @@ img {
     position: relative;
 }
 
-.chunk1 {
-    position: relative;
-    width: 30%;
+.masterCat {
+    position: absolute;
+    display: block;
+    width: 130px;
+    top:1200px;
+    right: -130px;
 
 }
 
+.activeMasterCat {
+  z-index: 2011;
+  animation: masterCatMove 1s 2;
+  animation-direction: alternate;
+}
+
+@keyframes masterCatMove {
+  from {transform: translateX(0) rotate(315deg);}
+  to {transform: translateX(-100px) rotate(300deg);}
+
+}
 
 @media (max-width: 1200px) {
   .orange {

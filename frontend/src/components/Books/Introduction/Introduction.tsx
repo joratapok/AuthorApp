@@ -58,7 +58,7 @@ const Introduction: React.FC = () => {
 
             <div className={classes.catWrapper}>
                 <img src={typeCat} alt='typing cat' className={classes.typingCat}
-                         
+
                          onClick={modalOn}/>
             </div>
 
@@ -82,8 +82,7 @@ const Introduction: React.FC = () => {
                   Всем добра и хорошего настроения!
                   </p>
                   <p>
-                      По вопросам и предложениям вы можете связаться со мной через <a href='#' target='_blank'>
-                      vkontakte</a> или написать на почту kuussa99@gmail.com
+                      По вопросам и предложениям вы можете написать мне на почту kuussa99@gmail.com
                   </p>
               </div>
 
