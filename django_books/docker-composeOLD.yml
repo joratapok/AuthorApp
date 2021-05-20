@@ -1,0 +1,28 @@
+version: "3.7"
+
+services:
+  db:
+    image: postgres:13-alpine
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=postgres
+  books:
+    container_name: django_books
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/src/books/backend
+    command: bash -c "python /src/books/backend/manage.py migrate --noinput &&
+             python /src/books/backend/manage.py runserver 0.0.0.0:8000"
+    depends_on:
+      - db
+volumes:
+  postgres_data:

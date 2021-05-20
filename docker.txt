@@ -1,0 +1,49 @@
+docker pull busybox  скачиваем образ
+docker run busybox echo "some text"   создаем контейнер
+docker ps -a
+docker run -it image_name sh заходим в образ
+
+docker volume ls
+
+
+
+
+docker-compose build
+docker-compose up
+docker-compose down
+
+
+docker-compose -f docker-compose.prod.yml up
+docker-compose -f docker-compose.prod.yml down -v
+docker-compose -f docker-compose.prod.yml exec web python manage.py migrate --noinput
+docker-compose -f docker-compose.prod.yml exec web python manage.py collectstatic
+docker-compose -f docker-compose.prod.yml exec web python manage.py createsuperuser
+
+
+docker exec -it django_books python /src/books/backend/manage.py createsuperuser
+docker exec -it django_books python /src/books/backend/manage.py migrate --noinput
+docker exec -it django_books bash - попасть внутрь контейнера
+
+
+docker exec -it django_books_web_1 python manage.py migrate --noinput
+docker exec -it django_books_web_1 python manage.py collectstatic
+docker exec -it django_books_web_1 python manage.py createsuperuser
+
+$ chmod +x app/entrypoint.sh
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+FROM python:3.8.3-alpine из какого образа работаем
+WORKDIR /usr/src/app создаем папку и переходим в нее
+EXPOSE 80 запускаем контейнер на 80 порту
