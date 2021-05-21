@@ -9,7 +9,7 @@
 __pycashe__
 venv/
 
-.staticfiles
+staticfiles/
 .env.*
 
 
