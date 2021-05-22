@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'rest_auth',
 ]
 
-SITE_ID = 5
+SITE_ID = 1
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
@@ -180,17 +180,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_ORIGIN_WHITELIST = [
-    'http://localhost:8081',
-    'http://localhost:3000',
-    "http://127.0.0.1:1313",
+    "https://goodbookonly",
     "http://localhost",
 ]
 
 
 STATIC_URL = '/staticfiles/'
-STATIC_DIR = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = [STATIC_DIR]
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#STATIC_DIR = os.path.join(BASE_DIR, 'staticfiles')
+#STATICFILES_DIRS = [STATIC_DIR]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
