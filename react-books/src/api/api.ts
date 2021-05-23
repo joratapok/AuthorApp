@@ -67,7 +67,7 @@ type Chapter = {
 }
 
 export const instance = axios.create({
-    baseURL: 'https://goodbookonly/',
+    baseURL: 'https://goodbookonly.ru/',
     withCredentials: true,
 
 })

@@ -87,8 +87,10 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 )
 
-const SignUp: React.FC<PropsType> = ({onSubmit, auth, setIsShowSignUp,
-  loginWithGoogleThunk, handlerRecaptcha}) => {
+const SignUp: React.FC<PropsType> = ({
+                                         onSubmit, auth, setIsShowSignUp,
+                                         loginWithGoogleThunk, handlerRecaptcha
+                                     }) => {
 
     const cl = useStyles();
 
@@ -157,14 +159,14 @@ const SignUp: React.FC<PropsType> = ({onSubmit, auth, setIsShowSignUp,
                                         </Grid>
 
                                         <Grid item xs={12}>
-                                        <GoogleLogin
-                                            clientId="836913855059-m5bsk43ik1l7o7l8g4kkhd4pjj66d2rb.apps.googleusercontent.com"
-                                            buttonText="Войти с помощью Google аккаунта"
-                                            onSuccess={accessResponseGoogle}
-                                            onFailure={denyResponseGoogle}
-                                            cookiePolicy={'single_host_origin'}
-                                            className={classes.googleButton}
-                                        />
+                                            <GoogleLogin
+                                                clientId="836913855059-m5bsk43ik1l7o7l8g4kkhd4pjj66d2rb.apps.googleusercontent.com"
+                                                buttonText="Войти с помощью Google аккаунта"
+                                                onSuccess={accessResponseGoogle}
+                                                onFailure={denyResponseGoogle}
+                                                cookiePolicy={'single_host_origin'}
+                                                className={classes.googleButton}
+                                            />
                                         </Grid>
                                     </Grid>
                                 </form>

@@ -12,6 +12,7 @@
     background-size: 100% 90%;
     background-repeat: no-repeat;
     width: 85%;
+    max-width: 1200px;
 }
 
 .footerCatWrapper {

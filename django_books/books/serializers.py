@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from django_books import settings
 from books.models import Book, UserBookRelation, Comments, Chapters, Genre
+from user_auth.models import Profile
+
 
 
 class AllBooksSerializer(serializers.ModelSerializer):

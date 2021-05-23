@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme: Theme) =>
         darkThemeButton: {
           width: 40,
           height: 40,
-          color: '#e9e9e9',
+          color: '#1C2833',
         },
         lightThemeButton: {
           width: 40,
@@ -131,7 +131,7 @@ export const ReaderBox: React.FC<ReaderBoxType & any> = ({bookId, chapters, togg
             >
                 <Fade in={modal}>
                     <>
-                        <Box className={cl.paper}  bgcolor={(dark) ? '#2F4F4F' : '#e9e9e9' }>
+                        <Box className={cl.paper}  bgcolor={(dark) ? '#1C2833' : '#e9e9e9' }>
                             <ScrollContainer vertical={true} horizontal={false} hideScrollbars={false}
                                              className={classes.dragScroll}>
                                 <Grid container spacing={0}>
