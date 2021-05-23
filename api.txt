@@ -1,6 +1,6 @@
 
 post -- регистрация
-http://127.0.0.1:8000/api-register/
+http://127.0.0.1:8000/api/register/
 username: jora
 password: 123
 password2: 123
@@ -9,7 +9,7 @@ recaptcha: ...
 
 
 post  -- выписываем токен
-http://127.0.0.1:8000/api-token-auth/
+http://127.0.0.1:8000/api/token-auth/
 username: jora
 password: 123
 
@@ -18,7 +18,7 @@ response
 
 
 post  --обновляем
-http://127.0.0.1:8000/api-token-refresh/
+http://127.0.0.1:8000/api/token-refresh/
 token: ...
 
 response
@@ -26,28 +26,30 @@ response
 
 
 post --отдаем гугловский токен получаем свой
-http://127.0.0.1:8000/api-google/ (token)
+http://127.0.0.1:8000/api/google/ (token)
 
 
 get  -- Получаем инфу о юзере
-http://127.0.0.1:8000/api-auth-me/
+http://127.0.0.1:8000/api/auth-me/
 (Authorization: JWT ...)
 
 
 get  -- получаем аватар
-127.0.0.1:8000/books/profile/1 (id юзера)
+127.0.0.1:8000/api/profile/1 (id юзера)
 
 
 get -- получение всех книг
-127.0.0.1:8000/books/
+127.0.0.1:8000/api/books/
 
 
 get -- получение одной книги
-127.0.0.1:8000/books/1 (id книги)
+127.0.0.1:8000/api/books/1 (id книги)
 
 get -- получение глав
-http://127.0.0.1:8000/books/chapters/1 (id книги)
+http://127.0.0.1:8000/api/books/chapters/1 (id книги)
 
+
+Авторизация:
 
 get -- добавляем токен в запросы
 http://127.0.0.1:8000/books/ запрос к API
@@ -55,14 +57,14 @@ Authorization: JWT ....(полученый токен)
 
 
 patch -- добавление рейтинга
-127.0.0.1:8000/books/book_relation/1/  (id книги)
+127.0.0.1:8000/api/books/book_relation/1/  (id книги)
 rate: 1
 
 
 get -- получаем комменты
-127.0.0.1:8000/books/comments/1/ (id книги)
+127.0.0.1:8000/api/books/comments/1/ (id книги)
 
 
 patch -- добавление коммента 
-http://127.0.0.1:8000/books/add_comments/1/ (id книги)
+http://127.0.0.1:8000/api/books/add_comments/1/ (id книги)
 text: hello

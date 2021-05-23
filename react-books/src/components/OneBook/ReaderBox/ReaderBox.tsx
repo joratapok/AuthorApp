@@ -58,12 +58,12 @@ const useStyles = makeStyles((theme: Theme) =>
         darkThemeButton: {
           width: 40,
           height: 40,
-          color: '#1C2833',
+          color: '#e9e9e9',
         },
         lightThemeButton: {
           width: 40,
           height: 40,
-          color: '#2F4F4F',
+          color: '#1C2833',
         },
         nextButton: {
             margin: theme.spacing(3),

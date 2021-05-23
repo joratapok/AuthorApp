@@ -1,10 +1,11 @@
-﻿docker pull busybox  скачиваем образ
+docker pull busybox  скачиваем образ
 docker run busybox echo "some text"   создаем контейнер
 docker ps -a
 docker run -it image_name sh заходим в образ
 
 docker volume ls
-docker image rm -f ......
+docker volume prune - удалить все локальные незадействованые volume
+
 
 
 
@@ -20,11 +21,15 @@ docker-compose -f docker-compose.prod.yml exec web python manage.py collectstati
 docker-compose -f docker-compose.prod.yml exec web python manage.py createsuperuser
 
 
-docker exec -it django_books python /src/books/backend/manage.py createsuperuser
-docker exec -it django_books python /src/books/backend/manage.py migrate --noinput
-docker exec -it django_books bash - попасть внутрь контейнера
+docker exec -it django_books_web_1 bash - попасть внутрь контейнера
+docker exec -u 0 -it django_books_web_1 bash - зайти под рутом
+python manage.py makemigrations
+python manage.py migrate
+python manage.py collectstatic
+python manage.py createsuperuser
 
 
+docker exec -it django_books_web_1 python manage.py makemigrations
 docker exec -it django_books_web_1 python manage.py migrate --noinput
 docker exec -it django_books_web_1 python manage.py collectstatic
 docker exec -it django_books_web_1 python manage.py createsuperuser
@@ -32,12 +37,9 @@ docker exec -it django_books_web_1 python manage.py createsuperuser
 
 
 
-
-
-
-///домой на проверку
-docker exec -i pg_container_name /bin/bash -c "PGPASSWORD=pg_password pg_dump --username pg_username database_name" > /desired/path/on/your/machine/dump.sql
-docker exec -i pg_container_name /bin/bash -c "PGPASSWORD=pg_password psql --username pg_username database_name" < /path/on/your/machine/dump.sql
-
+docker exec -t django_books_db_1 pg_dumpall -c -U django_user_marina_book > dump_`date +%d-%m-%Y"_"%H_%M_%S`.sql  - сохраняем дамп БД
+Восставновление = оставить одну из этих:
+docker exec -i -u django_user_marina_book django_books_db_1 pg_restore -C -d django_books_prod < dump-name
+cat your_dump.sql | docker exec -i your-db-container psql -U postgres
 
 
