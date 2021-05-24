@@ -8,6 +8,7 @@
 /httpRequests/
 __pycashe__
 venv/
+dump/
 
 staticfiles/
 .env.*

@@ -1,4 +1,4 @@
-docker pull busybox  скачиваем образ
+﻿docker pull busybox  скачиваем образ
 docker run busybox echo "some text"   создаем контейнер
 docker ps -a
 docker run -it image_name sh заходим в образ
@@ -43,3 +43,4 @@ docker exec -i -u django_user_marina_book django_books_db_1 pg_restore -C -d dja
 cat your_dump.sql | docker exec -i your-db-container psql -U postgres
 
 
+docker cp django_books_nginx_1:/var/log/nginx/access.log .   - копируем лог из контейнера

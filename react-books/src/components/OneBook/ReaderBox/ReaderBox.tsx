@@ -85,10 +85,6 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 
-
-
-
-
 export const ReaderBox: React.FC<ReaderBoxType & any> = ({bookId, chapters, toggleReader, getNewChapter, setReaderOff}) => {
     const cl = useStyles();
 

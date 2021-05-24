@@ -1,14 +1,15 @@
 import React, {useState} from 'react'
-import c from "../EveryBook/Book.module.css";
-import {makeStyles} from "@material-ui/core/styles";
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import {NavLink} from "react-router-dom";
-import CircularProgress from '@material-ui/core/CircularProgress';
-import {bookType} from "../../common/types/types";
+import c from "../EveryBook/Book.module.css"
+import {makeStyles} from "@material-ui/core/styles"
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import CardMedia from '@material-ui/core/CardMedia'
+import Typography from '@material-ui/core/Typography'
+import Grid from '@material-ui/core/Grid'
+import {NavLink} from "react-router-dom"
+import CircularProgress from '@material-ui/core/CircularProgress'
+import {bookType} from "../../common/types/types"
 import ScrollAnimation from 'react-animate-on-scroll'
 
 
@@ -40,6 +41,23 @@ const useStyles = makeStyles(() => ({
 
 }));
 
+const theme = createMuiTheme();
+
+theme.typography.h4 = {
+  fontSize: '1.5rem',
+  fontWeight: 400,
+  [theme.breakpoints.down('xs')]: {
+    fontSize: '0.9rem',
+  },
+};
+theme.typography.h5 = {
+  fontSize: '1rem',
+  fontWeight: 400,
+  [theme.breakpoints.down('xs')]: {
+    fontSize: '0.7rem',
+  },
+};
+
 const Book: React.FC<BookType> = ({book}) => {
     const classes = useStyles();
 
@@ -55,44 +73,51 @@ const Book: React.FC<BookType> = ({book}) => {
         <Grid item  xs={6} md={4}>
             <div className={c.bookWrapper}>
 
-                <ScrollAnimation animateIn='fadeInUp' offset={100}>
+                <ScrollAnimation style={{height: '100%'}} animateIn='fadeInUp' offset={100}>
 
-                <Card className={classes.card}>
-                    <NavLink className={c.navLink} to={'/book/' + book.id}>
-                        {book.mini_poster ? (
-                            <CardMedia
-                                className={classes.cardMedia}
-                                image={book.mini_poster}
-                                title={book.name}
-                                onMouseEnter={setHoverOn}
-                                onMouseLeave={setHoverOff}
-                            />
-                        ) : (<CircularProgress/>)
-                        }
+                    <Card className={classes.card}>
+                        <NavLink className={c.navLink} to={'/book/' + book.id}>
+                            {book.mini_poster ? (
+                                <CardMedia
+                                    className={classes.cardMedia}
+                                    image={book.mini_poster}
+                                    title={book.name}
+                                    onMouseEnter={setHoverOn}
+                                    onMouseLeave={setHoverOff}
+                                />
+                            ) : (<CircularProgress/>)
+                            }
 
-                    </NavLink>
+                        </NavLink>
 
-                    <CardContent className={classes.cardContent}>
-                        <Typography align='center'
-                                    variant='body2'>
-                            {book.genre.map((el, idx) => {
-                                if (idx === book.genre.length - 1) {
-                                    return <span key={el}> {el} </span>
-                                }
-                                return (<span key={el}>
-                                        {el + ' / '}
-                                    </span>)
-                            })}
-                        </Typography>
+                        <CardContent className={classes.cardContent}>
 
-                        <Typography variant="h5"
-                                    component="h2"
-                                    align='center'>
-                            {book.name}
-                        </Typography>
+                            <ThemeProvider theme={theme}>
 
-                    </CardContent>
-                </Card>
+                                <Typography align='center'
+                                            variant='h5'>
+                                            Фэнтези / Комедия
+                                    {book.genre.map((el, idx) => {
+                                        if (idx === book.genre.length - 1) {
+                                            return <span key={el}> {el} </span>
+                                        }
+                                        return (<span key={el}>
+                                                {el + ' / '}
+                                            </span>)
+                                    })}
+                                </Typography>
+
+
+                                <Typography variant="h4"
+                                            component="h2"
+                                            align='center'>
+                                    {book.name} TEST Book Name
+                                </Typography>
+
+                            </ThemeProvider>
+
+                        </CardContent>
+                    </Card>
                 </ScrollAnimation>
             </div>
         </Grid>

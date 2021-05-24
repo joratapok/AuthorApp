@@ -16,6 +16,7 @@ import activeCat from '../../assets/image/rubberDuck/activeCat.png'
 import passiveCat from '../../assets/image/rubberDuck/passiveCat.png'
 import ReplyIcon from '@material-ui/icons/Reply';
 import {NavLink} from "react-router-dom"
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 type BookDetailType = {
@@ -36,8 +37,12 @@ const useStyles = makeStyles((theme: Theme) =>
             textAlign: 'center',
             height: '100%',
             color: theme.palette.text.primary,
-
-
+        },
+        paperCover: {
+            display: 'flex',
+            height: '100%',
+            justifyContent: 'center',
+            alignItems: 'center',
         },
         typography: {
             fontWeight: 700,
@@ -116,7 +121,9 @@ export const BookDetail: React.FC<BookDetailType> = ({
             </Box>
             <Grid container spacing={3}>
                 <Grid item xs={12} sm={6}>
-                    <img src={book.poster} alt={"Обложка"}/>
+                  <Paper className={cl.paperCover}>
+                      {book.poster ? <img src={book.poster} alt={"Обложка"}/> : <CircularProgress/>}
+                  </Paper>
                 </Grid>
 
                 <Grid item xs={12} sm={6}>
