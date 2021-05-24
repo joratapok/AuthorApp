@@ -96,7 +96,7 @@ const Book: React.FC<BookType> = ({book}) => {
 
                                 <Typography align='center'
                                             variant='h5'>
-                                            Фэнтези / Комедия
+
                                     {book.genre.map((el, idx) => {
                                         if (idx === book.genre.length - 1) {
                                             return <span key={el}> {el} </span>
@@ -111,7 +111,7 @@ const Book: React.FC<BookType> = ({book}) => {
                                 <Typography variant="h4"
                                             component="h2"
                                             align='center'>
-                                    {book.name} TEST Book Name
+                                    {book.name}
                                 </Typography>
 
                             </ThemeProvider>
