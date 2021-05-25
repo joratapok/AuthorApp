@@ -7,13 +7,15 @@ import ScrollContainer from "react-indiana-drag-scroll"
 import Modal from '@material-ui/core/Modal'
 import {Fade, IconButton, Backdrop} from '@material-ui/core'
 import {makeStyles, Theme, createStyles} from '@material-ui/core/styles'
-import AddIcon from '@material-ui/icons/Add';
-import CloseIcon from '@material-ui/icons/Close';
-import RemoveIcon from '@material-ui/icons/Remove';
-import Grid from "@material-ui/core/Grid";
+import AddIcon from '@material-ui/icons/Add'
+import CloseIcon from '@material-ui/icons/Close'
+import RemoveIcon from '@material-ui/icons/Remove'
+import Grid from "@material-ui/core/Grid"
 import Icon from '@material-ui/core/Icon'
-import Button from '@material-ui/core/Button';
-import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
+import Button from '@material-ui/core/Button'
+import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
+import { useTheme } from '@material-ui/core/styles'
 
 
 type ReaderBoxType = {
@@ -87,6 +89,8 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const ReaderBox: React.FC<ReaderBoxType & any> = ({bookId, chapters, toggleReader, getNewChapter, setReaderOff}) => {
     const cl = useStyles();
+    const theme = useTheme();
+    const matches = useMediaQuery(theme.breakpoints.up('sm'));
 
     const [modal, setModal] = useState(false)
     const [font, setFont] = useState(18)
@@ -174,6 +178,7 @@ export const ReaderBox: React.FC<ReaderBoxType & any> = ({bookId, chapters, togg
                                         <Box py={1} display='flex' justifyContent='center' alignItems='center'
                                              width='100%' height='100%'>
                                             <Pagination count={chapters.count}
+                                                        size={matches ? 'medium' : 'small'}
                                                         color="primary"
                                                         classes={dark ? {ul: cl.paginDark} :  {ul: cl.paginLight} }
                                                         onChange={getNewChapter}

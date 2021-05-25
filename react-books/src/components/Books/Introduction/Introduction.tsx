@@ -60,9 +60,10 @@ const Introduction: React.FC = () => {
             </div>
 
             <div className={classes.catWrapper}>
-                <img src={typeCat} alt='typing cat' className={classes.typingCat}
-
-                         onClick={modalOn}/>
+                <img src={typeCat}
+                     alt='typing cat'
+                     className={classes.typingCat}
+                     onClick={modalOn}/>
             </div>
 
 

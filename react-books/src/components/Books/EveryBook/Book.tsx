@@ -99,11 +99,9 @@ const Book: React.FC<BookType> = ({book}) => {
 
                                     {book.genre.map((el, idx) => {
                                         if (idx === book.genre.length - 1) {
-                                            return <span key={el}> {el} </span>
+                                            return  el
                                         }
-                                        return (<span key={el}>
-                                                {el + ' / '}
-                                            </span>)
+                                        return el + ' / '
                                     })}
                                 </Typography>
 

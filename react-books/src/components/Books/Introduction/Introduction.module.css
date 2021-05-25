@@ -49,12 +49,12 @@
       cursor: pointer;
       animation: mymove 1s infinite;
       animation-direction: alternate;
-      transition: 0.5s;
+      transition: 0.3s;
 }
 
 @keyframes mymove {
   from {transform: scale(1);}
-  to {transform: scale(1.03);}
+  to {transform: scale(1.05);}
 
 }
 

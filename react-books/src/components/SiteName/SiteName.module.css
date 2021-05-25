@@ -4,6 +4,7 @@
     font-family: 'Pacifico', cursive;
     color: white;
     text-align: center;
+    padding: 0 15px;
 }
 
 @media (max-width: 600px) {
