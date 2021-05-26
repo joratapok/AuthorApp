@@ -7,8 +7,6 @@ docker volume ls
 docker volume prune - удалить все локальные незадействованые volume
 
 
-
-
 docker-compose build
 docker-compose up
 docker-compose down

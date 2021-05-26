@@ -1,0 +1,45 @@
+.notFoundWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 10;
+    margin: 32px;
+}
+
+.headerMessage {
+    font-family: 'Pacifico', cursive;
+    color: white;
+    text-align: center;
+    padding: 0 15px;
+    font-size: 200px;
+}
+
+.bodyMessage {
+    font-family: 'Pacifico';
+    color: white;
+    text-align: center;
+    padding: 20px 20px;
+    font-size: 30px;
+}
+
+.imageMessage {
+    display: flex;
+    align-items: flex-end;
+    width: 60%;
+    align-self: flex-end;
+}
+
+@media (max-width: 600px) {
+    .bodyMessage {
+        font-size: 25px;
+    }
+    .headerMessage {
+        font-size: 100px;
+    }
+}
+
+@media (max-width: 330px) {
+    .bodyMessage {
+        font-size: 15px;
+    }
+}
