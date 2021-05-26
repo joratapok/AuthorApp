@@ -2,7 +2,7 @@ import React from 'react'
 import classes from './Body.module.css'
 import BgBody from './bgBody/BgBody'
 import BooksContainer from "./Books/BooksContainer"
-import {Route, Redirect} from "react-router-dom"
+import {Route, Redirect, Switch} from "react-router-dom"
 import NavMenuContainer from "./NavMenu/NavMenuContainer"
 import OneBookContainer from "./OneBook/OneBookContainer"
 import PageNotFound from "./PageNotFound/PageNotFound"
@@ -19,10 +19,11 @@ const Body: React.FC = () => {
             <div className={classes.content}>
                 <NavMenuContainer/>
                 <SiteName/>
-                <Route path='/book/:bookId' render={() => <OneBookContainer/>}/>
-                <Route exact path='/' render={() => <BooksContainer/>}/>
-                <Route path="/404" component={PageNotFound} />
-                <Redirect to="/404" />
+                <Switch>
+                    <Route path='/book/:bookId?' render={() => <OneBookContainer/>}/>
+                    <Route exact path='/' render={() => <BooksContainer/>}/>
+                    <Route path="*" component={PageNotFound} />
+                </Switch>
             </div>
             <Footer/>
         </div>

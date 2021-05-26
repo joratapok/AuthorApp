@@ -44,6 +44,7 @@ const useStyles = makeStyles(() => ({
 const theme = createMuiTheme();
 
 theme.typography.h4 = {
+  fontFamily: 'Pacifico',
   fontSize: '1.5rem',
   fontWeight: 400,
   [theme.breakpoints.down('xs')]: {
@@ -51,6 +52,7 @@ theme.typography.h4 = {
   },
 };
 theme.typography.h5 = {
+  fontFamily: 'Pacifico',
   fontSize: '1rem',
   fontWeight: 400,
   [theme.breakpoints.down('xs')]: {
@@ -109,7 +111,7 @@ const Book: React.FC<BookType> = ({book}) => {
                                 <Typography variant="h4"
                                             component="h2"
                                             align='center'>
-                                    {book.name}
+                                    {book.name} 
                                 </Typography>
 
                             </ThemeProvider>

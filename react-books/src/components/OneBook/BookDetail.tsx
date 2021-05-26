@@ -185,7 +185,7 @@ export const BookDetail: React.FC<BookDetailType> = ({
                             }
                         </Box>
 
-                        <Typography variant="h4">
+                        <Typography variant="h4" style={{fontFamily: 'Pacifico', margin: '5px 0'}}>
                             {book.name}
                         </Typography>
                         <Typography variant="body2">
