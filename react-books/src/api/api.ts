@@ -1,5 +1,6 @@
-import axios from "axios";
-import {bookType, CommentType, OneBookType} from "../components/common/types/types";
+/* eslint-disable camelcase */
+import axios from 'axios'
+import { bookType, CommentType, OneBookType } from '../components/common/types/types'
 
 type GetAllBooksType = {
     results: Array<bookType>
@@ -68,70 +69,70 @@ type Chapter = {
 
 export const instance = axios.create({
     baseURL: 'https://goodbookonly.ru/',
-    withCredentials: true,
+    withCredentials: true
 
 })
 
 export const bookApi = {
-    getAllBooks() {
+    getAllBooks () {
         return instance.get<GetAllBooksType>('api/books/').then(res => res)
     },
-    getBookById(id: number, JWTToken: string) {
+    getBookById (id: number, JWTToken: string) {
         const token = JWTToken ? `JWT ${JWTToken}` : ''
         return instance.get<OneBookType>(`api/books/${id}/`, {
-            headers: { 'Authorization': token }
+            headers: { Authorization: token }
         }).then(res => res)
     },
-    getChapterPage(id: number, numPage: number) {
+    getChapterPage (id: number, numPage: number) {
         return instance.get<ChaptersType>(`api/books/chapters/${id}?page=${numPage}`).then(res => res.data)
-    },
+    }
 }
 
 export const rateApi = {
-    patchRate(bookId: number, data: number | null, JWTToken: string) {
+    patchRate (bookId: number, data: number | null, JWTToken: string) {
         return instance.patch<CurrentRateType>(`api/books/book_relation/${bookId}/`, {
-            'rate': data,
+            rate: data
         }, {
-            headers: {'Authorization': `JWT ${JWTToken}`}
+            headers: { Authorization: `JWT ${JWTToken}` }
         }).then(res => res.data)
     }
 }
 
 export const authApi = {
-    postCreateJWT(data: LoginFormDataType | SignUpFormDataType) {
+    postCreateJWT (data: LoginFormDataType | SignUpFormDataType) {
         return instance.post<JWTResponseType>('api/token-auth/', {
             username: data.username,
-            password: data.password,
+            password: data.password
         }).then(res => res.data)
     },
-    postRefreshJWT(data: string) {
+    postRefreshJWT (data: string) {
         return instance.post<JWTResponseType>('api/token-refresh/', {
-            token: data,
+            token: data
         }).then(res => res.data)
     },
-    postGoogleToken(access_token: string) {
+    postGoogleToken (access_token: string) {
         return instance.post<GoogleTokenResponseType>('api/google/', {
-            access_token: access_token,
+            access_token: access_token
         }).then(res => res.data)
     },
-    getAuthMe(JWTToken: string) {
+    getAuthMe (JWTToken: string) {
         return instance.get<getAuthMeType>('api/auth-me/', {
             headers: {
-                'Authorization': `JWT ${JWTToken}`
+                Authorization: `JWT ${JWTToken}`
             }
         }).then(res => res.data)
     },
-    getAvatar(JWTToken: string, userId: number) {
+    getAvatar (JWTToken: string, userId: number) {
         return instance.get<GetAvatarDataType>(`api/profile/${userId}`).then(res => res.data)
     },
-    patchAvatar(JWTToken: string, userId: number, photo: any) {
-        const formData = new FormData
+    patchAvatar (JWTToken: string, userId: number, photo: any) {
+        const formData = new FormData()
         formData.append('photo', photo)
         return instance.patch<GetAvatarDataType>(`api/profile/${userId}`, formData, {
-            headers: {'Authorization': `JWT ${JWTToken}`}
+            headers: { Authorization: `JWT ${JWTToken}` }
         }).then(res => res.data)
     },
-    postRegistrNewUser(data: SignUpFormDataType) {
+    postRegistrNewUser (data: SignUpFormDataType) {
         return instance.post<RegisterResponseType>('api/register/', {
             username: data.username,
             email: data.email,
@@ -139,22 +140,21 @@ export const authApi = {
             password2: data.re_password,
             recaptcha: data.recaptcha
         }).then(res => res.data)
-    },
+    }
 }
 
-
 export const commentApi = {
-    getComments(id: number) {
+    getComments (id: number) {
         return instance.get<CommentsDataType>(`api/books/comments/${id}/`).then(res => res)
     },
-    getNewCommentsPage(id: number, numPage: number) {
+    getNewCommentsPage (id: number, numPage: number) {
         return instance.get<CommentsDataType>(`api/books/comments/${id}/?page=${numPage}`).then(res => res)
     },
-    patchComment(id: number, textMessage: string, JWTToken: string) {
+    patchComment (id: number, textMessage: string, JWTToken: string) {
         return instance.patch(`api/books/add_comments/${id}/`, {
-            'text': textMessage,
+            text: textMessage
         }, {
-          headers: {'Authorization': `JWT ${JWTToken}`}
+            headers: { Authorization: `JWT ${JWTToken}` }
         })
     }
 }

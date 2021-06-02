@@ -1,8 +1,9 @@
-import React from 'react';
-import {connect} from "react-redux";
-import {actionsAuthReducer, AuthinitialType, loginThunk, loginWithGoogleThunk, } from "../../../redux/authReducer";
-import {AppStateType} from "../../../redux/store";
-import Login from "./Login"
+/* eslint-disable camelcase */
+import React from 'react'
+import { connect } from 'react-redux'
+import { actionsAuthReducer, AuthinitialType, loginThunk, loginWithGoogleThunk } from '../../../redux/authReducer'
+import { AppStateType } from '../../../redux/store'
+import Login from './Login'
 import { FORM_ERROR } from 'final-form'
 
 export type LoginFormDataType = {
@@ -25,14 +26,15 @@ type MapOwnPropsType = {
 
 type PropsType = MapsStatePorpsType & MapDispatchPropsType & MapOwnPropsType
 
-const LoginContainer: React.FC<PropsType> = ({auth, loginThunk,
-                                                 loginWithGoogleThunk, setIsShowLogin}) => {
-
+const LoginContainer: React.FC<PropsType> = ({
+    auth, loginThunk,
+    loginWithGoogleThunk, setIsShowLogin
+}) => {
     const onSubmit = async (data: LoginFormDataType) => {
         try {
-          await loginThunk(data)
+            await loginThunk(data)
         } catch (e) {
-            if (e.response.status && e.response.status == 401) {
+            if (e.response.status && e.response.status === 401) {
                 return { [FORM_ERROR]: 'Неверный логин или пароль' }
             } else {
                 return { [FORM_ERROR]: e.message }
@@ -46,15 +48,19 @@ const LoginContainer: React.FC<PropsType> = ({auth, loginThunk,
 
     return (
         <Login onSubmit={onSubmit}
-               auth={auth}
-               loginWithGoogleThunk={loginWithGoogleThunk}
-               setIsShowLogin={setIsShowLogin}/>
+            auth={auth}
+            loginWithGoogleThunk={loginWithGoogleThunk}
+            setIsShowLogin={setIsShowLogin}/>
     )
 }
 
 const mapStateToProps = (state: AppStateType): MapsStatePorpsType => ({
-    auth: state.auth,
+    auth: state.auth
 })
 
-export default connect<MapsStatePorpsType, MapDispatchPropsType, MapOwnPropsType, AppStateType>
-(mapStateToProps, {loginThunk, loginWithGoogleThunk, setIsShowLogin: actionsAuthReducer.setIsShowLogin})(LoginContainer)
+export default connect<MapsStatePorpsType, MapDispatchPropsType,
+    MapOwnPropsType, AppStateType>(mapStateToProps, {
+        loginThunk,
+        loginWithGoogleThunk,
+        setIsShowLogin: actionsAuthReducer.setIsShowLogin
+    })(LoginContainer)

@@ -1,19 +1,17 @@
-import React from 'react'
-import {Provider} from "react-redux";
-import {BrowserRouter, } from "react-router-dom";
-import App from './App';
-import store from "./redux/store";
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useEffect } from 'react'
+import { Provider } from 'react-redux'
+import { BrowserRouter, useLocation } from 'react-router-dom'
+import App from './App'
+import store from './redux/store'
 
 const ScrollToTop: React.FC = () => {
-  const { pathname } = useLocation();
+    const { pathname } = useLocation()
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [pathname])
 
-  return null;
+    return null
 }
 
 const AppContainer: React.FC = () => {
@@ -27,4 +25,4 @@ const AppContainer: React.FC = () => {
     )
 }
 
-export default AppContainer;
+export default AppContainer

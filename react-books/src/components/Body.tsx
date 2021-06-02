@@ -1,15 +1,14 @@
 import React from 'react'
 import classes from './Body.module.css'
 import BgBody from './bgBody/BgBody'
-import BooksContainer from "./Books/BooksContainer"
-import {Route, Redirect, Switch} from "react-router-dom"
-import NavMenuContainer from "./NavMenu/NavMenuContainer"
-import OneBookContainer from "./OneBook/OneBookContainer"
-import PageNotFound from "./PageNotFound/PageNotFound"
-import Footer from "./Footer/Footer"
-import {CssBaseline} from "@material-ui/core"
-import SiteName from "./SiteName/SiteName";
-
+import BooksContainer from './Books/BooksContainer'
+import { Route, Switch } from 'react-router-dom'
+import NavMenuContainer from './NavMenu/NavMenuContainer'
+import OneBookContainer from './OneBook/OneBookContainer'
+import PageNotFound from './PageNotFound/PageNotFound'
+import Footer from './Footer/Footer'
+import { CssBaseline } from '@material-ui/core'
+import SiteName from './SiteName/SiteName'
 
 const Body: React.FC = () => {
     return (
@@ -27,7 +26,7 @@ const Body: React.FC = () => {
             </div>
             <Footer/>
         </div>
-    );
+    )
 }
 
-export default Body;
+export default Body

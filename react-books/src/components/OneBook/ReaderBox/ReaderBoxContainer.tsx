@@ -1,11 +1,11 @@
-import React, {useEffect} from 'react'
-import {connect} from "react-redux"
-import {AppStateType} from "../../../redux/store"
-import {getChaptersThunk} from "../../../redux/bookReducer"
-import {compose} from "redux"
-import {withRouter} from "react-router-dom"
-import {ChaptersType} from "../../../api/api"
-import ReaderBox from "./ReaderBox"
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux'
+import { AppStateType } from '../../../redux/store'
+import { getChaptersThunk } from '../../../redux/bookReducer'
+import { compose } from 'redux'
+import { withRouter } from 'react-router-dom'
+import { ChaptersType } from '../../../api/api'
+import ReaderBox from './ReaderBox'
 
 type MapStateToPropsType = {
     bookId: number
@@ -21,8 +21,7 @@ type OwnPropsType = {
 type BoxContainerType = MapDispatchToPropsType & MapStateToPropsType & OwnPropsType
 
 const ReaderBoxContainer: React.FC<BoxContainerType> =
-    ({bookId, chapters, getChaptersThunk, toggleReader, setReaderOff}) => {
-
+    ({ bookId, chapters, getChaptersThunk, toggleReader, setReaderOff }) => {
         const getNewChapter = (event: object, numPage: number) => {
             getChaptersThunk(bookId, numPage)
         }
@@ -32,16 +31,16 @@ const ReaderBoxContainer: React.FC<BoxContainerType> =
             if (recoveryPage) {
                 getChaptersThunk(bookId, recoveryPage)
             } else {
-                getChaptersThunk(bookId,)
+                getChaptersThunk(bookId)
             }
         }, [bookId])
 
         return (
             <div>
                 <ReaderBox bookId={bookId}
-                           chapters={chapters} toggleReader={toggleReader}
-                           getNewChapter={getNewChapter}
-                           setReaderOff={setReaderOff}
+                    chapters={chapters} toggleReader={toggleReader}
+                    getNewChapter={getNewChapter}
+                    setReaderOff={setReaderOff}
                 />
             </div>
         )
@@ -49,9 +48,9 @@ const ReaderBoxContainer: React.FC<BoxContainerType> =
 
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
     bookId: state.books.book.id,
-    chapters: state.books.chapters,
+    chapters: state.books.chapters
 })
 
 export default compose<React.ComponentType<OwnPropsType>>(
-    connect(mapStateToProps, {getChaptersThunk}),
-    withRouter,)(ReaderBoxContainer)
+    connect(mapStateToProps, { getChaptersThunk }),
+    withRouter)(ReaderBoxContainer)

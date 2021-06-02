@@ -1,16 +1,17 @@
+/* eslint-disable camelcase */
 import React from 'react'
-import classes from "./Login.module.css"
-import {Form, Field} from 'react-final-form'
+import classes from './Login.module.css'
+import { Form, Field } from 'react-final-form'
 import {
-    TextField,
-} from 'mui-rff';
+    TextField
+} from 'mui-rff'
 import {
     Grid, Fade, Backdrop,
     Button, Modal
-} from '@material-ui/core';
-import {makeStyles, Theme, createStyles} from '@material-ui/core/styles'
-import GoogleLogin from 'react-google-login';
-import {AuthinitialType} from "../../../redux/authReducer";
+} from '@material-ui/core'
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
+import GoogleLogin from 'react-google-login'
+import { AuthinitialType } from '../../../redux/authReducer'
 
 export type LoginFormDataType = {
     username: string
@@ -20,44 +21,43 @@ type LoginFormType = {
     onSubmit: (data: LoginFormDataType) => any
 }
 
-
-const LoginForm: React.FC<LoginFormType> = ({onSubmit,}) => (
+const LoginForm: React.FC<LoginFormType> = ({ onSubmit }) => (
     <Form
         onSubmit={onSubmit}
-        render={({handleSubmit, submitError, form, submitting, pristine, values}) => (
+        render={({ handleSubmit, submitError, form, submitting, pristine, values }) => (
             <form onSubmit={handleSubmit}>
                 <div>
                     <Field name={'username'}
-                           component="input"
+                        component="input"
                     >
-                        {({input, meta: {touched, error}}) => (
+                        {({ input, meta: { touched, error } }) => (
                             <div>
                                 <TextField {...input} type="text"
-                                           variant="outlined"
-                                           label="Логин"
-                                           margin="normal"
-                                           required
-                                           autoFocus/>
+                                    variant="outlined"
+                                    label="Логин"
+                                    margin="normal"
+                                    required
+                                    autoFocus/>
                             </div>
                         )}
                     </Field>
                 </div>
                 <div>
                     <Field name={'password'}
-                           component="input"
+                        component="input"
                     >
-                        {({input, meta}) => (
+                        {({ input, meta }) => (
 
                             <TextField {...input} type="password"
-                                       label="Пароль"
-                                       margin="normal"
-                                       variant="outlined"
-                                       required/>
+                                label="Пароль"
+                                margin="normal"
+                                variant="outlined"
+                                required/>
                         )}
                     </Field>
                 </div>
                 {submitError && <div className="error">{submitError}</div>}
-                <Grid item style={{marginTop: 16}}>
+                <Grid item style={{ marginTop: 16 }}>
                     <Button
                         variant="contained"
                         color="primary"
@@ -84,20 +84,18 @@ const useStyles = makeStyles((theme: Theme) =>
         modal: {
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center',
-        },
+            justifyContent: 'center'
+        }
     })
 )
 
-
 const Login: React.FC<LoginType> = ({
-                                        onSubmit,
-                                        auth,
-                                        loginWithGoogleThunk,
-                                        setIsShowLogin
-                                    }) => {
-
-    const cl = useStyles();
+    onSubmit,
+    auth,
+    loginWithGoogleThunk,
+    setIsShowLogin
+}) => {
+    const cl = useStyles()
 
     const accessResponseGoogle = (response: any) => {
         loginWithGoogleThunk(response.accessToken)
@@ -121,7 +119,7 @@ const Login: React.FC<LoginType> = ({
             closeAfterTransition
             BackdropComponent={Backdrop}
             BackdropProps={{
-                timeout: 500,
+                timeout: 500
             }}
         >
             <Fade in={auth.isShowLogin}>

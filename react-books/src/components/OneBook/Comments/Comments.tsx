@@ -1,8 +1,8 @@
-import React from "react"
-import {commentsInitialType} from "../../../redux/commentReducer"
-import CommentForm, {addCommentDataType} from "./CommentForm"
-import defaultAvatarCat from "../../../assets/image/defaultAvatarCat.png"
-import {makeStyles} from "@material-ui/core/styles"
+import React from 'react'
+import { commentsInitialType } from '../../../redux/commentReducer'
+import CommentForm, { addCommentDataType } from './CommentForm'
+import defaultAvatarCat from '../../../assets/image/defaultAvatarCat.png'
+import { makeStyles } from '@material-ui/core/styles'
 import {
     ListItem,
     Divider,
@@ -10,9 +10,9 @@ import {
     ListItemAvatar,
     Avatar,
     Typography, Box, Paper
-} from "@material-ui/core"
-import Container from "@material-ui/core/Container"
-import {Pagination} from "@material-ui/lab"
+} from '@material-ui/core'
+import Container from '@material-ui/core/Container'
+import { Pagination } from '@material-ui/lab'
 
 type CommentsType = {
     isAuth: boolean
@@ -24,33 +24,33 @@ type CommentsType = {
 
 const useStyles = makeStyles(theme => ({
     root: {
-        width: "100%",
+        width: '100%',
         backgroundColor: theme.palette.background.paper
     },
     fonts: {
-        fontWeight: "bold"
+        fontWeight: 'bold'
     },
     inline: {
-        display: "inline"
+        display: 'inline'
     },
     commentForm: {
         display: 'flex',
-        flexDirection: 'column',
+        flexDirection: 'column'
     },
     listComments: {
         margin: '16px 0'
     },
     noComment: {
         textAlign: 'center',
-        color: "#e9e9e9",
+        color: '#e9e9e9'
     }
-}));
+}))
 
 export const Comments: React.FC<CommentsType> = ({
-                                                     isAuth, comments, bookId,
-                                                     addComment, fetchNewPageComments
-                                                 }) => {
-    const classes = useStyles();
+    isAuth, comments, bookId,
+    addComment, fetchNewPageComments
+}) => {
+    const classes = useStyles()
 
     const paginationHandler = (event: object, page: number) => {
         fetchNewPageComments(bookId, page)
@@ -100,7 +100,7 @@ export const Comments: React.FC<CommentsType> = ({
                         </React.Fragment>
                     })}
                     <Box display='flex' justifyContent='center' margin='8px 0 8px 0'>
-                      { comments.count >= 1 && <Pagination count={Math.ceil(comments.count / 10)} color="primary" onChange={paginationHandler}/> }
+                        { comments.count >= 1 && <Pagination count={Math.ceil(comments.count / 10)} color="primary" onChange={paginationHandler}/> }
                     </Box>
                 </Paper>
             </Container>

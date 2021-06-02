@@ -1,18 +1,18 @@
-import React, {useEffect} from 'react'
-import {connect} from "react-redux"
-import {AppStateType} from "../../redux/store"
-import {AuthinitialType} from "../../redux/authReducer"
-import {getBookByIdThunk, setCurrentRatingThunk} from "../../redux/bookReducer"
-import {compose} from "redux"
-import {withRouter, RouteComponentProps} from "react-router-dom"
-import BookDetail from "./BookDetail"
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux'
+import { AppStateType } from '../../redux/store'
+import { AuthinitialType } from '../../redux/authReducer'
+import { getBookByIdThunk, setCurrentRatingThunk } from '../../redux/bookReducer'
+import { compose } from 'redux'
+import { withRouter, RouteComponentProps } from 'react-router-dom'
+import BookDetail from './BookDetail'
 import {
     addNewCommentThunk, commentsInitialType, getCommentsToBookThunk,
-    fetchNewPageComments,
-} from "../../redux/commentReducer";
-import {addCommentDataType} from "./Comments/CommentForm"
-import Container from "@material-ui/core/Container";
-import {OneBookType} from "../common/types/types";
+    fetchNewPageComments
+} from '../../redux/commentReducer'
+import { addCommentDataType } from './Comments/CommentForm'
+import Container from '@material-ui/core/Container'
+import { OneBookType } from '../common/types/types'
 
 type MapStateToPropsType = {
     book: OneBookType
@@ -33,20 +33,18 @@ type PathParamsType = {
 type OneBookPropsType = MapDispatchToPropsType & MapStateToPropsType & OwnPropsType
     & RouteComponentProps<PathParamsType>
 
-
 const OneBookContainer: React.FC<OneBookPropsType> =
     ({
-         book, comments, auth, getBookByIdThunk, addNewCommentThunk,
-         getCommentsToBookThunk, fetchNewPageComments, setCurrentRatingThunk, ...props
+        book, comments, auth, getBookByIdThunk, addNewCommentThunk,
+        getCommentsToBookThunk, fetchNewPageComments, setCurrentRatingThunk, ...props
     }) => {
-
         const addComment = (formData: addCommentDataType) => {
-            let bookId = props.match.params.bookId
+            const bookId = props.match.params.bookId
             addNewCommentThunk(Number(bookId), formData.text, auth.accessToken)
         }
 
         useEffect(() => {
-            let bookId = (props.match.params.bookId)
+            const bookId = (props.match.params.bookId)
                 ? Number(props.match.params.bookId)
                 : 1
             getBookByIdThunk(bookId, auth.accessToken)
@@ -56,11 +54,11 @@ const OneBookContainer: React.FC<OneBookPropsType> =
         return (
             <Container maxWidth="md">
                 <BookDetail comments={comments}
-                            book={book}
-                            auth={auth}
-                            addComment={addComment}
-                            fetchNewPageComments={fetchNewPageComments}
-                            setCurrentRatingThunk={setCurrentRatingThunk}/>
+                    book={book}
+                    auth={auth}
+                    addComment={addComment}
+                    fetchNewPageComments={fetchNewPageComments}
+                    setCurrentRatingThunk={setCurrentRatingThunk}/>
             </Container>
         )
     }
@@ -74,7 +72,10 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
 
 export default compose<React.ComponentType>(
     connect(mapStateToProps, {
-        getBookByIdThunk, getCommentsToBookThunk,
-        addNewCommentThunk, fetchNewPageComments, setCurrentRatingThunk,
+        getBookByIdThunk,
+        getCommentsToBookThunk,
+        addNewCommentThunk,
+        fetchNewPageComments,
+        setCurrentRatingThunk
     }),
-    withRouter,)(OneBookContainer)
+    withRouter)(OneBookContainer)

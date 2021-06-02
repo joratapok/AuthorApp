@@ -1,22 +1,19 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import classes from './ReaderBox.module.css'
-import {ChaptersType} from "../../../api/api"
-import {Pagination} from "@material-ui/lab"
-import {Box} from "@material-ui/core"
-import ScrollContainer from "react-indiana-drag-scroll"
+import { ChaptersType } from '../../../api/api'
+import { Pagination } from '@material-ui/lab'
+import { Box, Fade, IconButton, Backdrop } from '@material-ui/core'
+import ScrollContainer from 'react-indiana-drag-scroll'
 import Modal from '@material-ui/core/Modal'
-import {Fade, IconButton, Backdrop} from '@material-ui/core'
-import {makeStyles, Theme, createStyles} from '@material-ui/core/styles'
+import { makeStyles, Theme, createStyles, useTheme } from '@material-ui/core/styles'
 import AddIcon from '@material-ui/icons/Add'
 import CloseIcon from '@material-ui/icons/Close'
 import RemoveIcon from '@material-ui/icons/Remove'
-import Grid from "@material-ui/core/Grid"
+import Grid from '@material-ui/core/Grid'
 import Icon from '@material-ui/core/Icon'
 import Button from '@material-ui/core/Button'
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
-import { useTheme } from '@material-ui/core/styles'
-
 
 type ReaderBoxType = {
     bookId: number
@@ -31,7 +28,7 @@ const useStyles = makeStyles((theme: Theme) =>
         modal: {
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center',
+            justifyContent: 'center'
         },
         paper: {
             height: '90%',
@@ -39,58 +36,57 @@ const useStyles = makeStyles((theme: Theme) =>
             boxShadow: theme.shadows[5],
             padding: theme.spacing(0, 1, 0, 2),
             [theme.breakpoints.up('xs')]: {
-                width: '97%',
+                width: '97%'
             },
             [theme.breakpoints.up('sm')]: {
-                width: '92%',
+                width: '92%'
             },
             [theme.breakpoints.up('lg')]: {
-                width: '85%',
+                width: '85%'
             },
-            maxWidth: '1300px',
+            maxWidth: '1300px'
         },
         xButton: {
             width: 60,
-            height: 60,
+            height: 60
         },
         fontButtons: {
             width: 40,
-            height: 40,
+            height: 40
         },
         darkThemeButton: {
-          width: 40,
-          height: 40,
-          color: '#e9e9e9',
+            width: 40,
+            height: 40,
+            color: '#e9e9e9'
         },
         lightThemeButton: {
-          width: 40,
-          height: 40,
-          color: '#1C2833',
+            width: 40,
+            height: 40,
+            color: '#1C2833'
         },
         nextButton: {
-            margin: theme.spacing(3),
+            margin: theme.spacing(3)
         },
         paginDark: {
-          "& .MuiPaginationItem-root": {
-            color: "#e9e9e9"
-          }
+            '& .MuiPaginationItem-root': {
+                color: '#e9e9e9'
+            }
         },
         paginLight: {
-          "& .MuiPaginationItem-root": {
-            color: "black"
-          },
-          "& .MuiPaginationItem-textPrimary.Mui-selected": {
-            color: "white"
-          }
+            '& .MuiPaginationItem-root': {
+                color: 'black'
+            },
+            '& .MuiPaginationItem-textPrimary.Mui-selected': {
+                color: 'white'
+            }
         }
-    }),
-);
+    })
+)
 
-
-export const ReaderBox: React.FC<ReaderBoxType & any> = ({bookId, chapters, toggleReader, getNewChapter, setReaderOff}) => {
-    const cl = useStyles();
-    const theme = useTheme();
-    const matches = useMediaQuery(theme.breakpoints.up('sm'));
+export const ReaderBox: React.FC<ReaderBoxType & any> = ({ bookId, chapters, toggleReader, getNewChapter, setReaderOff }) => {
+    const cl = useStyles()
+    const theme = useTheme()
+    const matches = useMediaQuery(theme.breakpoints.up('sm'))
 
     const [modal, setModal] = useState(false)
     const [font, setFont] = useState(18)
@@ -115,7 +111,6 @@ export const ReaderBox: React.FC<ReaderBoxType & any> = ({bookId, chapters, togg
         setModal(toggleReader)
     }, [toggleReader])
 
-
     return (
         <div>
             <Modal
@@ -126,34 +121,34 @@ export const ReaderBox: React.FC<ReaderBoxType & any> = ({bookId, chapters, togg
                 closeAfterTransition
                 BackdropComponent={Backdrop}
                 BackdropProps={{
-                    timeout: 500,
+                    timeout: 500
                 }}
             >
                 <Fade in={modal}>
                     <>
-                        <Box className={cl.paper}  bgcolor={(dark) ? '#1C2833' : '#e9e9e9' }>
+                        <Box className={cl.paper} bgcolor={(dark) ? '#1C2833' : '#e9e9e9' }>
                             <ScrollContainer vertical={true} horizontal={false} hideScrollbars={false}
-                                             className={classes.dragScroll}>
+                                className={classes.dragScroll}>
                                 <Grid container spacing={0}>
                                     <Grid item xs={4}>
                                         <Box display='flex' justifyContent='flex-start' alignItems='center' my={1}>
 
                                             <IconButton aria-label="add font size"
-                                                        color='primary'
-                                                        disabled={font > 28}
-                                                        onClick={addFont}>
+                                                color='primary'
+                                                disabled={font > 28}
+                                                onClick={addFont}>
                                                 <AddIcon className={cl.fontButtons}/>
                                             </IconButton>
                                             <IconButton aria-label="low font size"
-                                                        color='secondary'
-                                                        disabled={font < 12}
-                                                        onClick={subtractFont}>
+                                                color='secondary'
+                                                disabled={font < 12}
+                                                onClick={subtractFont}>
                                                 <RemoveIcon className={cl.fontButtons}/>
                                             </IconButton>
 
                                             <IconButton aria-label="dark theme"
-                                                        onClick={toggleDark}>
-                                                <FiberManualRecordIcon  className={dark ? cl.darkThemeButton : cl.lightThemeButton}/>
+                                                onClick={toggleDark}>
+                                                <FiberManualRecordIcon className={dark ? cl.darkThemeButton : cl.lightThemeButton}/>
                                             </IconButton>
 
                                         </Box>
@@ -166,8 +161,8 @@ export const ReaderBox: React.FC<ReaderBoxType & any> = ({bookId, chapters, togg
                                         <Box className={buttonModalOffClass}>
                                             <Box position='fixed'>
                                                 <IconButton aria-label="exit"
-                                                            color='secondary'
-                                                            onClick={setReaderOff}>
+                                                    color='secondary'
+                                                    onClick={setReaderOff}>
                                                     <CloseIcon className={cl.xButton}/>
                                                 </IconButton>
                                             </Box>
@@ -176,20 +171,20 @@ export const ReaderBox: React.FC<ReaderBoxType & any> = ({bookId, chapters, togg
 
                                     <Grid item xs={12}>
                                         <Box py={1} display='flex' justifyContent='center' alignItems='center'
-                                             width='100%' height='100%'>
+                                            width='100%' height='100%'>
                                             <Pagination count={chapters.count}
-                                                        size={matches ? 'medium' : 'small'}
-                                                        color="primary"
-                                                        classes={dark ? {ul: cl.paginDark} :  {ul: cl.paginLight} }
-                                                        onChange={getNewChapter}
-                                                        page={chapters.currentPage}/>
+                                                size={matches ? 'medium' : 'small'}
+                                                color="primary"
+                                                classes={dark ? { ul: cl.paginDark } : { ul: cl.paginLight } }
+                                                onChange={getNewChapter}
+                                                page={chapters.currentPage}/>
                                         </Box>
                                     </Grid>
                                 </Grid>
 
                                 <Box mr={1} fontSize={`${font}px`} color={(dark) ? '#e9e9e9' : 'black'}>
                                     {chapters.results.length &&
-                                    <div dangerouslySetInnerHTML={{__html: chapters.results[0].chapter}}/>
+                                    <div dangerouslySetInnerHTML={{ __html: chapters.results[0].chapter }}/>
                                     }
                                 </Box>
 
@@ -215,4 +210,4 @@ export const ReaderBox: React.FC<ReaderBoxType & any> = ({bookId, chapters, togg
     )
 }
 
-export default ReaderBox;
+export default ReaderBox

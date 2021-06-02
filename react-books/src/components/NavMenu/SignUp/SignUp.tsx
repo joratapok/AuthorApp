@@ -1,18 +1,19 @@
-import React from 'react';
-import classes from "./SignUp.module.css"
-import {Form} from 'react-final-form';
-import {SignUpFormDataType,} from "../../../api/api";
-import {makeStyles, Theme, createStyles} from '@material-ui/core/styles'
+/* eslint-disable camelcase */
+import React from 'react'
+import classes from './SignUp.module.css'
+import { Form } from 'react-final-form'
+import { SignUpFormDataType } from '../../../api/api'
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
 import {
-    TextField,
-} from 'mui-rff';
+    TextField
+} from 'mui-rff'
 import {
     Typography, Fade, Backdrop,
-    Grid, Modal, Button,
-} from '@material-ui/core';
-import {AuthinitialType} from "../../../redux/authReducer";
-import GoogleLogin from "react-google-login";
-import ReCAPTCHA from "react-google-recaptcha";
+    Grid, Modal, Button
+} from '@material-ui/core'
+import { AuthinitialType } from '../../../redux/authReducer'
+import GoogleLogin from 'react-google-login'
+import ReCAPTCHA from 'react-google-recaptcha'
 
 type PropsType = {
     onSubmit: (data: SignUpFormDataType) => void
@@ -34,7 +35,7 @@ const formFields: Array<any> = [
                 required
                 autoFocus
             />
-        ),
+        )
     },
     {
         size: 12,
@@ -47,7 +48,7 @@ const formFields: Array<any> = [
                 required
                 type="email"
             />
-        ),
+        )
     },
     {
         size: 12,
@@ -60,7 +61,7 @@ const formFields: Array<any> = [
                 required
                 type='password'
             />
-        ),
+        )
     },
     {
         size: 12,
@@ -73,26 +74,25 @@ const formFields: Array<any> = [
                 required
                 type='password'
             />
-        ),
-    },
-];
+        )
+    }
+]
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         modal: {
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center',
-        },
+            justifyContent: 'center'
+        }
     })
 )
 
 const SignUp: React.FC<PropsType> = ({
-                                         onSubmit, auth, setIsShowSignUp,
-                                         loginWithGoogleThunk, handlerRecaptcha
-                                     }) => {
-
-    const cl = useStyles();
+    onSubmit, auth, setIsShowSignUp,
+    loginWithGoogleThunk, handlerRecaptcha
+}) => {
+    const cl = useStyles()
 
     const closeSignUpModal = () => {
         setIsShowSignUp(false)
@@ -116,7 +116,7 @@ const SignUp: React.FC<PropsType> = ({
             closeAfterTransition
             BackdropComponent={Backdrop}
             BackdropProps={{
-                timeout: 500,
+                timeout: 500
             }}
         >
             <Fade in={auth.isShowSignUp}>
@@ -125,7 +125,7 @@ const SignUp: React.FC<PropsType> = ({
                         <Form
                             onSubmit={onSubmit}
 
-                            render={({handleSubmit, submitError, form, submitting, pristine, values}) => (
+                            render={({ handleSubmit, submitError, form, submitting, pristine, values }) => (
                                 <form onSubmit={handleSubmit}>
                                     <Typography variant="h5" align="center" component="h2" gutterBottom>
                                         Регистрация
@@ -147,7 +147,7 @@ const SignUp: React.FC<PropsType> = ({
 
                                         {submitError && <div className="error">{submitError}</div>}
 
-                                        <Grid item xs={12} style={{marginTop: 16}}>
+                                        <Grid item xs={12} style={{ marginTop: 16 }}>
                                             <Button
                                                 variant="contained"
                                                 color="primary"
@@ -176,7 +176,7 @@ const SignUp: React.FC<PropsType> = ({
                 </>
             </Fade>
         </Modal>
-    );
+    )
 }
 
 export default SignUp

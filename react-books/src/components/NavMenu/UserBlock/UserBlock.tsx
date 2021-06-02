@@ -1,19 +1,18 @@
-import React from 'react';
-import {makeStyles, createStyles, Theme} from '@material-ui/core/styles';
-import SpeedDial from '@material-ui/lab/SpeedDial';
-import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
-import {Avatar, IconButton, Paper} from "@material-ui/core";
-import ChangeUser from "./ChangeLogin/ChangeLogin";
-import Logout from "./Logout/Logout";
-import c from "./UserBlock.module.css";
-import {AuthinitialType} from "../../../redux/authReducer";
-import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import LoginContainer from "../Login/LoginContainer"
-import SighUpContainer from "../SignUp/SignUpContainer"
-import defaultAvatarCat from "../../../assets/image/defaultAvatarCat.png";
-import {Redirect} from "react-router-dom/";
-
+import React from 'react'
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
+import SpeedDial from '@material-ui/lab/SpeedDial'
+import SpeedDialAction from '@material-ui/lab/SpeedDialAction'
+import { Avatar, IconButton, Paper } from '@material-ui/core'
+import ChangeUser from './ChangeLogin/ChangeLogin'
+import Logout from './Logout/Logout'
+import c from './UserBlock.module.css'
+import { AuthinitialType } from '../../../redux/authReducer'
+import PersonRoundedIcon from '@material-ui/icons/PersonRounded'
+import ExitToAppIcon from '@material-ui/icons/ExitToApp'
+import LoginContainer from '../Login/LoginContainer'
+import SighUpContainer from '../SignUp/SignUpContainer'
+import defaultAvatarCat from '../../../assets/image/defaultAvatarCat.png'
+import { Redirect } from 'react-router-dom/'
 
 type OwnPropsType = {
     auth: AuthinitialType
@@ -26,32 +25,31 @@ const useStyles = makeStyles((theme: Theme) =>
         root: {
             transform: 'translateZ(0px)',
             flexGrow: 1,
-            zIndex: 2003,
+            zIndex: 2003
         },
         large: {
             width: theme.spacing(7),
-            height: theme.spacing(7),
+            height: theme.spacing(7)
         },
         speedDial: {
-            position: 'absolute',
+            position: 'absolute'
         },
         hello: {
             position: 'absolute',
             right: '10px',
             transition: '0.5s',
             textAlign: 'center',
-            padding: '8px',
+            padding: '8px'
         }
-    }),
+    })
 )
 
-
 const actionsLoginUser = [
-    {icon: <ChangeUser/>, name: 'Сменить аватар'},
-    {icon: <Logout/>, name: 'Разлогиниться'},
+    { icon: <ChangeUser/>, name: 'Сменить аватар' },
+    { icon: <Logout/>, name: 'Разлогиниться' }
 ]
 
-const UserAvatar: React.FC<OwnPropsType> = ({auth, setIsShowLogin, setIsShowSignUp}) => {
+const UserAvatar: React.FC<OwnPropsType> = ({ auth, setIsShowLogin, setIsShowSignUp }) => {
     const classes = useStyles()
     const [open, setOpen] = React.useState(false)
     const avatar = auth.avatar ? auth.avatar : defaultAvatarCat
@@ -68,7 +66,7 @@ const UserAvatar: React.FC<OwnPropsType> = ({auth, setIsShowLogin, setIsShowSign
         setIsShowLogin(true)
     }
 
-     const openSignUpModal = () => {
+    const openSignUpModal = () => {
         setIsShowSignUp(true)
     }
 
@@ -78,12 +76,12 @@ const UserAvatar: React.FC<OwnPropsType> = ({auth, setIsShowLogin, setIsShowSign
     }
 
     const actionsDefaulUser = [
-        {icon: <IconButton onClick={openLoginModal}><PersonRoundedIcon/></IconButton>, name: 'Войти'},
-        {icon: <IconButton onClick={openSignUpModal}><ExitToAppIcon/></IconButton>, name: 'Регистрация'},
+        { icon: <IconButton onClick={openLoginModal}><PersonRoundedIcon/></IconButton>, name: 'Войти' },
+        { icon: <IconButton onClick={openSignUpModal}><ExitToAppIcon/></IconButton>, name: 'Регистрация' }
     ]
 
     const actions = auth.isAuth ? actionsLoginUser : actionsDefaulUser
-    let avatarWrapper = c.avatarPassive + ' ' + (open ? c.avatarActive : '')
+    const avatarWrapper = c.avatarPassive + ' ' + (open ? c.avatarActive : '')
 
     const AvatarWrapper = (props: any) => {
         return <div className={avatarWrapper}>
@@ -93,7 +91,7 @@ const UserAvatar: React.FC<OwnPropsType> = ({auth, setIsShowLogin, setIsShowSign
 
     return (
         <div className={classes.root}>
-            <Paper className={classes.hello} style={{'opacity': (open && auth.isAuth ? '1': '0')}}>
+            <Paper className={classes.hello} style={{ opacity: (open && auth.isAuth ? '1' : '0') }}>
                 Привет, {auth.username}
             </Paper>
             <SpeedDial
@@ -104,7 +102,7 @@ const UserAvatar: React.FC<OwnPropsType> = ({auth, setIsShowLogin, setIsShowSign
                 onClose={handleClose}
                 onOpen={handleOpen}
                 open={open}
-                direction={"down"}
+                direction={'down'}
             >
                 {actions.map((action) => (
                     <SpeedDialAction
@@ -120,7 +118,7 @@ const UserAvatar: React.FC<OwnPropsType> = ({auth, setIsShowLogin, setIsShowSign
             <LoginContainer/>
             <SighUpContainer/>
         </div>
-    );
+    )
 }
 
 export default UserAvatar

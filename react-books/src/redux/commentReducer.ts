@@ -1,39 +1,38 @@
-import {AppStateType, InferActionsTypes} from "./store";
-import {commentApi, CommentsDataType} from "../api/api";
-import {ThunkAction} from "redux-thunk";
-import {CommentType} from "../components/common/types/types";
+import { AppStateType, InferActionsTypes } from './store'
+import { commentApi, CommentsDataType } from '../api/api'
+import { ThunkAction } from 'redux-thunk'
+import { CommentType } from '../components/common/types/types'
 
 export type commentsInitialType = typeof initial
 export type bookReducerActionsTypes = InferActionsTypes<typeof actionsBooksReducer>
 type ThunkType = ThunkAction<Promise<void>, AppStateType, any, bookReducerActionsTypes>
 
+export const GET_BOOK_COMMENTS = 'GET_BOOK_COMMENTS'
 
-export const GET_BOOK_COMMENTS = "GET_BOOK_COMMENTS"
-
-let initial = {
+const initial = {
     count: 0,
     next: '',
     previous: '',
-    results: [] as Array<CommentType>,
+    results: [] as Array<CommentType>
 }
 
 const commentReducer = (state = initial, action: bookReducerActionsTypes): commentsInitialType => {
     switch (action.type) {
-        case GET_BOOK_COMMENTS:
-            return {
-                ...state,
-                count: action.commentsData.count,
-                next: action.commentsData.next,
-                previous: action.commentsData.previous,
-                results: action.commentsData.results
-            }
-        default:
-            return state
+    case GET_BOOK_COMMENTS:
+        return {
+            ...state,
+            count: action.commentsData.count,
+            next: action.commentsData.next,
+            previous: action.commentsData.previous,
+            results: action.commentsData.results
+        }
+    default:
+        return state
     }
 }
 
 export const actionsBooksReducer = {
-    getComments: (commentsData: CommentsDataType) => ({type: GET_BOOK_COMMENTS, commentsData} as const),
+    getComments: (commentsData: CommentsDataType) => ({ type: GET_BOOK_COMMENTS, commentsData } as const)
 }
 
 export const getCommentsToBookThunk = (id: number): ThunkType => {

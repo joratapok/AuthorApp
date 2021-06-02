@@ -1,10 +1,10 @@
-import React, {useEffect} from 'react'
-import './App.css';
+import React, { useEffect } from 'react'
+import './App.css'
 import Body from './components/Body'
-import {connect,} from "react-redux";
-import {AppStateType} from "./redux/store";
-import {initAppThunk} from "./redux/initAppReducer";
-import Preloader from "./components/preloader/Preloader";
+import { connect } from 'react-redux'
+import { AppStateType } from './redux/store'
+import { initAppThunk } from './redux/initAppReducer'
+import Preloader from './components/preloader/Preloader'
 
 type MapStatePropsType = {
     initApp: boolean
@@ -15,8 +15,7 @@ type MapDispatchPropsType = {
 type OwnPropsType = {}
 type PropsType = MapStatePropsType & MapDispatchPropsType & OwnPropsType
 
-const App: React.FC<PropsType> = ({initApp, initAppThunk}) => {
-
+const App: React.FC<PropsType> = ({ initApp, initAppThunk }) => {
     useEffect(() => {
         initAppThunk()
     }, [])
@@ -30,9 +29,8 @@ const App: React.FC<PropsType> = ({initApp, initAppThunk}) => {
     )
 }
 
-let mapStateToProps = (state: AppStateType) => ({
+const mapStateToProps = (state: AppStateType) => ({
     initApp: state.init.initApp
 })
 
-export default connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, AppStateType>
-(mapStateToProps, {initAppThunk,})(App)
+export default connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, AppStateType>(mapStateToProps, { initAppThunk })(App)

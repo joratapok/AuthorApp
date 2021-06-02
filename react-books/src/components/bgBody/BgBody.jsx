@@ -1,18 +1,15 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import classes from './BgBody.module.css'
-import masterCat from "../../assets/image/masterCat.png"
+import masterCat from '../../assets/image/masterCat.png'
 import ScrollAnimation from 'react-animate-on-scroll'
 
-
 const BgBody = () => {
-
     const [move, setMove] = useState(false)
     const masterCatClass = classes.masterCat + ' ' + (move ? classes.activeMasterCat : '')
 
     const showMasterCat = () => {
         setMove(true)
     }
-
 
     return (
         <div className={classes.bgWrapper}>
@@ -34,4 +31,4 @@ const BgBody = () => {
     )
 }
 
-export default BgBody;
+export default BgBody

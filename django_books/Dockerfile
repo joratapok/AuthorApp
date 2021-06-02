@@ -18,7 +18,8 @@ COPY ./entrypoint.sh /usr/src/app/entrypoint.sh
 COPY . /usr/src/app
 
 ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
-RUN ["chmod", "+x", "/usr/src/app/docker-entrypoint.sh"]
+#RUN ["chmod", "+x", "/usr/src/app/entrypoint.sh"]
+
 
 
 

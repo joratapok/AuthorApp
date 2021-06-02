@@ -1,11 +1,11 @@
-import React, {useState} from 'react'
-import {compose} from "redux"
-import {connect} from "react-redux"
-import {AppStateType} from "../../../../redux/store"
-import {AuthinitialType, changeAvatarThunk} from "../../../../redux/authReducer"
+import React, { useState } from 'react'
+import { compose } from 'redux'
+import { connect } from 'react-redux'
+import { AppStateType } from '../../../../redux/store'
+import { AuthinitialType, changeAvatarThunk } from '../../../../redux/authReducer'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
-import {Backdrop, Modal} from "@material-ui/core"
-import {createStyles, makeStyles, Theme} from "@material-ui/core/styles"
+import { Backdrop, Modal } from '@material-ui/core'
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import ImageUploader from 'react-images-upload'
 
 export type MapStatePropsType = {
@@ -23,14 +23,13 @@ const useStyles = makeStyles((theme: Theme) =>
             justifyContent: 'center',
             width: '98%',
             maxWidth: '600px',
-            margin: 'auto',
-        },
+            margin: 'auto'
+        }
     })
 )
 
-const ChangeUser: React.FC<MapStatePropsType & MapDispatchPropsType> = ({auth, changeAvatarThunk}) => {
-
-    const cl = useStyles();
+const ChangeUser: React.FC<MapStatePropsType & MapDispatchPropsType> = ({ auth, changeAvatarThunk }) => {
+    const cl = useStyles()
     const [modal, setModal] = useState(false)
 
     const modalOn = () => {
@@ -45,7 +44,6 @@ const ChangeUser: React.FC<MapStatePropsType & MapDispatchPropsType> = ({auth, c
             changeAvatarThunk(auth.accessToken, auth.id, picture[0])
             setModal(false)
         }
-
     }
 
     return <>
@@ -61,7 +59,7 @@ const ChangeUser: React.FC<MapStatePropsType & MapDispatchPropsType> = ({auth, c
             closeAfterTransition
             BackdropComponent={Backdrop}
             BackdropProps={{
-                timeout: 500,
+                timeout: 500
             }}
         >
             <ImageUploader
@@ -78,10 +76,9 @@ const ChangeUser: React.FC<MapStatePropsType & MapDispatchPropsType> = ({auth, c
     </>
 }
 
-let mapStateToProps = (state: AppStateType): MapStatePropsType => ({
-    auth: state.auth,
+const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
+    auth: state.auth
 })
 
-export default compose<React.ComponentType>(
-    connect<MapStatePropsType, MapDispatchPropsType, null, AppStateType>
-    (mapStateToProps, {changeAvatarThunk}))(ChangeUser)
+export default compose<React.ComponentType>(connect<MapStatePropsType, MapDispatchPropsType, null, AppStateType>(mapStateToProps,
+    { changeAvatarThunk }))(ChangeUser)

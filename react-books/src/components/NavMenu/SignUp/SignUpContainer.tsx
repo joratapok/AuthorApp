@@ -1,10 +1,11 @@
-import React from 'react';
-import {connect} from "react-redux";
-import {actionsAuthReducer, AuthinitialType, loginWithGoogleThunk, signUpThunk,} from "../../../redux/authReducer";
-import {SignUpFormDataType,} from "../../../api/api";
-import {AppStateType} from "../../../redux/store";
-import SignUp from "./SignUp"
-import {FORM_ERROR} from 'final-form'
+/* eslint-disable camelcase */
+import React from 'react'
+import { connect } from 'react-redux'
+import { actionsAuthReducer, AuthinitialType, loginWithGoogleThunk, signUpThunk } from '../../../redux/authReducer'
+import { SignUpFormDataType } from '../../../api/api'
+import { AppStateType } from '../../../redux/store'
+import SignUp from './SignUp'
+import { FORM_ERROR } from 'final-form'
 
 type MapsStatePorpsType = {
     auth: AuthinitialType
@@ -19,11 +20,9 @@ type MapDispatchPropsType = {
 type MapOwnPropsType = {
 }
 
-
 type PropsType = MapsStatePorpsType & MapDispatchPropsType & MapOwnPropsType
 
-const SignUpContainer: React.FC<PropsType> = ({signUpThunk, auth, loginWithGoogleThunk, setIsShowSignUp}) => {
-
+const SignUpContainer: React.FC<PropsType> = ({ signUpThunk, auth, loginWithGoogleThunk, setIsShowSignUp }) => {
     let recaptcha: string | null = ''
 
     const handlerRecaptcha = (token: string | null) => {
@@ -32,27 +31,24 @@ const SignUpContainer: React.FC<PropsType> = ({signUpThunk, auth, loginWithGoogl
 
     const onSubmit = async (data: SignUpFormDataType) => {
         try {
-            const formData = {...data, recaptcha: recaptcha}
+            const formData = { ...data, recaptcha: recaptcha }
 
             await signUpThunk(formData)
         } catch (e) {
             if (e.response) {
                 if (e.response.data.password) {
-                    return {['password']: e.response.data.password}
+                    return { password: e.response.data.password }
                 }
                 if (e.response.data.email) {
-                    return {['email']: e.response.data.email}
+                    return { email: e.response.data.email }
                 }
                 if (e.response.data) {
-                    let errorField = {[FORM_ERROR]: ''}
-                    for (let i in e.response.data) {
-                        errorField[FORM_ERROR] = e.response.data[i]
-                        break
-                    }
+                    const errorField = { [FORM_ERROR]: '' }
+                    errorField[FORM_ERROR] = e.response.data[0]
                     return errorField
                 }
             }
-            return {[FORM_ERROR]: e.message}
+            return { [FORM_ERROR]: e.message }
         }
     }
 
@@ -62,18 +58,20 @@ const SignUpContainer: React.FC<PropsType> = ({signUpThunk, auth, loginWithGoogl
 
     return (
         <SignUp onSubmit={onSubmit}
-                auth={auth}
-                setIsShowSignUp={setIsShowSignUp}
-                loginWithGoogleThunk={loginWithGoogleThunk}
-                handlerRecaptcha={handlerRecaptcha}
+            auth={auth}
+            setIsShowSignUp={setIsShowSignUp}
+            loginWithGoogleThunk={loginWithGoogleThunk}
+            handlerRecaptcha={handlerRecaptcha}
         />
     )
 }
 
 const mapStateToProps = (state: AppStateType): MapsStatePorpsType => ({
-    auth: state.auth,
+    auth: state.auth
 })
 
-export default connect<MapsStatePorpsType, MapDispatchPropsType, MapOwnPropsType, AppStateType>
-(mapStateToProps, {signUpThunk, loginWithGoogleThunk,
-    setIsShowSignUp: actionsAuthReducer.setIsShowSignUp})(SignUpContainer)
+export default connect<MapsStatePorpsType, MapDispatchPropsType, MapOwnPropsType, AppStateType>(mapStateToProps, {
+    signUpThunk,
+    loginWithGoogleThunk,
+    setIsShowSignUp: actionsAuthReducer.setIsShowSignUp
+})(SignUpContainer)

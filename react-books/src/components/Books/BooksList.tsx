@@ -1,12 +1,10 @@
 import React from 'react'
 import Grid from '@material-ui/core/Grid'
-import {makeStyles, Theme} from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
-import Book from "./EveryBook/Book"
+import Book from './EveryBook/Book'
 import Introduction from './Introduction/Introduction'
-import axios from "axios"
-import {bookType} from "../common/types/types"
-
+import { bookType } from '../common/types/types'
 
 type BooksType = {
     books: Array<bookType>
@@ -15,16 +13,16 @@ type BooksType = {
 const useStyles = makeStyles((theme: Theme) => ({
     introGrid: {
         paddingTop: theme.spacing(1),
-        paddingBottom: theme.spacing(8),
+        paddingBottom: theme.spacing(8)
     },
     cardGrid: {
         paddingTop: theme.spacing(3),
-        paddingBottom: theme.spacing(3),
-    },
-}));
+        paddingBottom: theme.spacing(3)
+    }
+}))
 
-const BooksList: React.FC<BooksType> = ({books}) => {
-    const classes = useStyles();
+const BooksList: React.FC<BooksType> = ({ books }) => {
+    const classes = useStyles()
 
     return (
         <React.Fragment>
@@ -44,7 +42,7 @@ const BooksList: React.FC<BooksType> = ({books}) => {
             </Container>
 
         </React.Fragment>
-    );
+    )
 }
 
 export default BooksList

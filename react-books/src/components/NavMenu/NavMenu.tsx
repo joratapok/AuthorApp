@@ -1,11 +1,11 @@
-import React from 'react';
+import React from 'react'
 import classes from './NavMenu.module.css'
-import {AuthinitialType} from "../../redux/authReducer"
-import UserAvatar from "./UserBlock/UserBlock"
-import {Avatar, Box} from '@material-ui/core'
+import { AuthinitialType } from '../../redux/authReducer'
+import UserAvatar from './UserBlock/UserBlock'
+import { Avatar, Box } from '@material-ui/core'
 import logo from '../../assets/image/logo.png'
-import {NavLink} from "react-router-dom"
-import {makeStyles, createStyles, Theme} from '@material-ui/core/styles'
+import { NavLink } from 'react-router-dom'
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 
 type NavMenuPropsType = {
     auth: AuthinitialType
@@ -13,29 +13,27 @@ type NavMenuPropsType = {
     setIsShowSignUp: (toggle: boolean) => void
 }
 
-
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
-            display: 'flex',
+            display: 'flex'
 
         },
         small: {
             width: theme.spacing(8),
-            height: theme.spacing(8),
+            height: theme.spacing(8)
         },
         large: {
             width: theme.spacing(12),
             height: theme.spacing(12),
-            boxSizing: 'content-box',
-        },
-    }),
-);
+            boxSizing: 'content-box'
+        }
+    })
+)
 
 const NavMenu: React.FC<NavMenuPropsType> =
-    ({auth, setIsShowLogin, setIsShowSignUp}) => {
-
-        const c = useStyles();
+    ({ auth, setIsShowLogin, setIsShowSignUp }) => {
+        const c = useStyles()
 
         return (
             <div className={classes.nawWrapper}>
@@ -49,11 +47,11 @@ const NavMenu: React.FC<NavMenuPropsType> =
 
                 <div className={classes.userInfoWrapper}>
                     <UserAvatar auth={auth}
-                                setIsShowLogin={setIsShowLogin}
-                                setIsShowSignUp={setIsShowSignUp}/>
+                        setIsShowLogin={setIsShowLogin}
+                        setIsShowSignUp={setIsShowSignUp}/>
                 </div>
             </div>
         )
     }
 
-export default NavMenu;
+export default NavMenu

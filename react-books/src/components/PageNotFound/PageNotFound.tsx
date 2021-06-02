@@ -2,9 +2,7 @@ import React from 'react'
 import classes from './PageNotFound.module.css'
 import sadCat from '../../assets/image/sadCat.png'
 
-
 const PageNotFound: React.FC = () => {
-
     return (
         <div className={classes.notFoundWrapper}>
 
@@ -18,7 +16,7 @@ const PageNotFound: React.FC = () => {
                 <img src={sadCat} alt='sad cat'/>
             </div>
         </div>
-    );
+    )
 }
 
-export default PageNotFound;
+export default PageNotFound
