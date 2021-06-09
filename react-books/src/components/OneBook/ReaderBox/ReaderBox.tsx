@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import classes from './ReaderBox.module.css'
 import { ChaptersType } from '../../../api/api'
 import { Pagination } from '@material-ui/lab'
@@ -87,6 +87,7 @@ export const ReaderBox: React.FC<ReaderBoxType & any> = ({ bookId, chapters, tog
     const cl = useStyles()
     const theme = useTheme()
     const matches = useMediaQuery(theme.breakpoints.up('sm'))
+    const scrollAnchor = useRef<HTMLDivElement>(null)
 
     const [modal, setModal] = useState(false)
     const [font, setFont] = useState(18)
@@ -94,6 +95,10 @@ export const ReaderBox: React.FC<ReaderBoxType & any> = ({ bookId, chapters, tog
 
     const buttonModalOffClass = classes.buttonModalOff + ' ' + (modal ? classes.activeButtonModalOff : '')
     const isNextChapter: boolean = (!chapters.next)
+    const nextChapter = () => {
+        getNewChapter(null, chapters.currentPage + 1)
+        scrollAnchor.current?.scrollIntoView({ behavior: 'smooth' })
+    }
 
     const addFont = () => {
         setFont(font + 2)
@@ -129,6 +134,7 @@ export const ReaderBox: React.FC<ReaderBoxType & any> = ({ bookId, chapters, tog
                         <Box className={cl.paper} bgcolor={(dark) ? '#1C2833' : '#e9e9e9' }>
                             <ScrollContainer vertical={true} horizontal={false} hideScrollbars={false}
                                 className={classes.dragScroll}>
+                                <div ref={scrollAnchor}></div>
                                 <Grid container spacing={0}>
                                     <Grid item xs={4}>
                                         <Box display='flex' justifyContent='flex-start' alignItems='center' my={1}>
@@ -192,7 +198,7 @@ export const ReaderBox: React.FC<ReaderBoxType & any> = ({ bookId, chapters, tog
                                     <Button
                                         variant="contained"
                                         disabled={isNextChapter}
-                                        onClick={() => getNewChapter(null, chapters.currentPage + 1)}
+                                        onClick={nextChapter}
                                         color="primary"
                                         className={cl.nextButton}
                                         endIcon={<Icon>send</Icon>}

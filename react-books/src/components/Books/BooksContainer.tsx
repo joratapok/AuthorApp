@@ -4,6 +4,8 @@ import { AppStateType } from '../../redux/store'
 import { getAllBooks } from '../../redux/bookReducer'
 import BooksList from './BooksList'
 import { bookType } from '../common/types/types'
+import { pageTransition, pageVariants } from '../Body'
+import { motion } from 'framer-motion'
 
 type MapStateToPropsType = {
     books: Array<bookType>
@@ -20,9 +22,13 @@ const BooksContainer: React.FC<MapDispatchToPropsType & MapStateToPropsType> =
         }, [])
 
         return (
-            <>
+            <motion.div initial='out'
+                animate='in'
+                exit='out'
+                variants={pageVariants}
+                transition={pageTransition}>
                 <BooksList books={books}/>
-            </>
+            </motion.div>
         )
     }
 

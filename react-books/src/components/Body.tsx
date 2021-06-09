@@ -9,16 +9,29 @@ import PageNotFound from './PageNotFound/PageNotFound'
 import Footer from './Footer/Footer'
 import { CssBaseline } from '@material-ui/core'
 import SiteName from './SiteName/SiteName'
-import { useTransition, animated } from 'react-spring'
+import { AnimatePresence } from 'framer-motion'
+
+export const pageVariants = {
+    in: {
+        opacity: 1,
+        width: '100%',
+        y: 0,
+        scale: 1
+    },
+    out: {
+        opacity: 0,
+        width: '100%',
+        y: '-100vh',
+        scale: 0.3
+    }
+}
+
+export const pageTransition = {
+    duration: 0.3
+}
 
 const Body = () => {
-    const location: any = useLocation()
-    // @ts-ignore
-    const transitions: Array<any> = useTransition(location, (location) => location.pathname, {
-        from: { opacity: 0 },
-        enter: { opacity: 1 },
-        leave: { opacity: 0 }
-    })
+    const location = useLocation()
     return (
         <div className={classes.wrapper}>
             <CssBaseline/>
@@ -26,15 +39,13 @@ const Body = () => {
             <div className={classes.content}>
                 <NavMenuContainer/>
                 <SiteName/>
-                {transitions.map(({ item, props, key }) => (
-                    <animated.div key={key} style={props}>
-                        <Switch location={item}>
-                            <Route path='/book/:bookId?' render={() => <OneBookContainer/>}/>
-                            <Route exact path='/' render={() => <BooksContainer/>}/>
-                            <Route path="*" component={PageNotFound}/>
-                        </Switch>
-                    </animated.div>
-                ))}
+                <AnimatePresence exitBeforeEnter>
+                    <Switch location={location} key={location.pathname}>
+                        <Route path='/book/:bookId?' component={OneBookContainer}/>
+                        <Route exact path='/' component={BooksContainer}/>
+                        <Route path="*" component={PageNotFound}/>
+                    </Switch>
+                </AnimatePresence>
             </div>
             <Footer/>
         </div>

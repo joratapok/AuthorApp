@@ -13,6 +13,8 @@ import {
 import { addCommentDataType } from './Comments/CommentForm'
 import Container from '@material-ui/core/Container'
 import { OneBookType } from '../common/types/types'
+import { motion } from 'framer-motion'
+import { pageVariants, pageTransition } from '../Body'
 
 type MapStateToPropsType = {
     book: OneBookType
@@ -52,14 +54,20 @@ const OneBookContainer: React.FC<OneBookPropsType> =
         }, [])
 
         return (
-            <Container maxWidth="md">
-                <BookDetail comments={comments}
-                    book={book}
-                    auth={auth}
-                    addComment={addComment}
-                    fetchNewPageComments={fetchNewPageComments}
-                    setCurrentRatingThunk={setCurrentRatingThunk}/>
-            </Container>
+            <motion.div initial='out'
+                animate='in'
+                exit='out'
+                variants={pageVariants}
+                transition={pageTransition}>
+                <Container maxWidth="md">
+                    <BookDetail comments={comments}
+                        book={book}
+                        auth={auth}
+                        addComment={addComment}
+                        fetchNewPageComments={fetchNewPageComments}
+                        setCurrentRatingThunk={setCurrentRatingThunk}/>
+                </Container>
+            </motion.div>
         )
     }
 
