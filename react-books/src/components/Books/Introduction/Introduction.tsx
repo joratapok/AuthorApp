@@ -30,14 +30,19 @@ const Introduction: React.FC = () => {
         setModal(false)
     }
 
-    const setFromEvent = (e: MouseEvent) => {
-        setMove({ x: e.clientX, y: e.clientY })
+    const newNum = (num: number) => {
+      const x = Math.floor(Math.random() * num)
+      return x
+    }
+
+    const setFromEvent = () => {
+        setMove({ x: newNum(60), y: newNum(40) })
     }
 
     useEffect(() => {
-        window.addEventListener('mousemove', setFromEvent)
+        const moveIntro = setInterval(setFromEvent, 3000)
         return () => {
-            window.removeEventListener('mousemove', setFromEvent)
+            clearInterval(moveIntro)
         }
     }, [])
 
@@ -48,7 +53,7 @@ const Introduction: React.FC = () => {
 
             <div
                 className={classes.first}
-                style={{ top: `${(move.y / 40) - 30}px`, left: `${move.x / 40}px` }}
+                style={{ top: `${move.y - 40}px`, left: `${move.x}px` }}
             />
 
             <div className={classes.introWrapper}>
