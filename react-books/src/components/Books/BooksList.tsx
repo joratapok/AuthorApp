@@ -2,7 +2,7 @@ import React from 'react'
 import Grid from '@material-ui/core/Grid'
 import { makeStyles, Theme } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
-import Book from './EveryBook/Book'
+import { Book } from './EveryBook/Book'
 import Introduction from './Introduction/Introduction'
 import { bookType } from '../common/types/types'
 

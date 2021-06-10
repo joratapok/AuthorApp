@@ -5,7 +5,7 @@ import { AuthinitialType } from '../../redux/authReducer'
 import { getBookByIdThunk, setCurrentRatingThunk } from '../../redux/bookReducer'
 import { compose } from 'redux'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
-import BookDetail from './BookDetail'
+import { BookDetail } from './BookDetail'
 import {
     addNewCommentThunk, commentsInitialType, getCommentsToBookThunk,
     fetchNewPageComments
@@ -35,7 +35,7 @@ type PathParamsType = {
 type OneBookPropsType = MapDispatchToPropsType & MapStateToPropsType & OwnPropsType
     & RouteComponentProps<PathParamsType>
 
-const OneBookContainer: React.FC<OneBookPropsType> =
+const BookDetailContainer: React.FC<OneBookPropsType> =
     ({
         book, comments, auth, getBookByIdThunk, addNewCommentThunk,
         getCommentsToBookThunk, fetchNewPageComments, setCurrentRatingThunk, ...props
@@ -86,4 +86,4 @@ export default compose<React.ComponentType>(
         fetchNewPageComments,
         setCurrentRatingThunk
     }),
-    withRouter)(OneBookContainer)
+    withRouter)(BookDetailContainer)

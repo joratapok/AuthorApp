@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-export const Comments: React.FC<CommentsType> = ({
+export const Comments: React.FC<CommentsType> = React.memo(({
     isAuth, comments, bookId,
     addComment, fetchNewPageComments
 }) => {
@@ -106,6 +106,6 @@ export const Comments: React.FC<CommentsType> = ({
             </Container>
         </Box>
     )
-}
+})
 
-export default Comments
+Comments.displayName = 'Comments'

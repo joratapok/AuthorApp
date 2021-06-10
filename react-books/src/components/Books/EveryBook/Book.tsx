@@ -58,7 +58,7 @@ theme.typography.h5 = {
     }
 }
 
-const Book: React.FC<BookType> = ({ book }) => {
+export const Book: React.FC<BookType> = React.memo(({ book }) => {
     const classes = useStyles()
 
     return (
@@ -109,6 +109,6 @@ const Book: React.FC<BookType> = ({ book }) => {
             </div>
         </Grid>
     )
-}
+})
 
-export default Book
+Book.displayName = 'Book'

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import classes from './BookDetail.module.css'
 import { commentsInitialType } from '../../redux/commentReducer'
 import { addCommentDataType } from './Comments/CommentForm'
-import Comments from './Comments/Comments'
+import { Comments } from './Comments/Comments'
 import ReaderBoxContainer from './ReaderBox/ReaderBoxContainer'
 import { AuthinitialType } from '../../redux/authReducer'
 import {
@@ -82,7 +82,7 @@ const ReadButton = withStyles((theme: Theme) => ({
     }
 }))(Button)
 
-export const BookDetail: React.FC<BookDetailType> = ({
+export const BookDetail: React.FC<BookDetailType> = React.memo(({
     book, comments,
     auth, addComment,
     fetchNewPageComments, setCurrentRatingThunk
@@ -204,6 +204,6 @@ export const BookDetail: React.FC<BookDetailType> = ({
 
         </div>
     )
-}
+})
 
-export default BookDetail
+BookDetail.displayName = 'BookDetail'
