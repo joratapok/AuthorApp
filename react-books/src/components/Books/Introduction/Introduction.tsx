@@ -15,12 +15,16 @@ const useStyles = makeStyles(() => createStyles({
         width: '98%',
         maxWidth: '600px',
         margin: 'auto'
-    }
+    },
+    paginDark: {
+        '& .MuiPaginationItem-root': {
+            color: '#e9e9e9'
+        }
+    },
 }))
 
 const Introduction: React.FC = () => {
     const c = useStyles()
-    const [move, setMove] = useState({ x: 0, y: 0 })
     const [modal, setModal] = useState(false)
 
     const modalOn = () => {
@@ -30,31 +34,14 @@ const Introduction: React.FC = () => {
         setModal(false)
     }
 
-    const newNum = (num: number) => {
-      const x = Math.floor(Math.random() * num)
-      return x
-    }
-
-    const setFromEvent = () => {
-        setMove({ x: newNum(60), y: newNum(40) })
-    }
-
-    useEffect(() => {
-        const moveIntro = setInterval(setFromEvent, 3000)
-        return () => {
-            clearInterval(moveIntro)
-        }
-    }, [])
-
     return (
         <div className={classes.introductionWrapper}>
 
             <img src={testImage} alt="introduction image" className={classes.test_image} />
 
-            <div
-                className={classes.first}
-                style={{ top: `${move.y - 40}px`, left: `${move.x}px` }}
-            />
+            <div className={classes.first}>
+                <div className={classes.second}/>
+            </div>
 
             <div className={classes.introWrapper}>
                 <Intro />
