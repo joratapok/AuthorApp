@@ -28,17 +28,18 @@
     content:'';
     position:absolute;
     border-radius:100%;
-    width:900px;
-    height:900px;
-    animation: changeShroud 10s infinite;
+    width:1200px;
+    height:1200px;
+    /*animation: changeShroud 5s infinite;*/
     animation-direction: alternate;
     transition: 0.4s;
+    box-shadow: 0px 0px 30px 300px rgba(51, 51, 51, 1) inset
 
 }
 
 @keyframes changeShroud {
-  from {box-shadow: 0px 0px 0px 120px rgba(51, 51, 51, 1) inset;}
-  to {box-shadow: 0px 0px 0px 260px rgba(51, 51, 51, 1) inset;}
+  from {box-shadow: 0px 0px 10px 300px rgba(51, 51, 51, 1) inset;}
+  to {box-shadow: 0px 0px 30px 400px rgba(51, 51, 51, 1) inset;}
 
 }
 

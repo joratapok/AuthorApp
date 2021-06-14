@@ -6,11 +6,36 @@ import { Avatar, Box } from '@material-ui/core'
 import logo from '../../assets/image/logo.png'
 import { NavLink } from 'react-router-dom'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
+import { motion } from 'framer-motion'
 
 type NavMenuPropsType = {
     auth: AuthinitialType
     setIsShowLogin: (toggle: boolean) => void
     setIsShowSignUp: (toggle: boolean) => void
+}
+
+const logoVariants = {
+    hidden: {
+        opacity: 0,
+        x: '-100vw'
+    },
+    visible: {
+        opacity: 1,
+        x: 0,
+        transition: { type: 'spring', stiffness: 120 }
+    }
+}
+
+const userButtonVariants = {
+    hidden: {
+        opacity: 0,
+        x: '100vw'
+    },
+    visible: {
+        opacity: 1,
+        x: 0,
+        transition: { type: 'spring', stiffness: 120 }
+    }
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -37,19 +62,26 @@ const NavMenu: React.FC<NavMenuPropsType> =
 
         return (
             <div className={classes.nawWrapper}>
-                <div className={classes.logoWrapper}>
+                <motion.div className={classes.logoWrapper}
+                    variants={logoVariants}
+                    initial='hidden'
+                    animate='visible'>
                     <Box width='100px' marginTop='-25px'>
                         <NavLink className={classes.navLink} to='/'>
                             <Avatar alt="logo" className={c.large} src={logo}/>
                         </NavLink>
                     </Box>
-                </div>
+                </motion.div>
 
-                <div className={classes.userInfoWrapper}>
+                <motion.div className={classes.userInfoWrapper}
+                    variants={userButtonVariants}
+                    initial='hidden'
+                    animate='visible'>
+
                     <UserAvatar auth={auth}
                         setIsShowLogin={setIsShowLogin}
                         setIsShowSignUp={setIsShowSignUp}/>
-                </div>
+                </motion.div>
             </div>
         )
     }

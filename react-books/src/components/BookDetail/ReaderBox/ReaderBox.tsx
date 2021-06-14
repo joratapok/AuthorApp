@@ -14,6 +14,7 @@ import Icon from '@material-ui/core/Icon'
 import Button from '@material-ui/core/Button'
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
+import { motion } from 'framer-motion'
 
 type ReaderBoxType = {
     bookId: number
@@ -21,6 +22,16 @@ type ReaderBoxType = {
     toggleReader: boolean
     getNewChapter: (event: object, numPage: number) => void
     setReaderOff: () => void
+}
+
+const textVariants = {
+    hidden: {
+        opacity: 0
+    },
+    visible: {
+        opacity: 1,
+        transition: { duration: 1.5 }
+    }
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -190,7 +201,12 @@ export const ReaderBox: React.FC<ReaderBoxType & any> = ({ bookId, chapters, tog
 
                                 <Box mr={1} fontSize={`${font}px`} color={(dark) ? '#e9e9e9' : 'black'}>
                                     {chapters.results.length &&
-                                    <div dangerouslySetInnerHTML={{ __html: chapters.results[0].chapter }}/>
+                                    <motion.div initial='hidden'
+                                        animate='visible'
+                                        exit='hidden'
+                                        variants={textVariants}>
+                                        <div dangerouslySetInnerHTML={{ __html: chapters.results[0].chapter }}/>
+                                    </motion.div>
                                     }
                                 </Box>
 

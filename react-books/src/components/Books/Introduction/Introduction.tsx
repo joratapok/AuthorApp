@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
 import { Backdrop, Modal } from '@material-ui/core'
 import typeCat from '../../../assets/image/typeCatSmall.png'
@@ -20,7 +20,7 @@ const useStyles = makeStyles(() => createStyles({
         '& .MuiPaginationItem-root': {
             color: '#e9e9e9'
         }
-    },
+    }
 }))
 
 const Introduction: React.FC = () => {
